@@ -1,0 +1,41 @@
+/** 
+ * CSS Styles for OMX Graphics Woocommerce customizations plugin
+ * Version 0.3
+ * (version above is equal with main plugin file version when this file was updated)
+ */
+
+/* Style the Rider Name and Number fields in Single Product  */
+#wccf_product_field_rider_name_container label, 
+#wccf_product_field_rider_name_container input, 
+#wccf_product_field_rider_number_container label, 
+#wccf_product_field_rider_number_container input {
+    display: block;
+}
+div#wccf_product_field_rider_name_container {
+    width: calc(60% - 0px);
+    display: inline-block;
+    padding: 0 10px 0 0;
+}
+div#wccf_product_field_rider_number_container {
+    width: calc(40% - 0px);
+    display: inline-block;
+    padding: 0 0 0 10px;
+}
+span.styled {
+    font-size: large;
+}
+/* Style the color pickers */
+div#wccf_product_field_number_color_container {
+    width: calc(50% - 0px);
+    display: inline-block;
+    padding: 0 10px 0 0;
+}
+div#wccf_product_field_number_plate_color_container {
+    width: calc(50% - 0px);
+    display: inline-block;
+    padding: 0 0 0 10px;
+}
+input#wccf_product_field_number_plate_color, 
+input#wccf_product_field_number_color {
+    border-left-width: 50px !important;
+}
