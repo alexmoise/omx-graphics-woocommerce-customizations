@@ -1,9 +1,55 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.3
+ * Version 0.5
  * (version above is equal with main plugin file version when this file was updated)
  */
 
+/* Few general or temporar styles */
+/* just keep it high enough to fill the screen (at least while building the website) */
+div#content {min-height: 100vh;}
+
+
+/* === Header styling:  */
+/* Fixed main header */
+header#masthead {position: fixed;margin-top: 0px !important;width: 100%;z-index: 999900;}
+div#primary {margin-top: 175px !important;}
+.main-header-bar .site-branding { padding: 0; }
+.main-header-bar .site-description { text-transform: uppercase; text-align: center; }
+/* move up the shop icon a bit to compensate for the "bag handle" */
+div#ast-site-header-cart {margin-bottom: 5px;} 
+/* Styling the main menu */
+#primary-menu > li.menu-item > a {
+    font-family: Kepler296;
+    text-transform: uppercase;
+    font-size: small;
+}
+
+/* === Main container or otherwise site-wide styling  */
+/* top margin of main container, same as menu breakpoint in theme options .. */
+@media (max-width: 960px) {
+	div#primary {
+		padding-top: 155px !important;
+		margin-top: 0 !important;
+	}
+	.ast-woocommerce-container {
+		padding-top: 20px !important;
+	}
+	.ast-flex.main-header-container {
+		margin-bottom: 11px;
+	}
+}
+@media (max-width: 370px) {
+	.ast-woocommerce-container { padding-top: 10px !important; }
+	.site-branding .site-title { font-size: 2em; }
+}
+
+/* === Product page below:  */
+/* Add to Cart button wider*/
+@media (max-width: 768px) {	button.single_add_to_cart_button.button.alt {
+			width: calc(100% - 54px);
+			padding: 11px 4px !important;
+	}
+}
 /* Style the Rider Name and Number fields in Single Product  */
 #wccf_product_field_rider_name_container label, 
 #wccf_product_field_rider_name_container input, 
@@ -24,6 +70,17 @@ div#wccf_product_field_rider_number_container {
 span.styled {
     font-size: large;
 }
+/* Style the style-pickers */
+div#wccf_product_field_name_style_container {
+    width: calc(60% - 0px);
+    display: inline-block;
+    padding: 0 10px 0 0;
+}
+div#wccf_product_field_number_style_container {
+    width: calc(40% - 0px);
+    display: inline-block;
+    padding: 0 0 0 10px;
+}
 /* Style the color pickers */
 div#wccf_product_field_number_color_container {
     width: calc(50% - 0px);
@@ -38,4 +95,61 @@ div#wccf_product_field_number_plate_color_container {
 input#wccf_product_field_number_plate_color, 
 input#wccf_product_field_number_color {
     border-left-width: 50px !important;
+}
+
+/* === Style the checkboxes and radio buttons */
+/* RADIO BUTTONS STYLYNG */
+input[type='radio'] {
+  -webkit-appearance:none;
+  width:18px;
+  height:18px;
+  border:2px solid black;
+  border-radius:50%;
+  outline:none;
+  margin: 0; padding: 0;
+}
+input[type='radio']:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 50%;
+  border: 1px solid white;  
+}
+input[type='radio']:checked:before {
+  background:#E8BC1F;
+}
+input[type='radio']:checked {
+  border:2px solid black;
+}
+/* ...AND CHECKBOX STYLING! */
+input[type='checkbox'] {
+  -webkit-appearance:none;
+  width:18px;
+  height:18px;
+  border:2px solid black;
+  border-radius:25%;
+  outline:none;
+  margin: 0; padding: 0;
+  vertical-align: text-top;
+}
+input[type='checkbox']:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 45%;
+  border: 1px solid white; 
+}
+input[type='checkbox']:checked:before {
+  background: #E8BC1F;
+}
+input[type='checkbox']:checked {
+  border:2px solid black;
+}
+/* Make radio buttons alligned vertically */
+div.wccf_field_container li > input[type="radio"] {
+    vertical-align: text-bottom;
 }
