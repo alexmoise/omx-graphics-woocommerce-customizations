@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.6
+ * Version 0.7
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -72,7 +72,7 @@ div#ast-site-header-cart {margin-bottom: 5px;}
 /* top margin of main container, same as menu breakpoint in theme options .. */
 @media (max-width: 960px) {
 	div#primary {
-		padding-top: 155px !important;
+		padding-top: 190px !important;
 		margin-top: 0 !important;
 	}
 	.ast-woocommerce-container {
@@ -109,6 +109,13 @@ h2.home_shop_mx_h2 {
     font-size: 14px !important;
     font-weight: bold;
 	background-color: #396388c9 !important;
+}
+@media (max-width:960px) {
+	.home_shop_mx_products .wc-block-grid__product {
+		-webkit-box-flex: 1;
+		flex: 1 0 50% !Important;
+		max-width: 50% !Important;
+	}
 }
 
 /* === Product page below:  */
