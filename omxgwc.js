@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.5
+ * Version 0.6
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -8,17 +8,26 @@
 jQuery(document).ready(function() { console.log('JS Loaded - 19'); });
 
 
-// Some stuff to do when document.ready:
+// START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
 	// Add the span elements needed to add the styled name and number
 	jQuery('#wccf_product_field_name_style_container li > label').after('<span class="styled ridername" style="margin-left:10px"></span>');
 	jQuery('#wccf_product_field_number_style_container li > label').after('<span class="styled ridernumber" style="margin-left:10px"></span>');
-	// Insert the initial colors in color pickers
+	// Insert the initial colors in color pickers (DO WE STILL NEED THESE??)
 	var iniColor = '#3a3a3a'; jQuery('#wccf_product_field_number_color').val(iniColor).css("border-left-color",iniColor);
 	var plateColor = '#dfdfdf'; jQuery('#wccf_product_field_number_plate_color').val(plateColor).css("border-left-color",plateColor);
-});
-// Add the font CSS style for each styled name and number
-jQuery(document).ready(function() {
+	// Add a class to body after scrolling a bit
+	var scrollPosition = window.scrollY;
+	var logoContainer = document.getElementsByTagName("body")[0];
+	window.addEventListener('scroll', function() {
+		scrollPosition = window.scrollY;
+		if (scrollPosition >= 175) {
+			logoContainer.classList.add('omx-scrolled');
+		} else {
+			logoContainer.classList.remove('omx-scrolled');
+		}
+	});
+	// Just for product pages: Add the font CSS style for each styled name and number
 	// Rider *name* styles
 	jQuery('#wccf_product_field_name_style_container li > input').each(function() {
 		eachStyle = jQuery(this).attr('value');
@@ -30,6 +39,7 @@ jQuery(document).ready(function() {
 		jQuery('#wccf_product_field_number_style_container li > input[value="'+eachStyle+'"]').siblings('span.styled').css("font-family",eachStyle);
 	});
 });
+// END adding some stuff to do when document.ready:
 
 // Dynamically change the font of Rider Name and Number in its input field
 jQuery('#wccf_product_field_name_style_container input').change(function(e) {

@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.5
+ * Version 0.6
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -10,10 +10,24 @@ div#content {min-height: 100vh;}
 
 
 /* === Header styling:  */
-/* Fixed main header */
-header#masthead {position: fixed;margin-top: 0px !important;width: 100%;z-index: 999900;}
+/* Fixed main header - and its dependencies */
+header#masthead {position: fixed;margin-top: 0px !important;width: 100%;z-index: 999900; transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);}
 div#primary {margin-top: 175px !important;}
-.main-header-bar .site-branding { padding: 0; }
+.main-header-bar .site-branding { 
+	padding: 0; 
+	display: block !important;
+    width: 100%;
+    text-align: center !important;
+	min-height: 128px;
+}
+.main-header-bar .ast-site-identity {
+    width: auto !important;
+}
+@media (max-width:544px) {
+	.ast-site-identity {
+		margin-top: 18px;
+	}
+}
 .main-header-bar .site-description { text-transform: uppercase; text-align: center; }
 /* move up the shop icon a bit to compensate for the "bag handle" */
 div#ast-site-header-cart {margin-bottom: 5px;} 
@@ -23,6 +37,36 @@ div#ast-site-header-cart {margin-bottom: 5px;}
     text-transform: uppercase;
     font-size: small;
 }
+/* Adding the logo at the left of menu when scrolling */
+@media (min-width: 961px) {
+	.main-header-bar .ast-main-header-bar-alignment {
+		position: relative;
+	}
+	.omx-scrolled .main-header-bar .ast-main-header-bar-alignment:before {
+		content: url(/wp-content/uploads/2019/12/omx_logo_sq32.png);
+		position: absolute;
+		width: 32px;
+		height: 32px;
+		display: inline-block;
+		left: -40px;
+		top: 10px;
+	}
+}
+@media (max-width: 960px) {
+	.omx-scrolled .main-header-bar .ast-masthead-custom-menu-items.woocommerce-custom-menu-item:before {
+		content: url(/wp-content/uploads/2019/12/omx_logo_sq32.png);
+		position: absolute;
+		width: 32px;
+		height: 32px;
+		display: inline-block;
+		left: -40px;
+		top: 10px;
+	}
+}
+
+/* Move the header up when scrolled (based on class added via JS) */
+.omx-scrolled header#masthead {transform: translateY(-125px);}
+.admin-bar.omx-scrolled header#masthead {transform: translateY(-160px) !important;}
 
 /* === Main container or otherwise site-wide styling  */
 /* top margin of main container, same as menu breakpoint in theme options .. */
@@ -41,6 +85,30 @@ div#ast-site-header-cart {margin-bottom: 5px;}
 @media (max-width: 370px) {
 	.ast-woocommerce-container { padding-top: 10px !important; }
 	.site-branding .site-title { font-size: 2em; }
+}
+
+/* === Home Page styling */
+.home_shop_mx_button > a {
+    background-color: #396388c9 !important;
+}
+h2.home_shop_mx_h2 {
+    margin: 50px auto;
+}
+.home_shop_mx_products {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.home_cat_container .wp-block-cover__inner-container {
+    position: absolute !important;
+    bottom: 30px;
+}
+.home_cat_container {
+    margin-top: 50px;
+}
+.home_cat_button > a {
+    font-size: 14px !important;
+    font-weight: bold;
+	background-color: #396388c9 !important;
 }
 
 /* === Product page below:  */
