@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.6
+ * Version 0.8
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -37,6 +37,10 @@ jQuery(document).ready(function() {
 	jQuery('#wccf_product_field_number_style_container li > input').each(function() {
 		eachStyle = jQuery(this).attr('value');
 		jQuery('#wccf_product_field_number_style_container li > input[value="'+eachStyle+'"]').siblings('span.styled').css("font-family",eachStyle);
+	});
+	// "Small" containers open-close
+	jQuery( ".wccf_field_container small" ).click(function() {
+		jQuery( this ).toggleClass( "omx_expanded" );
 	});
 });
 // END adding some stuff to do when document.ready:

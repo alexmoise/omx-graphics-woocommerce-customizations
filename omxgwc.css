@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.7
+ * Version 0.8
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -43,7 +43,7 @@ div#ast-site-header-cart {margin-bottom: 5px;}
 		position: relative;
 	}
 	.omx-scrolled .main-header-bar .ast-main-header-bar-alignment:before {
-		content: url(/wp-content/uploads/2019/12/omx_logo_sq32.png);
+		content: url(/wp-content/uploads/2020/01/omx_logo_sq32_b.png);
 		position: absolute;
 		width: 32px;
 		height: 32px;
@@ -54,7 +54,7 @@ div#ast-site-header-cart {margin-bottom: 5px;}
 }
 @media (max-width: 960px) {
 	.omx-scrolled .main-header-bar .ast-masthead-custom-menu-items.woocommerce-custom-menu-item:before {
-		content: url(/wp-content/uploads/2019/12/omx_logo_sq32.png);
+		content: url(/wp-content/uploads/2020/01/omx_logo_sq32_b.png);
 		position: absolute;
 		width: 32px;
 		height: 32px;
@@ -133,28 +133,25 @@ h2.home_shop_mx_h2 {
     display: block;
 }
 div#wccf_product_field_rider_name_container {
-    width: calc(60% - 0px);
+    width: 100%;
     display: inline-block;
-    padding: 0 10px 0 0;
+    /* padding: 0 10px 0 0; */
 }
 div#wccf_product_field_rider_number_container {
-    width: calc(40% - 0px);
+    width: 100%;
     display: inline-block;
-    padding: 0 0 0 10px;
 }
 span.styled {
     font-size: large;
 }
 /* Style the style-pickers */
 div#wccf_product_field_name_style_container {
-    width: calc(60% - 0px);
+    width: 100%;
     display: inline-block;
-    padding: 0 10px 0 0;
 }
 div#wccf_product_field_number_style_container {
-    width: calc(40% - 0px);
+    width: 100%;
     display: inline-block;
-    padding: 0 0 0 10px;
 }
 /* Style the color pickers */
 div#wccf_product_field_number_color_container {
@@ -171,6 +168,31 @@ input#wccf_product_field_number_plate_color,
 input#wccf_product_field_number_color {
     border-left-width: 50px !important;
 }
+/* New one: */
+.wccf_field_container small:after {
+	content: "^";
+    bottom: 0 !important;
+	right: 0;
+    position: absolute;
+    transform: rotateZ(180deg);
+    font-size: large;
+    margin-bottom: 3px;
+    margin-left: 8px;
+}
+.wccf_field_container small {
+    overflow: hidden;
+    height: 26px;
+    transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
+    position: relative;
+}
+.wccf_field_container small.omx_expanded {
+    height: fit-content !important;
+}
+small.omx_expanded:after {
+    transform: rotateY(180deg);
+	margin-bottom: -3px;
+}
+
 
 /* === Style the checkboxes and radio buttons */
 /* RADIO BUTTONS STYLYNG */
