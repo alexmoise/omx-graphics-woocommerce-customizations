@@ -1,14 +1,14 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.8
+ * Version 0.9
  * (version above is equal with main plugin file version when this file was updated)
  */
 
 // Let's have it tested first (will remove this after a while)
-jQuery(document).ready(function() { console.log('JS Loaded - 19'); });
+jQuery(document).ready(function() { console.log('JS Loaded - v19'); });
 
 
-// START adding some stuff to do when document.ready:
+// === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
 	// Add the span elements needed to add the styled name and number
 	jQuery('#wccf_product_field_name_style_container li > label').after('<span class="styled ridername" style="margin-left:10px"></span>');
@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
 	// Insert the initial colors in color pickers (DO WE STILL NEED THESE??)
 	var iniColor = '#3a3a3a'; jQuery('#wccf_product_field_number_color').val(iniColor).css("border-left-color",iniColor);
 	var plateColor = '#dfdfdf'; jQuery('#wccf_product_field_number_plate_color').val(plateColor).css("border-left-color",plateColor);
-	// Add a class to body after scrolling a bit
+	// Add a class to body after scrolling a bit. Used further in CSS file to throw the main logo over the screen's top to save space
 	var scrollPosition = window.scrollY;
 	var logoContainer = document.getElementsByTagName("body")[0];
 	window.addEventListener('scroll', function() {
@@ -38,12 +38,20 @@ jQuery(document).ready(function() {
 		eachStyle = jQuery(this).attr('value');
 		jQuery('#wccf_product_field_number_style_container li > input[value="'+eachStyle+'"]').siblings('span.styled').css("font-family",eachStyle);
 	});
-	// "Small" containers open-close
-	jQuery( ".wccf_field_container small" ).click(function() {
+	// Add "omx_read_more" class to <small> containers that have more text inside. Used further in CSS file to add the "after" element with the down/up arrow
+	function isEllipsisActive(e) { return (e.offsetWidth < e.scrollWidth); }
+	var elementList = document.querySelectorAll('small');
+	for(var idx=0; idx < elementList.length; idx++) {
+		if ( isEllipsisActive(elementList.item(idx)) ) {
+			elementList.item(idx).className = elementList.item(idx).className + "omx_read_more";
+		}
+	}
+	// Opening & closing class of <small> containers that have "omx_read_more" class 
+	jQuery( ".wccf_field_container small.omx_read_more" ).click(function() {
 		jQuery( this ).toggleClass( "omx_expanded" );
 	});
 });
-// END adding some stuff to do when document.ready:
+// === END adding some stuff to do when document.ready:
 
 // Dynamically change the font of Rider Name and Number in its input field
 jQuery('#wccf_product_field_name_style_container input').change(function(e) {

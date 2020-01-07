@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.8
+ * Version 0.9
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -168,29 +168,39 @@ input#wccf_product_field_number_plate_color,
 input#wccf_product_field_number_color {
     border-left-width: 50px !important;
 }
-/* New one: */
-.wccf_field_container small:after {
-	content: "^";
-    bottom: 0 !important;
-	right: 0;
-    position: absolute;
-    transform: rotateZ(180deg);
-    font-size: large;
-    margin-bottom: 3px;
-    margin-left: 8px;
-}
+/* Styling the <small> field description */
 .wccf_field_container small {
-    overflow: hidden;
-    height: 26px;
-    transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
+    height: 24px;
     position: relative;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
 }
-.wccf_field_container small.omx_expanded {
+.wccf_field_container small.omx_read_more.omx_expanded {
     height: fit-content !important;
+    white-space: normal;
+	color: black;
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
 }
-small.omx_expanded:after {
-    transform: rotateY(180deg);
-	margin-bottom: -3px;
+/* Using an "after" to display the down/up arrow */
+.wccf_field_container small.omx_read_more {
+	padding-right:25px;
+	color: gray;
+	cursor: pointer;
+}
+.wccf_field_container small.omx_read_more:after {
+	content: "";
+    bottom: 0px;
+    right: 0;
+    position: absolute;
+    background: white url(/wp-content/uploads/static/triangle_i14_down.png) no-repeat center;
+    width: 32px;
+    height: 24px;
+}
+small.omx_read_more.omx_expanded:after {
+    background: transparent url(/wp-content/uploads/static/triangle_i14.png) no-repeat center;
+    content: "";
 }
 
 
