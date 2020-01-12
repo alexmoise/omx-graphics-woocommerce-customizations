@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.13
+ * Version: 0.14
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -60,7 +60,15 @@ function moomx_category_pre_footer_output() {
 	}
 }
 
-
+// Change places of breadcrumbs and result count
+add_action( 'init', 'moomx_remove_result_count' );
+function moomx_remove_result_count() {
+	// get rid of them first
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
+	// then add the breadcrumbs in result count's place
+	add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 20, 0);
+}
 
 
 

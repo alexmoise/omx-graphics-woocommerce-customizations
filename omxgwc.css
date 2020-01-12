@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.13
+ * Version 0.14
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -132,6 +132,30 @@ div#secondary h2.widget-title {
 	}
 }
 
+/* === Woocommerce elements */
+nav.woocommerce-breadcrumb {
+    font-size: 10px !important;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.woocommerce-ordering select.orderby {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    padding: 6px;
+    font-family: Kepler296;
+	text-transform: uppercase;
+}
+.woocommerce-ordering select.orderby > option {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+}
+.woocommerce-cart-form .variation *, 
+form.woocommerce-checkout .variation * {
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 20px;
+}
+
 /* === Home Page styling */
 .home_shop_mx_button > a {
     background-color: #396388c9 !important;
@@ -186,6 +210,17 @@ ul.products li.product .astra-shop-summary-wrap h2 {
 		padding-left: calc((100% - 1240px) / 2) !important;
 		padding-right: calc((100% - 1240px) / 2) !important;
 	}
+}
+.archive.woocommerce .woocommerce-products-header h1.page-title {
+    text-align: center;
+    margin-bottom: 0px;
+    color: black;
+}
+.archive.woocommerce .woocommerce-products-header .term-description {
+    text-align: center;
+    font-family: Kepler296;
+    color: #7b7b7b;
+    font-size: small;
 }
 
 /* === Product page below:  */
@@ -273,7 +308,6 @@ small.omx_read_more.omx_expanded:after {
     background: transparent url(/wp-content/uploads/static/triangle_i14.png) no-repeat center;
     content: "";
 }
-
 
 /* === Style the checkboxes and radio buttons */
 /* RADIO BUTTONS STYLYNG */
