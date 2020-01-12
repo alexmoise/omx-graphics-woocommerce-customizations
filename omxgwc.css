@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.14
+ * Version 0.15
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -107,6 +107,10 @@ div#primary {
 div#secondary .product-categories .cat-parent ul.children {
     margin-left:8px;
 }
+div#secondary .product-categories li.cat-item .current-cat > a, 
+div#secondary .product-categories li.cat-item.current-cat > a {
+    font-weight: bold;
+}
 div#secondary h2.widget-title {
     font-size: inherit;
 }
@@ -139,12 +143,13 @@ nav.woocommerce-breadcrumb {
     text-transform: uppercase;
 }
 .woocommerce-ordering select.orderby {
-    border: none;
-    background: transparent;
-    font-size: 14px;
-    padding: 6px;
-    font-family: Kepler296;
+	border: none;
+	background: transparent;
+	font-size: 12px;
+	padding: 6px;
+	font-family: Kepler296;
 	text-transform: uppercase;
+	color: black;
 }
 .woocommerce-ordering select.orderby > option {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
@@ -221,6 +226,12 @@ ul.products li.product .astra-shop-summary-wrap h2 {
     font-family: Kepler296;
     color: #7b7b7b;
     font-size: small;
+}
+.archive.woocommerce .woocommerce-products-header .term-description p {
+    margin-bottom: 0;
+}
+.archive.woocommerce .woocommerce-products-header {
+    margin-bottom: 40px;
 }
 
 /* === Product page below:  */
