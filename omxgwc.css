@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.10
+ * Version 0.11
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -8,7 +8,10 @@
 /* just keep it high enough to fill the screen (at least while building the website) */
 div#content {min-height: 100vh;}
 
-
+/* === General usage rules */
+.omx_orange {
+	color: #e8bc1f
+}
 /* === Header styling:  */
 /* Fixed main header - and its dependencies */
 header#masthead {
@@ -101,6 +104,12 @@ div#primary {
 	.site-branding .site-title { font-size: 2em; }
 }
 /* Secondary container (left sidebar in this case) */
+div#secondary .product-categories .cat-parent ul.children {
+    margin-left:8px;
+}
+div#secondary h2.widget-title {
+    font-size: inherit;
+}
 @media (min-width: 769px) {
 	div#secondary {
 		margin-top: 175px !important;
@@ -154,11 +163,38 @@ h2.home_shop_mx_h2 {
 	}
 }
 
+/* === Product archives styling: */
+ul.products li.product a.archive_select_options {
+    font-family: Kepler296;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+ul.products li.product .astra-shop-summary-wrap h2 {
+    font-family: inherit;
+    font-size: small !important;
+}
+.category_pre_footer {
+    float: left;
+    padding: 50px 10px;
+    text-align: center;
+    background-color: #a2a2a2;
+}
+.category_pre_footer p {
+    margin-bottom: 0px;
+}
+@media (min-width: 1260px) {	
+	.category_pre_footer {
+		padding-left: calc((100% - 1240px) / 2) !important;
+		padding-right: calc((100% - 1240px) / 2) !important;
+	}
+}
+
 /* === Product page below:  */
 /* Add to Cart button wider*/
-@media (max-width: 768px) {	button.single_add_to_cart_button.button.alt {
-			width: calc(100% - 54px);
-			padding: 11px 4px !important;
+@media (max-width: 768px) {	
+	button.single_add_to_cart_button.button.alt {
+		width: calc(100% - 54px);
+		padding: 11px 4px !important;
 	}
 }
 /* Style the Rider Name and Number fields in Single Product  */

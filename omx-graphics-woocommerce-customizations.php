@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.10
+ * Version: 0.11
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -19,6 +19,7 @@ add_filter('jpeg_quality', function($arg){return 92;});
 // Display a debug text, for control
 add_action( 'woocommerce_product_meta_end', 'moomx_display_dbg_for_products', 90 );
 function moomx_display_dbg_for_products() { echo 'DBG 15'; }
+
 // Load our own JS
 add_action( 'wp_enqueue_scripts', 'moomx_adding_scripts', 9999999 );
 function moomx_adding_scripts() {
@@ -34,9 +35,35 @@ function moomx_adding_styles() {
 // Remove hover zoom
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 // Remove the product price
-//add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
-// Add the breadcrumbs in the right place (by default displayed in Product Summary, so removed in Customizer in the first place)
-//add_action('template_redirect', 'moomx_prod_breadcrumbs', 10 ); function moomx_prod_breadcrumbs(){ add_action( 'woocommerce_before_single_product', 'woocommerce_breadcrumb', 1 ); }
+add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
+
+// Add the "Select options" link under the products. 
+// !! "Add To Cart" button needs to be disabled in theme customizer
+add_action( 'astra_woo_shop_title_after', 'moomx_product_button_archive' );
+function moomx_product_button_archive() {
+	echo '<a href="'; 
+	echo the_permalink(); 
+	echo '" class="archive_select_options">Select options</a>';
+}
+
+// Output the Category Pre-Footer in category pages. 
+// !! Field is added with ACF plugin
+add_action( 'astra_content_after', 'moomx_category_pre_footer_output' );
+function moomx_category_pre_footer_output() {
+	if (is_product_category()) {
+		$product_cat_object = get_queried_object();
+		if(get_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id)) {
+			echo '<div class="category_pre_footer">';
+			the_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id);
+			echo '</div>';
+		}
+	}
+}
+
+
+
+
+
 
 
 
