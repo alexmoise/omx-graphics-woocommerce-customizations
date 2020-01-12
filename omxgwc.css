@@ -1,18 +1,31 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.9
+ * Version 0.10
  * (version above is equal with main plugin file version when this file was updated)
  */
 
-/* Few general or temporar styles */
+/* Few temporary styles */
 /* just keep it high enough to fill the screen (at least while building the website) */
 div#content {min-height: 100vh;}
 
 
 /* === Header styling:  */
 /* Fixed main header - and its dependencies */
-header#masthead {position: fixed;margin-top: 0px !important;width: 100%;z-index: 999900; transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);}
-div#primary {margin-top: 175px !important;}
+header#masthead {
+	position: fixed;
+	margin-top: 0px !important;
+	width: 100%;
+	z-index: 999900; 
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
+}
+/* Move the header up when scrolled (based on class added via JS) */
+.omx-scrolled header#masthead {
+	transform: translateY(-125px);
+}
+.admin-bar.omx-scrolled header#masthead {
+	transform: translateY(-160px) !important;
+}
+/* Some logo and branding styles */
 .main-header-bar .site-branding { 
 	padding: 0; 
 	display: block !important;
@@ -30,7 +43,9 @@ div#primary {margin-top: 175px !important;}
 }
 .main-header-bar .site-description { text-transform: uppercase; text-align: center; }
 /* move up the shop icon a bit to compensate for the "bag handle" */
-div#ast-site-header-cart {margin-bottom: 5px;} 
+div#ast-site-header-cart {
+	margin-bottom: 5px;
+} 
 /* Styling the main menu */
 #primary-menu > li.menu-item > a {
     font-family: Kepler296;
@@ -64,11 +79,10 @@ div#ast-site-header-cart {margin-bottom: 5px;}
 	}
 }
 
-/* Move the header up when scrolled (based on class added via JS) */
-.omx-scrolled header#masthead {transform: translateY(-125px);}
-.admin-bar.omx-scrolled header#masthead {transform: translateY(-160px) !important;}
-
-/* === Main container or otherwise site-wide styling  */
+/* === Site containers or otherwise site-wide styling  */
+div#primary {
+	margin-top: 175px !important;
+}
 /* top margin of main container, same as menu breakpoint in theme options .. */
 @media (max-width: 960px) {
 	div#primary {
@@ -85,6 +99,28 @@ div#ast-site-header-cart {margin-bottom: 5px;}
 @media (max-width: 370px) {
 	.ast-woocommerce-container { padding-top: 10px !important; }
 	.site-branding .site-title { font-size: 2em; }
+}
+/* Secondary container (left sidebar in this case) */
+@media (min-width: 769px) {
+	div#secondary {
+		margin-top: 175px !important;
+	}
+	div#secondary .sidebar-main {
+		margin-top: 5.34em;
+	}
+	div#secondary {
+		padding-right: 20px !important;
+	}
+}
+@media (max-width: 544px) {
+	div#secondary {
+		padding: 0 1em !important;
+	}
+}
+@media (min-width: 545px) and (max-width: 768px) {
+	div#secondary {
+		padding: 0 2.14em !important;
+	}
 }
 
 /* === Home Page styling */
