@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.18
+ * Version 0.19
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -26,7 +26,8 @@ header#masthead {
 @media (max-width: 960px) and (min-width: 768px) { .omx-scrolled header#masthead { transform: translateY(-120px); } }
 @media (max-width: 767px) { .omx-scrolled header#masthead { transform: translateY(-110px);} }
 .admin-bar.omx-scrolled header#masthead { transform: translateY(-160px) !important; }
-.admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-32px) !important; position: sticky; }
+@media (min-width: 783px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-32px) !important; position: sticky; } }
+@media (max-width: 782px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-46px) !important; position: sticky; } }
 /* Some logo and branding styles */
 .main-header-bar .site-branding { 
 	padding: 0; 
