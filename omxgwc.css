@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.19
+ * Version 0.20
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -197,10 +197,12 @@ ul.products li.product a.archive_select_options {
     font-family: Kepler296;
     font-weight: 400;
     text-transform: uppercase;
+	font-size: 14px;
 }
 ul.products li.product .astra-shop-summary-wrap h2 {
     font-family: inherit;
     font-size: small !important;
+	margin-bottom: 0 !important;
 }
 .category_pre_footer {
     padding: 50px 10px;
