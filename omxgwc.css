@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.21
+ * Version 0.22
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -260,22 +260,41 @@ div#omx_add_to_cart .rightpress_product_price_live_update dd {
 div#omx_add_to_cart dl.rightpress_product_price_live_update {
     overflow: unset !important;
     display: inline-block;
-    padding: 5px 10px;
-	width: 90px !important;
+    width: 90px !important;
+    margin: 5px !important;
 }
 div#omx_add_to_cart .button.single_add_to_cart_button {
-    padding: 12px 10px;
+	padding: 12px 20px;
     line-height: 0px;
     display: table-cell;
     vertical-align: middle;
-	float: unset;
-	height: 35px;
-	width: 220px;
+    float: unset;
+    height: 45px;
+    width: 230px;
+    text-align: left;
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    font-weight: normal;
+    text-transform: uppercase;
 }
 div#omx_add_to_cart .quantity {
     float: none !important;
     display: inline-block;
 	vertical-align: middle;
+}
+div#omx_add_to_cart button.single_add_to_cart_button:after {
+    content: " ";
+    border-right: 1px solid white;
+    position: absolute;
+    color: transparent;
+    bottom: 8px;
+    top: 8px;
+    right: 45%;
+}
+div#omx_add_to_cart span.woocommerce-Price-amount {
+    color: white;
+    font-weight: normal;
 }
 
 /* Style the Rider Name and Number fields in Single Product  */
