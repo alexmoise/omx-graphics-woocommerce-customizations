@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.20
+ * Version 0.21
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -237,13 +237,47 @@ ul.products li.product .astra-shop-summary-wrap h2 {
 }
 
 /* === Product page below:  */
-/* Add to Cart button wider*/
-@media (max-width: 768px) {	
-	button.single_add_to_cart_button.button.alt {
-		width: calc(100% - 54px);
-		padding: 11px 4px !important;
-	}
+/* The "omx_add_to_cart" div container (added with JS) */
+form.cart > dl.rightpress_product_price_live_update, 
+form.cart > div.quantity, 
+form.cart > button.single_add_to_cart_button {
+    display: none !important;
 }
+div#omx_add_to_cart{
+	position: sticky;
+    bottom: 0px;
+    z-index: 9999;
+    background-color: white;
+    padding: 10px 0;
+	text-align: center;
+}
+div#omx_add_to_cart dl.rightpress_product_price_live_update {
+    margin: 0 !important;
+}
+div#omx_add_to_cart .rightpress_product_price_live_update dd {
+    margin: 0;
+}
+div#omx_add_to_cart dl.rightpress_product_price_live_update {
+    overflow: unset !important;
+    display: inline-block;
+    padding: 5px 10px;
+	width: 90px !important;
+}
+div#omx_add_to_cart .button.single_add_to_cart_button {
+    padding: 12px 10px;
+    line-height: 0px;
+    display: table-cell;
+    vertical-align: middle;
+	float: unset;
+	height: 35px;
+	width: 220px;
+}
+div#omx_add_to_cart .quantity {
+    float: none !important;
+    display: inline-block;
+	vertical-align: middle;
+}
+
 /* Style the Rider Name and Number fields in Single Product  */
 #wccf_product_field_rider_name_container label, 
 #wccf_product_field_rider_name_container input, 
