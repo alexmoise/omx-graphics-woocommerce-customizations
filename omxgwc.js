@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.21
+ * Version 0.23
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -18,6 +18,23 @@ jQuery(document).ready(function() {
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
 	}
+	// Add the plus/minus button to Quantity box
+	jQuery("<div class='plus'>+</div>").appendTo("div.quantity");
+	jQuery("<div class='minus'>-</div>").prependTo("div.quantity");
+	jQuery('div#omx_add_to_cart .minus').click(function () {
+		var $input = jQuery(this).parent().find('input');
+		var count = parseInt($input.val()) - 1;
+		count = count < 1 ? 1 : count;
+		$input.val(count);
+		$input.change();
+		return false;
+	});
+	jQuery('div#omx_add_to_cart .plus').click(function () {
+		var $input = jQuery(this).parent().find('input');
+		$input.val(parseInt($input.val()) + 1);
+		$input.change();
+		return false;
+	});
 	// Add the span elements needed to add the styled name and number
 	jQuery('#wccf_product_field_name_style_container li > label').after('<span class="styled ridername" style="margin-left:10px"></span>');
 	jQuery('#wccf_product_field_number_style_container li > label').after('<span class="styled ridernumber" style="margin-left:10px"></span>');
