@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.23
+ * Version 0.24
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -260,28 +260,30 @@ div#omx_add_to_cart .rightpress_product_price_live_update dd {
 div#omx_add_to_cart dl.rightpress_product_price_live_update {
     overflow: unset !important;
     display: inline-block;
-    width: 90px !important;
+    width: 86px !important;
     margin: 5px !important;
 }
 div#omx_add_to_cart .button.single_add_to_cart_button {
-	padding: 12px 20px;
+	padding: 12px 14px;
     line-height: 0px;
     display: table-cell;
     vertical-align: middle;
     float: unset;
     height: 45px;
-    width: 235px;
+    width: 200px;
     text-align: left;
     background-color: black;
     color: white;
     border-radius: 3px;
     font-weight: normal;
     text-transform: uppercase;
+    font-size: 12px;
 }
 div#omx_add_to_cart .quantity {
     float: none !important;
     display: inline-block;
 	vertical-align: middle;
+	margin-right: 20px;
 }
 div#omx_add_to_cart button.single_add_to_cart_button:after {
     content: " ";
@@ -311,6 +313,20 @@ div#omx_add_to_cart .quantity input{
 	display: inline-block;
 	vertical-align: middle;
 	padding: 0;
+	-moz-appearance: textfield;
+}
+div#omx_add_to_cart .quantity input::-webkit-outer-spin-button, 
+div#omx_add_to_cart .quantity input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+div#omx_add_to_cart .quantity:after {
+    content: "Quantity";
+    display: block;
+    line-height: 0px;
+    font-size: 12px;
+    margin-bottom: 10px;
+	color: #888;
 }
 
 /* Style the Rider Name and Number fields in Single Product  */
