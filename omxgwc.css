@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.24
+ * Version 0.25
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -244,15 +244,12 @@ form.cart > button.single_add_to_cart_button {
     display: none !important;
 }
 div#omx_add_to_cart{
-	position: sticky;
+	/* position: sticky; */
     bottom: 0px;
     z-index: 9999;
     background-color: white;
     padding: 10px 0;
 	text-align: center;
-}
-div#omx_add_to_cart dl.rightpress_product_price_live_update {
-    margin: 0 !important;
 }
 div#omx_add_to_cart .rightpress_product_price_live_update dd {
     margin: 0;
@@ -260,12 +257,12 @@ div#omx_add_to_cart .rightpress_product_price_live_update dd {
 div#omx_add_to_cart dl.rightpress_product_price_live_update {
     overflow: unset !important;
     display: inline-block;
-    width: 86px !important;
-    margin: 5px !important;
+    margin: 0 !important;
+    float: right;
 }
 div#omx_add_to_cart .button.single_add_to_cart_button {
 	padding: 12px 14px;
-    line-height: 0px;
+    line-height: 20px;
     display: table-cell;
     vertical-align: middle;
     float: unset;
@@ -283,7 +280,7 @@ div#omx_add_to_cart .quantity {
     float: none !important;
     display: inline-block;
 	vertical-align: middle;
-	margin-right: 20px;
+	margin-right: 12px;
 }
 div#omx_add_to_cart button.single_add_to_cart_button:after {
     content: " ";
@@ -292,7 +289,7 @@ div#omx_add_to_cart button.single_add_to_cart_button:after {
     color: transparent;
     bottom: 8px;
     top: 8px;
-    right: 45%;
+    right: 44%;
 }
 div#omx_add_to_cart span.woocommerce-Price-amount {
     color: white;
