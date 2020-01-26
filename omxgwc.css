@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.31
+ * Version 0.32
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -107,6 +107,10 @@ div#primary {
 	margin-top: 175px !important;
 	margin-bottom: 0 !important;
 	padding-bottom: 0 !important;
+}
+body:not(.home):not(.archive):not(.blog):not(.single-post):not(.woocommerce-page) div#primary {
+    margin-top: 240px !important;
+	margin-bottom: 30px !important;
 }
 /* top margin of main container, same as menu breakpoint in theme options .. */
 @media (max-width: 960px) {
