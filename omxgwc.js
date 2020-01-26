@@ -1,22 +1,31 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.23
+ * Version 0.27
  * (version above is equal with main plugin file version when this file was updated)
  */
 
 // Let's have it tested first (will remove this after a while)
 jQuery(document).ready(function() { console.log('JS Loaded - v23'); });
 
-
 // === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
-	// Move the price and add to cart button to the bottom of the screen and make it sticky
+	// Move the price and add to cart button to the bottom of the screen
 	if(jQuery("body").hasClass("single-product")) {
 		jQuery("dl.rightpress_product_price_live_update dt").remove();
 		jQuery("<div/>", {id:"omx_add_to_cart"}).appendTo("form.cart");
 		jQuery("dl.rightpress_product_price_live_update").appendTo("button[name='add-to-cart']");
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
+		// Add the DOM elements needed to display the price at the beginning of the product form
+		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
+		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
+		jQuery("<div class='dynamic_price_value'>...</div>").appendTo("div#omx_dynamic_price_wrapper");
+		// Add the initial price at the beginning of the product form:
+		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 2000); 
+		// Then follow the changes and update that price:
+		jQuery("form.cart").change(function() { 
+		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1000); 
+		});
 	}
 	// Add the plus/minus button to Quantity box
 	jQuery("<div class='plus'>+</div>").appendTo("div.quantity");
