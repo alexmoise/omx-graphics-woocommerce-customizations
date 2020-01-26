@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.30
+ * Version 0.31
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -11,6 +11,9 @@ div#content {min-height: 100vh;}
 /* === General usage rules */
 .omx_orange {
 	color: #e8bc1f
+}
+.omx_kepler {
+	font-family: Kepler296
 }
 /* === Header styling:  */
 /* Fixed main header - and its dependencies */
@@ -55,8 +58,15 @@ div#ast-site-header-cart {
     text-transform: uppercase;
     font-size: small;
 }
-.omx-scrolled .ast-flex.main-header-container {
-    margin-left: 60px;
+@media (max-width:960px) {
+	.omx-scrolled .main-header-container .woocommerce-custom-menu-item {
+		margin-left: 60px;
+	}
+}
+@media (min-width:961px) {
+	.omx-scrolled .main-header-container .ast-main-header-bar-alignment {
+		margin-left: 60px;
+	}
 }
 .omx-scrolled .site-branding {
     opacity: 0;
@@ -95,6 +105,8 @@ div#ast-site-header-cart {
 /* === Site containers or otherwise site-wide styling  */
 div#primary {
 	margin-top: 175px !important;
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
 }
 /* top margin of main container, same as menu breakpoint in theme options .. */
 @media (max-width: 960px) {
@@ -175,12 +187,18 @@ form.woocommerce-checkout .variation * {
 .home_shop_mx_button > a {
     background-color: #396388c9 !important;
 }
+.home_shop_mx_cover {
+    min-height: calc(100vh - 360px);
+}
 h2.home_shop_mx_h2 {
     margin: 50px auto;
 }
 .home_shop_mx_products {
     margin-left: auto !important;
     margin-right: auto !important;
+}
+.home_shop_mx_products li.wc-block-grid__product {
+    margin-bottom: 0 !important;
 }
 .home_cat_container .wp-block-cover__inner-container {
     position: absolute !important;
@@ -200,6 +218,41 @@ h2.home_shop_mx_h2 {
 		flex: 1 0 50% !Important;
 		max-width: 50% !Important;
 	}
+}
+/* Golden logos on homepage */
+.home_golden_logos {
+    margin-top: 60px;
+}
+.home_golden_logos .slick-slide img {
+    border: none;
+    height: 120px;
+    width: 120px;
+}
+/* How To on homepage */
+.home_howtoinstall_2 {
+    /* background-color: lightgray; */
+    /* padding-left: calc(50vw - 50%)!important; */
+    /* padding-right: calc(50vw - 50%)!important; */
+}
+
+.home_howtoinstall_2 .wp-block-embed {
+    margin: 0;
+}
+
+.home_howtoinstall_2 .wp-block-column {
+    max-width: 600px;
+    width: 50% !important;
+}
+@media (max-width:960px) {
+    .home_howtoinstall_2 {
+		/* padding-top: 20px; */
+		/* padding-bottom: 20px; */
+    }
+}
+@media (max-width:781px) {
+    .wp-block-column.is-vertically-aligned-center {
+        flex-grow: 1;
+    }
 }
 
 /* === Product archives styling: */
