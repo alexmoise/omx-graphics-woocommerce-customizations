@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.28
+ * Version 0.29
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -326,8 +326,8 @@ div#omx_add_to_cart .quantity:after {
 	color: #888;
 }
 #omx_dynamic_price_wrapper .dynamic_price_label {
-    display: inline-block;
-    margin: 0 20px 0 0;
+	display: inline-block;
+    margin: 10px 20px 10px 0;
 }
 #omx_dynamic_price_wrapper .dynamic_price_value {
     display: inline-block;
@@ -335,6 +335,12 @@ div#omx_add_to_cart .quantity:after {
 #omx_dynamic_price_wrapper .dynamic_price_value dd {
     margin: 0;
 }
+#omx_dynamic_price_wrapper .dynamic_price_updating {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ccc;
+}
+
 
 /* Style the Rider Name and Number fields in Single Product  */
 #wccf_product_field_rider_name_container label, 

@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.27
+ * Version 0.29
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -19,12 +19,14 @@ jQuery(document).ready(function() {
 		// Add the DOM elements needed to display the price at the beginning of the product form
 		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
 		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
-		jQuery("<div class='dynamic_price_value'>...</div>").appendTo("div#omx_dynamic_price_wrapper");
+		jQuery("<div class='dynamic_price_value'><span class='dynamic_price_updating'>RETRIEVING...</SPAN></div>").appendTo("div#omx_dynamic_price_wrapper");
 		// Add the initial price at the beginning of the product form:
 		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 2000); 
-		// Then follow the changes and update that price:
+		// Then at any form change do as follows:
 		jQuery("form.cart").change(function() { 
-		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1000); 
+		  jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
+		  jQuery(".dynamic_price_value").html("<span class='dynamic_price_updating'>UPDATING...</SPAN>");
+		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1000); // Update the price after a while
 		});
 	}
 	// Add the plus/minus button to Quantity box
