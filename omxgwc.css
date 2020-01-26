@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.29
+ * Version 0.30
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -54,6 +54,16 @@ div#ast-site-header-cart {
     font-family: Kepler296;
     text-transform: uppercase;
     font-size: small;
+}
+.omx-scrolled .ast-flex.main-header-container {
+    margin-left: 60px;
+}
+.omx-scrolled .site-branding {
+    opacity: 0;
+    transition: opacity .2s;
+}
+.omx-scrolled span.site-logo-img {
+    display: none;
 }
 /* Adding the logo at the left of menu when scrolling */
 @media (min-width: 961px) {
