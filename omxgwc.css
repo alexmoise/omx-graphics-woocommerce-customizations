@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.33
+ * Version 0.34
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -453,7 +453,7 @@ div#omx_add_to_cart .quantity:after {
 }
 #omx_dynamic_price_wrapper .dynamic_price_label {
 	display: inline-block;
-    margin: 10px 20px 10px 0;
+    margin: 10px 5px 10px 0;
 	font-size: 18px;
     font-weight: bold;
 }
