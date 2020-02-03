@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.32
+ * Version 0.33
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -56,16 +56,21 @@ div#ast-site-header-cart {
 #primary-menu > li.menu-item > a {
     font-family: Kepler296;
     text-transform: uppercase;
-    font-size: small;
 }
 @media (max-width:960px) {
 	.omx-scrolled .main-header-container .woocommerce-custom-menu-item {
 		margin-left: 60px;
 	}
+	#primary-menu > li.menu-item > a {
+		font-size: 11px;
+	}
 }
 @media (min-width:961px) {
 	.omx-scrolled .main-header-container .ast-main-header-bar-alignment {
 		margin-left: 60px;
+	}
+	#primary-menu > li.menu-item > a {
+		font-size: small;
 	}
 }
 .omx-scrolled .site-branding {
@@ -103,32 +108,47 @@ div#ast-site-header-cart {
 }
 
 /* === Site containers or otherwise site-wide styling  */
-div#primary {
-	margin-top: 175px !important;
-	margin-bottom: 0 !important;
-	padding-bottom: 0 !important;
+@media (min-width: 961px) {
+	div#primary {
+		margin-top: 240px !important;
+		margin-bottom: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	body.home div#primary {
+		margin-top: 193px !important;
+	}
+	.ast-woocommerce-container {
+		padding-top: 0px !important;
+	}
+	.ast-separate-container .ast-article-post, .ast-separate-container .ast-article-single {
+		padding: 0px;
+		margin-bottom: 20px;
+	}
 }
-body:not(.home):not(.archive):not(.blog):not(.single-post):not(.woocommerce-page) div#primary {
-    margin-top: 240px !important;
-	margin-bottom: 30px !important;
-}
-/* top margin of main container, same as menu breakpoint in theme options .. */
+/* top padding of main container, same as menu breakpoint in theme options .. */
 @media (max-width: 960px) {
 	div#primary {
 		padding-top: 190px !important;
 		margin-top: 0 !important;
 	}
-	.ast-woocommerce-container {
-		padding-top: 20px !important;
+	body.home div#primary {
+		padding-top: 188px !important;
+	}
+	body:not(.home) article.page {
+		padding-top: 30px;
 	}
 	.ast-flex.main-header-container {
 		margin-bottom: 11px;
+	}
+	.ast-separate-container .ast-article-post, .ast-separate-container .ast-article-single {
+		padding: 20px;
 	}
 }
 @media (max-width: 370px) {
 	.ast-woocommerce-container { padding-top: 10px !important; }
 	.site-branding .site-title { font-size: 2em; }
 }
+
 /* Secondary container (left sidebar in this case) */
 div#secondary .product-categories .cat-parent ul.children {
     margin-left:8px;
@@ -162,31 +182,6 @@ div#secondary h2.widget-title {
 	}
 }
 
-/* === Woocommerce elements */
-nav.woocommerce-breadcrumb {
-    font-size: 10px !important;
-    display: inline-block;
-    text-transform: uppercase;
-}
-.woocommerce-ordering select.orderby {
-	border: none;
-	background: transparent;
-	font-size: 12px;
-	padding: 6px;
-	font-family: Kepler296;
-	text-transform: uppercase;
-	color: black;
-}
-.woocommerce-ordering select.orderby > option {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-}
-.woocommerce-cart-form .variation *, 
-form.woocommerce-checkout .variation * {
-    font-weight: 100;
-    font-size: 14px;
-    line-height: 20px;
-}
-
 /* === Home Page styling */
 .home_shop_mx_button > a {
     background-color: #396388c9 !important;
@@ -216,7 +211,7 @@ h2.home_shop_mx_h2 {
     font-weight: bold;
 	background-color: #396388c9 !important;
 }
-@media (max-width:960px) {
+@media (min-width:481px) and (max-width:960px) {
 	.home_shop_mx_products .wc-block-grid__product {
 		-webkit-box-flex: 1;
 		flex: 1 0 50% !Important;
@@ -233,30 +228,93 @@ h2.home_shop_mx_h2 {
     width: 120px;
 }
 /* How To on homepage */
-.home_howtoinstall_2 {
-    /* background-color: lightgray; */
-    /* padding-left: calc(50vw - 50%)!important; */
-    /* padding-right: calc(50vw - 50%)!important; */
-}
-
 .home_howtoinstall_2 .wp-block-embed {
     margin: 0;
 }
-
 .home_howtoinstall_2 .wp-block-column {
-    max-width: 600px;
+    /* max-width: 600px; */
     width: 50% !important;
 }
-@media (max-width:960px) {
-    .home_howtoinstall_2 {
-		/* padding-top: 20px; */
-		/* padding-bottom: 20px; */
-    }
-}
 @media (max-width:781px) {
-    .wp-block-column.is-vertically-aligned-center {
+	.how_to_install_column p {
+		text-align: center;
+	}
+    .home_howtoinstall_2 .wp-block-column.is-vertically-aligned-center {
         flex-grow: 1;
     }
+}
+
+/* === Footer styling */
+@media (max-width:767px) {
+	.footer-adv .menu li {
+		text-align: center;
+	}
+	.footer-adv .textwidget {
+		text-align: center;
+	}
+	.footer-adv .widget_media_image {
+		text-align: center;
+	}
+}
+
+/* === Woocommerce elements */
+nav.woocommerce-breadcrumb {
+    font-size: 10px !important;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.woocommerce-ordering select.orderby {
+	border: none;
+	background: transparent;
+	font-size: 12px;
+	padding: 6px;
+	font-family: Kepler296;
+	text-transform: uppercase;
+	color: black;
+}
+.woocommerce-ordering select.orderby > option {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+}
+.woocommerce-cart-form .variation *, 
+form.woocommerce-checkout .variation * {
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 20px;
+}
+.woocommerce div.product h1.product_title {
+    margin-bottom: 5px;
+}
+.woocommerce div.product div#wccf_product_field_master_container {
+    margin-top: 5px;
+}
+.woocommerce div.product div#wccf_product_field_number_style_container li {
+    width: 48%;
+    display: inline-block;
+}
+.woocommerce-cart a.restore-item {
+    background-color: #e8bc1f;
+    padding: 8px 20px;
+    font-weight: bold;
+    color: black;
+	width: 100%;
+	text-align: center;
+}
+.woocommerce-checkout button#place_order {
+    padding: 24px 10px;
+    font-size: 18px;
+}
+.woocommerce-checkout #payment ul.payment_methods li {
+    padding: 8px 0;
+}
+.woocommerce-checkout #payment ul.payment_methods li * {
+    vertical-align: middle;
+}
+.woocommerce-checkout #payment ul.payment_methods a.about_paypal {
+    line-height: 30px !important;
+}
+.woocommerce-cart table.cart td.actions .button {
+    margin: 0px !important;
+    padding: 9px 12px 10px 12px !important;
 }
 
 /* === Product archives styling: */
@@ -300,7 +358,8 @@ ul.products li.product .astra-shop-summary-wrap h2 {
     margin-bottom: 0;
 }
 .archive.woocommerce .woocommerce-products-header {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 /* === Product page below:  */
@@ -363,14 +422,14 @@ div#omx_add_to_cart span.woocommerce-Price-amount {
     font-weight: normal;
 }
 /* The Quantity box */
-div#omx_add_to_cart .minus, div#omx_add_to_cart .plus{
+div.quantity .minus, div.quantity .plus{
 	display: inline-block;
 	vertical-align: middle;
 	font-size: 18px;
 	cursor: pointer;
 }
-div#omx_add_to_cart .quantity input{
-	width: 30px;
+div.quantity input{
+	width: 40px !important;
 	text-align: center;
 	font-size: 20px;
 	border: none;
@@ -379,8 +438,8 @@ div#omx_add_to_cart .quantity input{
 	padding: 0;
 	-moz-appearance: textfield;
 }
-div#omx_add_to_cart .quantity input::-webkit-outer-spin-button, 
-div#omx_add_to_cart .quantity input::-webkit-inner-spin-button {
+div.quantity input::-webkit-outer-spin-button, 
+div.quantity input::-webkit-inner-spin-button {
     margin: 0;
     -webkit-appearance: none;
 }
@@ -395,6 +454,8 @@ div#omx_add_to_cart .quantity:after {
 #omx_dynamic_price_wrapper .dynamic_price_label {
 	display: inline-block;
     margin: 10px 20px 10px 0;
+	font-size: 18px;
+    font-weight: bold;
 }
 #omx_dynamic_price_wrapper .dynamic_price_value {
     display: inline-block;
@@ -408,7 +469,6 @@ div#omx_add_to_cart .quantity:after {
     color: #ccc;
 }
 
-
 /* Style the Rider Name and Number fields in Single Product  */
 #wccf_product_field_rider_name_container label, 
 #wccf_product_field_rider_name_container input, 
@@ -419,7 +479,6 @@ div#omx_add_to_cart .quantity:after {
 div#wccf_product_field_rider_name_container {
     width: 100%;
     display: inline-block;
-    /* padding: 0 10px 0 0; */
 }
 div#wccf_product_field_rider_number_container {
     width: 100%;
@@ -427,6 +486,20 @@ div#wccf_product_field_rider_number_container {
 }
 span.styled {
     font-size: large;
+}
+#wccf_product_field_rider_number_container small.wccf_min_max_limit {
+    display: none;
+}
+input#wccf_product_field_rider_number, 
+input#wccf_product_field_rider_name {
+	line-height: 36px;
+    padding: 4px 10px;
+	-webkit-font-smoothing: antialiased;
+}
+input#wccf_product_field_rider_number::placeholder, 
+input#wccf_product_field_rider_name::placeholder {
+    color:lightgray;
+    font-size:16px;
 }
 /* Style the style-pickers */
 div#wccf_product_field_name_style_container {
@@ -436,6 +509,17 @@ div#wccf_product_field_name_style_container {
 div#wccf_product_field_number_style_container {
     width: 100%;
     display: inline-block;
+}
+div#wccf_product_field_number_style_container label {
+    line-height: 34px;
+    vertical-align: middle;
+}
+div#wccf_product_field_number_style_container span.styled.ridernumber {
+    overflow: hidden;
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+    line-height: 34px;
 }
 /* Style the color pickers */
 div#wccf_product_field_number_color_container {
@@ -541,5 +625,5 @@ input[type='checkbox']:checked {
 }
 /* Make radio buttons alligned vertically */
 div.wccf_field_container li > input[type="radio"] {
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }

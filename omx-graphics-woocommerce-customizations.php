@@ -5,19 +5,18 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.32
+ * Version: 0.33
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
 
 if ( ! defined( 'ABSPATH' ) ) {	exit(0);}
 
-// === Various WC Customizations below:
 // Display a debug text, for control
 // add_action( 'woocommerce_product_meta_end', 'moomx_display_dbg_for_products', 90 );
 function moomx_display_dbg_for_products() { echo 'DBG 18'; }
 
-// === Increase image quality a bit, so all the straight lines appears smooth
+// Increase image quality a bit, so all the straight lines appears smooth
 add_filter('jpeg_quality', function($arg){return 92;});
 
 // Load our own JS
@@ -36,7 +35,6 @@ function moomx_adding_styles() {
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 // Remove the product price
 add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
-
 // Add the "Select options" link under the products. 
 // !! "Add To Cart" button needs to be disabled in theme customizer
 add_action( 'astra_woo_shop_title_after', 'moomx_product_button_archive' );
@@ -45,7 +43,6 @@ function moomx_product_button_archive() {
 	echo the_permalink(); 
 	echo '" class="archive_select_options">Select options</a>';
 }
-
 // Output the Category Pre-Footer in category pages. 
 // !! Field is added with ACF plugin
 add_action( 'astra_content_after', 'moomx_category_pre_footer_output' );
@@ -59,15 +56,35 @@ function moomx_category_pre_footer_output() {
 		}
 	}
 }
-
-// Change places of breadcrumbs and result count
-add_action( 'init', 'moomx_remove_result_count' );
-function moomx_remove_result_count() {
-	// get rid of them first
+// Change places of woocommerce elements as needed
+add_action( 'init', 'moomx_rearrange_woocomemrce_features' );
+function moomx_rearrange_woocomemrce_features() {
+	// get rid of the result count and breadcrumbs first
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
 	// then add the breadcrumbs in result count's place
 	add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 20, 0);
+	// additionally remove coupons feature from checkout
+	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+}
+// Head to cart as soon as add to cart is hit
+add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_checkout');
+function moomx_goto_checkout() {
+	global $woocommerce;
+	$checkout_url = wc_get_checkout_url();
+	return $checkout_url;
+}
+// Change "Product has been added to your cart" message since we go directly to checkout anyway
+add_filter( 'wc_add_to_cart_message_html', 'moomx_change_addtocart_notice' );
+function moomx_change_addtocart_notice($products) {
+	$addtocart_notice = 'Your order is ready to be placed, please fill the checkout fields below and we\'ll deliver it ASAP!';
+	return $addtocart_notice;
+}
+// Translate/change some strings as needed
+add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );
+function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
+$translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
+return $translated;
 }
 
 ?>

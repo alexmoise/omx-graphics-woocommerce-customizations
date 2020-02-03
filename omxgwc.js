@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.29
+ * Version 0.33
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -29,23 +29,8 @@ jQuery(document).ready(function() {
 		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1000); // Update the price after a while
 		});
 	}
-	// Add the plus/minus button to Quantity box
-	jQuery("<div class='plus'>+</div>").appendTo("div.quantity");
-	jQuery("<div class='minus'>-</div>").prependTo("div.quantity");
-	jQuery('div#omx_add_to_cart .minus').click(function () {
-		var $input = jQuery(this).parent().find('input');
-		var count = parseInt($input.val()) - 1;
-		count = count < 1 ? 1 : count;
-		$input.val(count);
-		$input.change();
-		return false;
-	});
-	jQuery('div#omx_add_to_cart .plus').click(function () {
-		var $input = jQuery(this).parent().find('input');
-		$input.val(parseInt($input.val()) + 1);
-		$input.change();
-		return false;
-	});
+	// Call the plus_minus function here for the initial setup
+	quantity_plus_minus();
 	// Add the span elements needed to add the styled name and number
 	jQuery('#wccf_product_field_name_style_container li > label').after('<span class="styled ridername" style="margin-left:10px"></span>');
 	jQuery('#wccf_product_field_number_style_container li > label').after('<span class="styled ridernumber" style="margin-left:10px"></span>');
@@ -86,6 +71,28 @@ jQuery(document).ready(function() {
 });
 // === END adding some stuff to do when document.ready
 
+// Add the plus/minus button to Quantity box
+function quantity_plus_minus() {
+	jQuery("<div class='plus'>+</div>").appendTo("div.quantity");
+	jQuery("<div class='minus'>-</div>").prependTo("div.quantity");
+	jQuery('div.quantity .minus').click(function () {
+		var $input = jQuery(this).parent().find('input');
+		var count = parseInt($input.val()) - 1;
+		count = count < 1 ? 1 : count;
+		$input.val(count);
+		$input.change();
+		return false;
+	});
+	jQuery('div.quantity .plus').click(function () {
+		var $input = jQuery(this).parent().find('input');
+		$input.val(parseInt($input.val()) + 1);
+		$input.change();
+		return false;
+	});
+};
+// Call the plus_minus function at each cart update
+jQuery(document.body).on('updated_cart_totals', function() { quantity_plus_minus(); });
+
 // Dynamically change the font of Rider Name and Number in its input field
 jQuery('#wccf_product_field_name_style_container input').change(function(e) {
 	var chosenstyle = jQuery(this).val();
@@ -118,5 +125,17 @@ jQuery('#wccf_product_field_number_plate_color_container input').change(function
 jQuery('#wccf_product_field_number_color_container input').change(function(e) {
 	var chosenbkgcolor = jQuery(this).val();
 	jQuery('#wccf_product_field_rider_number').css('color', chosenbkgcolor );
+});
+
+// Dynamically scroll the checkout so the Place Order/Proceed to Paypal button gets in the view at gateway change
+jQuery("ul.payment_methods input").change(function(e) {
+	if (jQuery("body").hasClass("admin-bar")) { var small_scroll_unit = 160; big_scroll_unit = 400; } else { var small_scroll_unit = 120; big_scroll_unit = 360; }
+	setTimeout(function() {
+		if (jQuery(window).width() < 961) {
+			jQuery("html").animate({ scrollTop: jQuery("#place_order").position().top-jQuery(window).height()+small_scroll_unit},250);
+		} else {
+			jQuery("html").animate({ scrollTop: jQuery("#place_order").position().top-jQuery(window).height()+big_scroll_unit},250);
+		}
+	}, 250);
 });
 
