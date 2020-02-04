@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.35
+ * Version 0.36
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -50,9 +50,12 @@ header#masthead {
 .main-header-bar .site-description { text-transform: uppercase; text-align: center; }
 /* move up the shop icon a bit to compensate for the "bag handle" */
 div#ast-site-header-cart {
-	margin-bottom: 5px;
+	/* margin-bottom: 5px; */
 } 
 /* Styling the main menu */
+.main-header-bar-wrap > .main-header-bar {
+    padding-top: 5px;
+}
 #primary-menu > li.menu-item > a {
     font-family: Kepler296;
     text-transform: uppercase;
