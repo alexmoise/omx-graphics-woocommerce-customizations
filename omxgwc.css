@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.36
+ * Version 0.37
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -245,6 +245,10 @@ h2.home_shop_mx_h2 {
     .home_howtoinstall_2 .wp-block-column.is-vertically-aligned-center {
         flex-grow: 1;
     }
+}
+/* Testimonials on Home */
+.home_testimonials .testimonial.border {
+    border: none;
 }
 
 /* === Footer styling */
