@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.38
+ * Version 0.39
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -183,6 +183,27 @@ div#secondary h2.widget-title {
 	div#secondary {
 		padding: 0 2.14em !important;
 	}
+}
+
+/* WooBeWoo ucrrency switcher in main menu */
+ul#primary-menu .wcuCurrencySwitcherWidget {
+    margin-bottom: 0px !important;
+}
+ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container {
+    margin-bottom: 5px;
+}
+ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container a.chosen-single {
+    background: #fafafa !important;
+    border-color: #ddd !important;
+    padding: 4px 2px;
+}
+ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container .chosen-drop {
+    border-color: #ddd;
+}
+ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results > li.result-selected, 
+ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results > li.highlighted {
+    background-color: gray !important;
+    background-image: none;
 }
 
 /* === Home Page styling */
