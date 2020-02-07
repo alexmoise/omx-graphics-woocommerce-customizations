@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.37
+ * Version 0.38
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -220,6 +220,12 @@ h2.home_shop_mx_h2 {
 		flex: 1 0 50% !Important;
 		max-width: 50% !Important;
 	}
+}
+/* Product carousel on home page */
+.home_shop_mx_products .wc-block-grid__product-title {
+    text-align: center;
+	font-family: Kepler296;
+	text-transform: uppercase;
 }
 /* Golden logos on homepage */
 .home_golden_logos {
