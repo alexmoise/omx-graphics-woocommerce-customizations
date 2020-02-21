@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.39
+ * Version 0.40
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -25,10 +25,10 @@ header#masthead {
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
 }
 /* Move the header up when scrolled (based on class added via JS) */
-@media (min-width: 961px) { .omx-scrolled header#masthead { transform: translateY(-130px); } }
-@media (max-width: 960px) and (min-width: 768px) { .omx-scrolled header#masthead { transform: translateY(-120px); } }
-@media (max-width: 767px) { .omx-scrolled header#masthead { transform: translateY(-110px);} }
-.admin-bar.omx-scrolled header#masthead { transform: translateY(-160px) !important; }
+@media (min-width: 961px) { .omx-scrolled header#masthead { transform: translateY(-98px); } }
+@media (max-width: 960px) and (min-width: 768px) { .omx-scrolled header#masthead { transform: translateY(-86px); } }
+@media (max-width: 767px) { .omx-scrolled header#masthead { transform: translateY(-86px);} }
+.admin-bar.omx-scrolled header#masthead { transform: translateY(-132px) !important; }
 @media (min-width: 783px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-32px) !important; position: sticky; } }
 @media (max-width: 782px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-46px) !important; position: sticky; } }
 /* Some logo and branding styles */
@@ -37,15 +37,10 @@ header#masthead {
 	display: block !important;
     width: 100%;
     text-align: center !important;
-	min-height: 128px;
+	min-height: 90px;
 }
 .main-header-bar .ast-site-identity {
     width: auto !important;
-}
-@media (max-width:544px) {
-	.ast-site-identity {
-		margin-top: 18px;
-	}
 }
 .main-header-bar .site-description { text-transform: uppercase; text-align: center; }
 /* move up the shop icon a bit to compensate for the "bag handle" */
@@ -111,14 +106,16 @@ div#ast-site-header-cart {
 }
 
 /* === Site containers or otherwise site-wide styling  */
+div#primary {
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+}
 @media (min-width: 961px) {
 	div#primary {
-		margin-top: 240px !important;
-		margin-bottom: 0 !important;
-		padding-bottom: 0 !important;
+		margin-top: 158px !important;
 	}
 	body.home div#primary {
-		margin-top: 193px !important;
+		margin-top: 158px !important;
 	}
 	.ast-woocommerce-container {
 		padding-top: 0px !important;
@@ -127,15 +124,18 @@ div#ast-site-header-cart {
 		padding: 0px;
 		margin-bottom: 20px;
 	}
+	body:not(.home) main#main {
+		margin-top: 20px;
+	}
 }
 /* top padding of main container, same as menu breakpoint in theme options .. */
 @media (max-width: 960px) {
 	div#primary {
-		padding-top: 190px !important;
+		padding-top: 160px !important;
 		margin-top: 0 !important;
 	}
 	body.home div#primary {
-		padding-top: 188px !important;
+		padding-top: 156px !important;
 	}
 	body:not(.home) article.page {
 		padding-top: 30px;
@@ -168,7 +168,7 @@ div#secondary h2.widget-title {
 		margin-top: 175px !important;
 	}
 	div#secondary .sidebar-main {
-		margin-top: 5.34em;
+		/* margin-top: 5.34em; */
 	}
 	div#secondary {
 		padding-right: 20px !important;
@@ -185,7 +185,7 @@ div#secondary h2.widget-title {
 	}
 }
 
-/* WooBeWoo ucrrency switcher in main menu */
+/* WooBeWoo currency switcher in main menu */
 ul#primary-menu .wcuCurrencySwitcherWidget {
     margin-bottom: 0px !important;
 }
@@ -415,6 +415,9 @@ ul.products li.product .astra-shop-summary-wrap h2 {
 }
 
 /* === Product page below:  */
+.ast-woocommerce-container .product {
+    margin-top: 20px !important;
+}
 /* The "omx_add_to_cart" div container (added with JS) */
 form.cart > dl.rightpress_product_price_live_update, 
 form.cart > div.quantity, 
