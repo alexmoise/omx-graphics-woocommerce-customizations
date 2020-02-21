@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.40
+ * Version 0.41
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -193,9 +193,10 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container {
     margin-bottom: 5px;
 }
 ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container a.chosen-single {
-    background: #fafafa !important;
-    border-color: #ddd !important;
+    background: transparent !important;
+    border-color: transparent !important;
     padding: 4px 2px;
+	font-weight: bold;
 }
 ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container .chosen-drop {
     border-color: #ddd;
