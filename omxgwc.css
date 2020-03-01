@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.42
+ * Version 0.43
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -419,6 +419,7 @@ body.woocommerce-checkout .woocommerce-shipping-totals.shipping td:before {
     content: 'Shipping';
     display: inline-block;
     min-width: 75px;
+	line-height: 36px;
 }
 body.woocommerce-checkout .woocommerce-shipping-totals.shipping td {
     border:none;
