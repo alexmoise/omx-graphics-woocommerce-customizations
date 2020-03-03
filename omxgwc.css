@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.44
+ * Version 0.45
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -25,10 +25,10 @@ header#masthead {
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
 }
 /* Move the header up when scrolled (based on class added via JS) */
-@media (min-width: 961px) { .omx-scrolled header#masthead { transform: translateY(-98px); } }
+@media (min-width: 961px) { .omx-scrolled header#masthead { transform: translateY(-94px); } }
 @media (max-width: 960px) and (min-width: 768px) { .omx-scrolled header#masthead { transform: translateY(-86px); } }
 @media (max-width: 767px) { .omx-scrolled header#masthead { transform: translateY(-86px);} }
-.admin-bar.omx-scrolled header#masthead { transform: translateY(-132px) !important; }
+.admin-bar.omx-scrolled header#masthead { transform: translateY(-128px) !important; }
 @media (min-width: 783px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-32px) !important; position: sticky; } }
 @media (max-width: 782px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-46px) !important; position: sticky; } }
 /* Some logo and branding styles */
