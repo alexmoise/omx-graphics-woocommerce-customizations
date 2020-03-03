@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.33
+ * Version 0.47
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
 		jQuery("form.cart").change(function() { 
 		  jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
 		  jQuery(".dynamic_price_value").html("<span class='dynamic_price_updating'>UPDATING...</SPAN>");
-		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1000); // Update the price after a while
+		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1200); // Update the price after a while
 		});
 	}
 	// Call the plus_minus function here for the initial setup
