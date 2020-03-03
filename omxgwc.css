@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.43
+ * Version 0.44
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -48,6 +48,9 @@ div#ast-site-header-cart {
 	/* margin-bottom: 5px; */
 } 
 /* Styling the main menu */
+header#masthead nav#site-navigation {
+    height: 64px;
+}
 .main-header-bar-wrap > .main-header-bar {
     padding-top: 5px;
 }
@@ -293,6 +296,9 @@ h2.home_shop_mx_h2 {
 }
 
 /* === Woocommerce elements */
+form.cart abbr.required {
+    text-decoration-line: none;
+}
 nav.woocommerce-breadcrumb {
     font-size: 10px !important;
     display: inline-block;
@@ -325,6 +331,9 @@ form.woocommerce-checkout .variation * {
 .woocommerce div.product div#wccf_product_field_number_style_container li {
     width: 48%;
     display: inline-block;
+}
+.woocommerce div.product div#wccf_product_field_master_container li label {
+    cursor: pointer;
 }
 .woocommerce-cart a.restore-item {
     background-color: #e8bc1f;
