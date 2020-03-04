@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.51
+ * Version: 0.52
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -47,6 +47,15 @@ function moomx_only_dashes_in_custom_fields_options() {
 				this.value = this.value.replace(/ /g, "_");
 			});
 			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+				this.value = this.value.replace(/-/g, "_");
+			});
+			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+				jQuery(this).val(jQuery(this).val().toLowerCase());
+			});
+			jQuery(".wccf_post_settings").on("keyup", "input#wccf_post_config_key", function(event) {
+				this.value = this.value.replace(/ /g, "_");
+			});
+			jQuery(".wccf_post_settings").on("keyup", "input#wccf_post_config_key", function(event) {
 				this.value = this.value.replace(/-/g, "_");
 			});
 		});
