@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.47
+ * Version: 0.48
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -30,6 +30,22 @@ add_action( 'wp_enqueue_scripts', 'moomx_adding_styles', 9999999 );
 function moomx_adding_styles() {
 	wp_register_style('omxgwc-styles', plugins_url('omxgwc.css', __FILE__));
 	wp_enqueue_style('omxgwc-styles');
+}
+// Add a small JS function to automatically replace spaces and dashes with underscores in Options - so the fields edits faster
+add_action('in_admin_footer', 'moomx_only_dashes_in_custom_fields_options');
+function moomx_only_dashes_in_custom_fields_options() {
+	echo '
+	<script>
+		jQuery(document).ready(function() {
+			jQuery(".wccf_post_option_wrapper").on("keyup", "input.wccf_post_config_options_key", function(event) {
+				this.value = this.value.replace(/ /g, "_");
+			});
+			jQuery(".wccf_post_option_wrapper").on("keyup", "input.wccf_post_config_options_key", function(event) {
+				this.value = this.value.replace(/-/g, "_");
+			});
+		});
+	</script>
+	';
 }
 // Remove hover zoom
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
