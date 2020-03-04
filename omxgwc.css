@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.46
+ * Version 0.50
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -313,6 +313,7 @@ nav.woocommerce-breadcrumb {
 	font-family: Kepler296;
 	text-transform: uppercase;
 	color: black;
+	vertical-align: bottom !important;
 }
 .woocommerce-ordering select.orderby > option {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;

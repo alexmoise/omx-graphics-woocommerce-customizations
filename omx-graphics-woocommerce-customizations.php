@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.49
+ * Version: 0.50
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -43,9 +43,20 @@ function moomx_only_dashes_in_custom_fields_options() {
 			jQuery(".wccf_post_options").on("keyup", "input.wccf_post_config_options_key", function(event) {
 				this.value = this.value.replace(/-/g, "_");
 			});
+			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+				this.value = this.value.replace(/ /g, "_");
+			});
+			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+				this.value = this.value.replace(/-/g, "_");
+			});
 		});
 	</script>
 	';
+}
+// Stop Safari from zooming in on fields. Also stop Androids zoomig at all
+add_action('wp_head', 'moomx_output_viewport_meta_tag', 0);
+function moomx_output_viewport_meta_tag() {
+	echo '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';
 }
 // Remove hover zoom
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
