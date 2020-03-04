@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.50
+ * Version 0.51
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -511,7 +511,7 @@ ul.products li.product .astra-shop-summary-wrap h2 {
     margin-bottom: 0;
 }
 .archive.woocommerce .woocommerce-products-header {
-    margin-bottom: 10px;
+    margin-bottom: 24px;
 	margin-top: 10px;
 }
 
