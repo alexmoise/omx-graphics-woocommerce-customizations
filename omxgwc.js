@@ -5,7 +5,7 @@
  */
 
 // Let's have it tested first (will remove this after a while)
-jQuery(document).ready(function() { console.log('JS Loaded - v34'); });
+jQuery(document).ready(function() { console.log('JS Loaded - v36'); });
 
 // === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
@@ -20,25 +20,25 @@ jQuery(document).ready(function() {
 		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
 		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
 		jQuery("<div class='dynamic_price_value'><span class='dynamic_price_updating'>...</SPAN></div>").appendTo("div#omx_dynamic_price_wrapper");
-		// Try to Add the initial price at the beginning of the product form every 10th second for 6 seconds
+		// Try to Add the initial price at the beginning of the product form every half second for 10 seconds
 		var startPriceDuplicateTimer = (new Date()).getTime();
 		var timer_id = setInterval(function(){
 			var currentPriceDuplicateTimer = (new Date()).getTime();
-			if((currentPriceDuplicateTimer - startPriceDuplicateTimer)/1000 > 6) clearInterval(timer_id);
+			if((currentPriceDuplicateTimer - startPriceDuplicateTimer)/1000 > 10) clearInterval(timer_id);
 			// console.log('Duplicating ... ');
 			jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
-		}, 100);
+		}, 500);
 		// Then at any form change do as follows:
 		jQuery("form.cart").change(function() { 
 			jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
-			// Try to update the price every 10th second for 6 seconds
+			// Try to update the price every half second for 5 seconds
 			var startPriceUpdateTimer = (new Date()).getTime();
 			var timer_id = setInterval(function(){
 				var currentPriceUpdateTimer = (new Date()).getTime();
-				if((currentPriceUpdateTimer - startPriceUpdateTimer)/1000 > 6) clearInterval(timer_id);
+				if((currentPriceUpdateTimer - startPriceUpdateTimer)/1000 > 5) clearInterval(timer_id);
 				// console.log('Updating ... ');
 				jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
-			}, 100);
+			}, 500);
 		});
 	}
 	// Call the plus_minus function here for the initial setup

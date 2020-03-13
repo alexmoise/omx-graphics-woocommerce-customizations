@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.53
+ * Version 0.56
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -528,6 +528,12 @@ div.quantity .minus, div.quantity .plus{
 	vertical-align: middle;
 	font-size: 18px;
 	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; 
+	-khtml-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none; 
+	user-select: none;
 }
 div.quantity input{
 	width: 40px !important;
