@@ -1,11 +1,11 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.47
+ * Version 0.54
  * (version above is equal with main plugin file version when this file was updated)
  */
 
 // Let's have it tested first (will remove this after a while)
-jQuery(document).ready(function() { console.log('JS Loaded - v23'); });
+jQuery(document).ready(function() { console.log('JS Loaded - v31'); });
 
 // === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
@@ -19,14 +19,25 @@ jQuery(document).ready(function() {
 		// Add the DOM elements needed to display the price at the beginning of the product form
 		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
 		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
-		jQuery("<div class='dynamic_price_value'><span class='dynamic_price_updating'>RETRIEVING...</SPAN></div>").appendTo("div#omx_dynamic_price_wrapper");
-		// Add the initial price at the beginning of the product form:
-		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 2000); 
+		// Try to Add the initial price at the beginning of the product form every 10th second for 10 seconds
+		var startPriceDuplicateTimer = (new Date()).getTime();
+		var timer_id = setInterval(function(){
+			var currentPriceDuplicateTimer = (new Date()).getTime();
+			if((currentPriceDuplicateTimer - startPriceDuplicateTimer)/1000 > 10) clearInterval(timer_id);
+			// console.log('Duplicating ... ');
+			jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
+		}, 100);
 		// Then at any form change do as follows:
 		jQuery("form.cart").change(function() { 
-		  jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
-		  jQuery(".dynamic_price_value").html("<span class='dynamic_price_updating'>UPDATING...</SPAN>");
-		  setTimeout(function() { jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html()); }, 1200); // Update the price after a while
+			jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
+			// Try to update the price every 10th second for 10 seconds
+			var startPriceUpdateTimer = (new Date()).getTime();
+			var timer_id = setInterval(function(){
+				var currentPriceUpdateTimer = (new Date()).getTime();
+				if((currentPriceUpdateTimer - startPriceUpdateTimer)/1000 > 10) clearInterval(timer_id);
+				// console.log('Updating ... ');
+				jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
+			}, 100);
 		});
 	}
 	// Call the plus_minus function here for the initial setup
