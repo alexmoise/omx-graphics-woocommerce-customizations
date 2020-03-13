@@ -1,11 +1,11 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.57
+ * Version 0.58
  * (version above is equal with main plugin file version when this file was updated)
  */
 
 // Let's have it tested first (will remove this after a while)
-jQuery(document).ready(function() { console.log('JS Loaded - v38'); });
+jQuery(document).ready(function() { console.log('JS Loaded - v74'); });
 
 // === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
 		jQuery("dl.rightpress_product_price_live_update").appendTo("button[name='add-to-cart']");
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
-		/* Add the DOM elements needed to display the price at the beginning of the product form
+		// Add the DOM elements needed to display the price at the beginning of the product form
 		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
 		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
 		jQuery("<div class='dynamic_price_value'><span class='dynamic_price_updating'>...</SPAN></div>").appendTo("div#omx_dynamic_price_wrapper");
@@ -39,7 +39,7 @@ jQuery(document).ready(function() {
 				// console.log('Updating ... ');
 				jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
 			}, 500);
-		}); */
+		}); 
 	}
 	// Call the plus_minus function here for the initial setup
 	if(jQuery("body").hasClass("single-product")) {
@@ -142,7 +142,7 @@ jQuery('#wccf_product_field_number_color_container input').change(function(e) {
 });
 
 // Dynamically scroll the checkout so the Place Order/Proceed to Paypal button gets in the view at gateway change
-jQuery("ul.payment_methods input").change(function(e) {
+jQuery('#payment.woocommerce-checkout-payment').live('focusin', 'li.wc_payment_method input', (function(event) {
 	if (jQuery("body").hasClass("admin-bar")) { var small_scroll_unit = 160; big_scroll_unit = 400; } else { var small_scroll_unit = 120; big_scroll_unit = 360; }
 	setTimeout(function() {
 		if (jQuery(window).width() < 961) {
@@ -151,5 +151,4 @@ jQuery("ul.payment_methods input").change(function(e) {
 			jQuery("html").animate({ scrollTop: jQuery("#place_order").position().top-jQuery(window).height()+big_scroll_unit},250);
 		}
 	}, 250);
-});
-
+}));
