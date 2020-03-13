@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.52
+ * Version: 0.53
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -122,5 +122,25 @@ function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 return $translated;
 }
+
+// Woocommerce templates overrides
+add_filter( 'woocommerce_locate_template', 'moomx_replace_woocommerce_templates', 20, 3 );
+function moomx_replace_woocommerce_templates( $template, $template_name, $template_path ) {
+	global $woocommerce;
+	$_template = $template;
+	if ( ! $template_path ) { $template_path = $woocommerce->template_url; }
+	$plugin_path  = untrailingslashit( plugin_dir_path( __FILE__ ) )  . '/woocommerce/';
+	// Look within passed path within the theme - this is priority
+	$template = locate_template(
+		array(
+			$template_path . $template_name,
+			$template_name
+		)
+	);
+	if ( ! $template && file_exists( $plugin_path . $template_name ) ) { $template = $plugin_path . $template_name; }
+	if ( ! $template ) { $template = $_template; }
+	return $template;
+}
+
 
 ?>

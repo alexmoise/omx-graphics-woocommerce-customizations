@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.51
+ * Version 0.53
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -365,96 +365,41 @@ form.woocommerce-checkout .variation * {
 .woocommerce-cart table.shop_table .product-thumbnail img {
     max-width: 180px;
 }
-.cart_totals ul#shipping_method {
-    clear: both;
+/* ===================================================================================================================================================================== */
+body.woocommerce-checkout .woocommerce-shipping-totals.shipping .ship {
+    display: inline-block;
 }
-.cart_totals ul#shipping_method li input {
-    vertical-align: middle;
-	margin: -2px 5px 0 0;
-}
-.cart_totals ul#shipping_method li label {
-    vertical-align: text-top;
-}
-.cart_totals ul#shipping_method li label[for="shipping_method_0_advanced_free_shipping"] {
-    margin-left: 22px;
-}
-.cart_totals ul#shipping_method li label span.woocommerce-Price-amount.amount {
+body.woocommerce-checkout .woocommerce-shipping-totals.shipping .td.ship {
     float: right;
-    margin-left: 26px;
 }
-.cart_totals table.shop_table.shop_table_responsive td {
-    padding-left: 0;
-    padding-right: 0;
+body.woocommerce-checkout .woocommerce-shipping-totals.shipping ul#shipping_method li {
+    text-align: right;
 }
-.cart_totals ul#shipping_method li {
-    padding-left: 0 !important;
+body.woocommerce-checkout .woocommerce-shipping-totals.shipping ul#shipping_method li input, body.woocommerce-checkout .woocommerce-shipping-totals.shipping ul#shipping_method li label {
+    vertical-align: middle;
 }
 body.woocommerce-checkout form.checkout div#order_review {
-    padding: 0 8px !important;
+    padding: 0 5px !important;
 }
-
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping th {
-    display: none;
+@media(max-width:374px) {
+	body.woocommerce-checkout .woocommerce-shipping-totals.shipping ul#shipping_method li label {
+		font-size: 13px;
+	}
 }
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method {
-    /* margin-right: -80px; */
-    text-align: right;
-    float: right;
+body.woocommerce-checkout .woocommerce-checkout-review-order-table td.product-total, 
+body.woocommerce-checkout .woocommerce-checkout-review-order-table th.product-total, 
+body.woocommerce-checkout .woocommerce-checkout-review-order-table .cart-subtotal td, 
+body.woocommerce-checkout .woocommerce-checkout-review-order-table .order-total td {
+    text-align: right !important;
+	padding-right: 0;
 }
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li input {
-    vertical-align: middle;
-	margin: 2px 5px 0 0;
+body.woocommerce-checkout .woocommerce-checkout-review-order-table .shipping-options-row  {
+	padding-right: 0 !important;
 }
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li label {
-    vertical-align: text-top;
+body.woocommerce-checkout h3#order_review_heading {
+    padding: 20px 0 0 5px !important;
 }
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li {
-    padding-left: 22px;
-    text-align: left;
-}
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li span.woocommerce-Price-amount.amount {
-    line-height: 30px;
-    position: absolute;
-}
-@media (max-width:960px) {
-    body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li span.woocommerce-Price-amount.amount {
-        right: 42px;
-    }
-}
-@media (min-width:961px) {
-    body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li span.woocommerce-Price-amount.amount {
-        right: 22px;
-    }
-}
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td:before {
-    content: 'Shipping';
-    display: inline-block;
-    min-width: 75px;
-	line-height: 36px;
-}
-body.woocommerce-checkout .woocommerce-shipping-totals.shipping td {
-    border:none;
-    float: right;
-    width: 100%;
-    padding-right: 0 !important;
-}
-body.woocommerce-checkout .woocommerce-checkout-review-order-table tr.order-total th, 
-body.woocommerce-checkout .woocommerce-checkout-review-order-table tr.order-total td {
-    border-top: 1px solid #ebebeb !important;
-}
-
-body.woocommerce-checkout .cart_item td.product-total, .cart-subtotal td, .order-total td, th.product-total {
-    text-align: right;
-}
-@media (max-width:350px) {
-    body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li > label {
-        font-size: 10px;
-        line-height: 24px;
-    }
-    body.woocommerce-checkout .woocommerce-shipping-totals.shipping td ul#shipping_method li > label * {
-        font-size: initial;
-    }
-}
+/* ===================================================================================================================================================================== */
 header#masthead li.mini_cart_item > dl.variation {
     display: none;
 }
