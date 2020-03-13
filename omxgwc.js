@@ -1,11 +1,11 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.55
+ * Version 0.57
  * (version above is equal with main plugin file version when this file was updated)
  */
 
 // Let's have it tested first (will remove this after a while)
-jQuery(document).ready(function() { console.log('JS Loaded - v36'); });
+jQuery(document).ready(function() { console.log('JS Loaded - v38'); });
 
 // === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
 		jQuery("dl.rightpress_product_price_live_update").appendTo("button[name='add-to-cart']");
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
-		// Add the DOM elements needed to display the price at the beginning of the product form
+		/* Add the DOM elements needed to display the price at the beginning of the product form
 		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
 		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
 		jQuery("<div class='dynamic_price_value'><span class='dynamic_price_updating'>...</SPAN></div>").appendTo("div#omx_dynamic_price_wrapper");
@@ -39,10 +39,12 @@ jQuery(document).ready(function() {
 				// console.log('Updating ... ');
 				jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
 			}, 500);
-		});
+		}); */
 	}
 	// Call the plus_minus function here for the initial setup
-	quantity_plus_minus();
+	if(jQuery("body").hasClass("single-product")) {
+		quantity_plus_minus();
+	}
 	// Add the span elements needed to add the styled name and number
 	jQuery('#wccf_product_field_name_style_container li > label').after('<span class="styled ridername" style="margin-left:10px"></span>');
 	jQuery('#wccf_product_field_number_style_container li > label').after('<span class="styled ridernumber" style="margin-left:10px"></span>');

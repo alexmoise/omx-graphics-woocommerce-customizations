@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.56
+ * Version 0.57
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -464,6 +464,20 @@ ul.products li.product .astra-shop-summary-wrap h2 {
 .ast-woocommerce-container .product {
     margin-top: 20px !important;
 }
+.single-product .product_price_range {
+    font-family: Kepler296;
+    color: #888;
+    font-size: 18px;
+}
+.tax-product_cat .product_price_range {
+	font-family: Kepler296;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 4px;
+}
+.tax-product_cat .product_price_range a {
+    color: #888;
+}
 /* The "omx_add_to_cart" div container (added with JS) */
 form.cart > dl.rightpress_product_price_live_update, 
 form.cart > div.quantity, 
@@ -471,7 +485,6 @@ form.cart > button.single_add_to_cart_button {
     display: none !important;
 }
 div#omx_add_to_cart{
-	/* position: sticky; */
     bottom: 0px;
     z-index: 9999;
     background-color: white;

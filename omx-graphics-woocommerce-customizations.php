@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.56
+ * Version: 0.57
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -73,7 +73,7 @@ add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
 // Add the "Select options" link under the products. 
 // !! "Add To Cart" button needs to be disabled in theme customizer
-add_action( 'astra_woo_shop_title_after', 'moomx_product_button_archive' );
+add_action( 'astra_woo_shop_title_after', 'moomx_product_button_archive', 20 );
 function moomx_product_button_archive() {
 	echo '<a href="'; 
 	echo the_permalink(); 
@@ -90,6 +90,29 @@ function moomx_category_pre_footer_output() {
 			the_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id);
 			echo '</div>';
 		}
+	}
+}
+// Display price range in single product
+// !! Field is added with ACF plugin
+add_action('woocommerce_single_product_summary', 'moomx_price_range_acf');
+function moomx_price_range_acf() {
+	if (is_product()) {
+		echo '<div class="product_price_range">';
+		echo get_field( 'price_range' );
+		echo '</div>';
+	}
+}
+add_action( 'astra_woo_shop_title_after', 'moomx_price_range_in_lists_acf', 10 );
+function moomx_price_range_in_lists_acf() {
+	if (is_product_category()) {
+		echo '<div class="product_price_range">';
+		
+		echo '<a href="'; 
+		echo the_permalink(); 
+		echo '" class="product_price_range_link">';
+		echo get_field( 'price_range' );
+		echo '</a>';
+		echo '</div>';
 	}
 }
 // Change places of woocommerce elements as needed
@@ -122,7 +145,6 @@ function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 return $translated;
 }
-
 // Woocommerce templates overrides
 add_filter( 'woocommerce_locate_template', 'moomx_replace_woocommerce_templates', 20, 3 );
 function moomx_replace_woocommerce_templates( $template, $template_name, $template_path ) {
