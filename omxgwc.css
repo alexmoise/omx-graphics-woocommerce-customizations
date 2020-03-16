@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.57
+ * Version 0.59
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -209,6 +209,23 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results > li.highlighted {
     background-color: gray !important;
     background-image: none;
+}
+/* WooBeWoo currency switcher in sidebar */
+.sidebar-main .wcuCurrencySwitcherWidget a.chosen-single {
+    background: no-repeat;
+    border: 1px solid #ddd !important;
+    height: 50px;
+    padding: 10px;
+}
+.sidebar-main .wcuCurrencySwitcherWidget a.chosen-single b {
+    margin: 6px 3px;
+    height: 36px;
+	transition: none;
+}
+.sidebar-main .wcuCurrencySwitcherWidget .chosen-drop {
+    border-bottom: 1px solid #ddd !important;
+    border-left: 1px solid #ddd !important;
+    border-right: 1px solid #ddd !important;
 }
 
 /* === Home Page styling */
@@ -470,7 +487,6 @@ ul.products li.product .astra-shop-summary-wrap h2 {
     font-size: 18px;
 }
 .tax-product_cat .product_price_range {
-	font-family: Kepler296;
     font-size: 16px;
     line-height: 22px;
     margin-top: 4px;
