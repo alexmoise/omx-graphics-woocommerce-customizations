@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.64
+ * Version 0.65
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -748,6 +748,7 @@ small.omx_read_more.omx_expanded:after {
 .wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
     width: 100%;
     text-align: center;
+	background-color: #bbb;
 }
 
 /* === Style the checkboxes and radio buttons */
