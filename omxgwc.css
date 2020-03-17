@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.63
+ * Version 0.64
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -45,7 +45,7 @@ header#masthead {
 .main-header-bar .site-description { text-transform: uppercase; text-align: center; }
 /* move up the shop icon a bit to compensate for the "bag handle" */
 div#ast-site-header-cart {
-	/* margin-bottom: 5px; */
+	margin-bottom: 5px;
 } 
 /* Styling the main menu */
 header#masthead nav#site-navigation {
@@ -230,6 +230,30 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 .sidebar-main .wcuCurrencySwitcherWidget div:first-child {
     font-family: Kepler296;
     text-transform: uppercase;
+}
+
+/* Social icons in main menu */
+@media(max-width:960px) {
+	.omx_social_menu_item {
+		width: 30px !important;
+		padding: 0 !important;
+		height: 34px;
+		border-bottom: none !important;
+		margin-right: 10px;
+	}
+	.omx_social_menu_wrapper {
+		padding: 0 20px;
+		border-bottom: 1px solid #eee;
+		height: 34px;
+	}
+	.omx_social_menu_item > img {
+		vertical-align: text-bottom;
+	}
+}
+@media(min-width:961px) {
+	img.menu-image.menu-image-title-hide {
+		margin-bottom: 6px;
+	}
 }
 
 /* === Home Page styling */
