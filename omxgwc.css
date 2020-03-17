@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.59
+ * Version 0.60
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -227,6 +227,10 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
     border-left: 1px solid #ddd !important;
     border-right: 1px solid #ddd !important;
 }
+.sidebar-main .wcuCurrencySwitcherWidget div:first-child {
+    font-family: Kepler296;
+    text-transform: uppercase;
+}
 
 /* === Home Page styling */
 .home_shop_mx_button > a {
@@ -415,6 +419,11 @@ body.woocommerce-checkout .woocommerce-checkout-review-order-table .shipping-opt
 }
 body.woocommerce-checkout h3#order_review_heading {
     padding: 20px 0 0 5px !important;
+}
+/* ===================================================================================================================================================================== */
+.woocommerce-cart .woocommerce table.shop_table_responsive tr td::before, 
+.woocommerce-cart .woocommerce-page table.shop_table_responsive tr td::before {
+    display:none;
 }
 /* ===================================================================================================================================================================== */
 header#masthead li.mini_cart_item > dl.variation {
@@ -705,6 +714,11 @@ input#wccf_product_field_number_color {
 small.omx_read_more.omx_expanded:after {
     background: transparent url(/wp-content/uploads/static/triangle_i14.png) no-repeat center;
     content: "";
+}
+/* Save & Share Cart button */
+.wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
+    width: 100%;
+    text-align: center;
 }
 
 /* === Style the checkboxes and radio buttons */
