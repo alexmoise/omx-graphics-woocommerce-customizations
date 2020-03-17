@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.58
+ * Version 0.62
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -41,8 +41,8 @@ jQuery(document).ready(function() {
 			}, 500);
 		}); 
 	}
-	// Call the plus_minus function here for the initial setup
-	if(jQuery("body").hasClass("single-product")) {
+	// Call the plus_minus function here for the initial setup, but only for single-product and cart pages
+	if(jQuery("body").hasClass("single-product") || jQuery("body").hasClass("woocommerce-cart")) {
 		quantity_plus_minus();
 	}
 	// Add the span elements needed to add the styled name and number
@@ -87,8 +87,12 @@ jQuery(document).ready(function() {
 
 // Add the plus/minus button to Quantity box
 function quantity_plus_minus() {
-	jQuery("<div class='plus'>+</div>").appendTo("div.quantity");
-	jQuery("<div class='minus'>-</div>").prependTo("div.quantity");
+	if(jQuery("div.quantity .plus").length == 0) {
+		jQuery("<div class='plus'>+</div>").appendTo("div.quantity");
+	}
+	if(jQuery("div.quantity .minus").length == 0) {
+		jQuery("<div class='minus'>-</div>").prependTo("div.quantity");
+	}
 	jQuery('div.quantity .minus').click(function () {
 		var $input = jQuery(this).parent().find('input');
 		var count = parseInt($input.val()) - 1;
