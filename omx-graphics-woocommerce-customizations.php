@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.65
+ * Version: 0.66
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -106,7 +106,6 @@ add_action( 'astra_woo_shop_title_after', 'moomx_price_range_in_lists_acf', 10 )
 function moomx_price_range_in_lists_acf() {
 	if (is_product_category()) {
 		echo '<div class="product_price_range">';
-		
 		echo '<a href="'; 
 		echo the_permalink(); 
 		echo '" class="product_price_range_link">';
@@ -125,6 +124,8 @@ function moomx_rearrange_woocomemrce_features() {
 	add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 20, 0);
 	// additionally remove coupons feature from checkout
 	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+	// remove Sale flash banner from single products
+	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 }
 // Head to cart as soon as add to cart is hit
 add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_checkout');
@@ -167,6 +168,15 @@ function moomx_replace_woocommerce_templates( $template, $template_name, $templa
 add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
 function moomx_save_cart_button() {
 	echo '<a href="https://test.omxgraphics.com/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
+}
+
+// Add the New flash banner to products in Archive pages
+add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );
+function moomx_new_product_flash() {
+	$should_new_badge = get_field( 'display_new_badge' );
+	if( $should_new_badge == '1' ) {
+		echo '<span class="new_product">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
+	}
 }
 
 ?>
