@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.66
+ * Version 0.67
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -520,7 +520,8 @@ ul.products li.product .astra-shop-summary-wrap h2 {
 }
 .single-product .product_price_range {
     color: #888;
-    font-size: 18px;
+    font-size: 22px;
+    font-family: Kepler296;
 }
 .tax-product_cat .product_price_range {
     font-size: 16px;
