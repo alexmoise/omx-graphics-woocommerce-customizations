@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.68
+ * Version 0.69
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -49,7 +49,7 @@ div#ast-site-header-cart {
 } 
 /* Styling the main menu */
 header#masthead nav#site-navigation {
-    height: 64px;
+    height: 65px;
 }
 .main-header-bar-wrap > .main-header-bar {
     padding-top: 5px;
@@ -156,6 +156,12 @@ div#primary {
 }
 
 /* Secondary container (left sidebar in this case) */
+.ast-left-sidebar #secondary {
+    border-right: none !important;
+}
+.ast-left-sidebar #primary {
+    border-left: none !important;
+}
 div#secondary .product-categories .cat-parent ul.children {
     margin-left: 4px;
     padding-left: 4px;
@@ -166,6 +172,25 @@ div#secondary .product-categories li.cat-item.current-cat > a {
 }
 div#secondary h2.widget-title {
     font-size: inherit;
+}
+.woocommerce ul.product-categories a {
+    text-transform: uppercase;
+}
+.woocommerce ul.product-categories > li ul li:before {
+    content: "\e903";
+    transform: none;
+    font-size: 16px;
+    color: #5e5e5e;
+    vertical-align: middle;
+    height: 36px;
+}
+.woocommerce ul.product-categories > li ul li.current-cat:before {
+    content: "\e901";
+}
+@media (max-width: 768px) {
+    div#secondary .widget.woocommerce.widget_product_categories {
+        display: none;
+    }
 }
 @media (min-width: 769px) {
 	div#secondary {
