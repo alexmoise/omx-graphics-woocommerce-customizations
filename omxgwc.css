@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.67
+ * Version 0.68
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -261,7 +261,7 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
     background-color: #396388c9 !important;
 }
 .home_shop_mx_cover {
-    min-height: calc(100vh - 360px);
+    /* min-height: calc(100vh - 360px); */
 }
 h2.home_shop_mx_h2 {
     margin: 50px auto;
@@ -279,6 +279,15 @@ h2.home_shop_mx_h2 {
 }
 .home_cat_container {
     margin-top: 50px;
+}
+.home_cat_container .wp-block-cover {
+    min-height: unset;
+    height: unset;
+}
+.home_cat_container .wp-block-cover:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
 }
 .home_cat_button > a {
     font-size: 14px !important;
@@ -452,6 +461,9 @@ body.woocommerce-checkout h3#order_review_heading {
 .woocommerce-cart .cart-subtotal > td, 
 .woocommerce-cart .order-total > td {
     text-align: right;
+}
+.woocommerce-cart #shipping_method > li > * {
+    vertical-align: middle;
 }
 /* ===================================================================================================================================================================== */
 header#masthead li.mini_cart_item > dl.variation {
@@ -751,15 +763,23 @@ small.omx_read_more.omx_expanded:after {
 	background-color: #bbb;
 }
 /* Sale and New product badges */
+.products .product .astra-shop-thumbnail-wrap {
+    position: relative;
+}
 .products .product .onsale {
-    margin: 12px -18px 0 0 !important;
+	margin: 0 -19px 11px 0 !important;
     border-radius: 0;
-    transform: rotate(45deg);
-    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
-	-webkit-clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
+    transform: rotate(-45deg);
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
     width: 80px;
     min-height: 20px;
     line-height: 20px;
+    top: unset !important;
+    bottom: 0;
+	background-color: black;
+    color: #e8bc1f;
+    font-weight: bold;
 }
 .products .product .new_product {
     position: absolute;
@@ -773,6 +793,7 @@ small.omx_read_more.omx_expanded:after {
     text-align: center;
     margin: 11px 0 0 -19px;
     z-index: 9;
+	font-weight: bold;
 }
 
 /* === Style the checkboxes and radio buttons */
