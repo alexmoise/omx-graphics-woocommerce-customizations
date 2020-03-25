@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.69
+ * Version 0.70
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -175,17 +175,20 @@ div#secondary h2.widget-title {
 }
 .woocommerce ul.product-categories a {
     text-transform: uppercase;
+	vertical-align: middle;
 }
 .woocommerce ul.product-categories > li ul li:before {
-    content: "\e903";
+	content: "";
     transform: none;
-    font-size: 16px;
-    color: #5e5e5e;
     vertical-align: middle;
-    height: 36px;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #555;
+    margin: 0 4px 0 0;
+    border-radius: 100%;
 }
 .woocommerce ul.product-categories > li ul li.current-cat:before {
-    content: "\e901";
+    background-color: #555;
 }
 @media (max-width: 768px) {
     div#secondary .widget.woocommerce.widget_product_categories {
