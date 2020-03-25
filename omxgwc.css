@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.70
+ * Version 0.71
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -522,6 +522,22 @@ ul.products li.product .astra-shop-summary-wrap h2 {
     font-size: small !important;
 	margin-bottom: 0 !important;
 }
+/* Price-range / Select-options animation */
+ul.products li.product .product_loop_price_and_range {
+    height: 28px;
+    overflow: hidden;
+}
+ul.products li.product .price_loop_div {
+    height: 28px;
+    transition-duration: .2s;
+}
+ul.products li.product .price_loop_div a {
+    vertical-align: middle;
+}
+ul.products li.product:hover .price_loop_div {
+    transform: translateY(-28px);
+}
+/* Category pre-footer */
 .category_pre_footer {
     padding: 50px 10px;
     /* text-align: center; */
@@ -566,7 +582,6 @@ ul.products li.product .astra-shop-summary-wrap h2 {
 .tax-product_cat .product_price_range {
     font-size: 16px;
     line-height: 22px;
-    margin-top: 4px;
 }
 .tax-product_cat .product_price_range a {
     color: #888;

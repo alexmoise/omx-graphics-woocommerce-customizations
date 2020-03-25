@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.70
+ * Version: 0.71
  * Author: Alex Moise
  * Author URI: https://moise.pro
  */
@@ -71,46 +71,36 @@ function moomx_output_viewport_meta_tag() {
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 // Remove the product price
 add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
-// Add the "Select options" link under the products. 
+// Add the "Select options" link under the products in product archives. 
 // !! "Add To Cart" button needs to be disabled in theme customizer
-add_action( 'astra_woo_shop_title_after', 'moomx_product_button_archive', 20 );
-function moomx_product_button_archive() {
-	echo '<a href="'; 
-	echo the_permalink(); 
-	echo '" class="archive_select_options">Select options</a>';
-}
-// Output the Category Pre-Footer in category pages. 
-// !! Field is added with ACF plugin
-add_action( 'astra_content_after', 'moomx_category_pre_footer_output' );
-function moomx_category_pre_footer_output() {
-	if (is_product_category()) {
-		$product_cat_object = get_queried_object();
-		if(get_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id)) {
-			echo '<div class="category_pre_footer">';
-			the_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id);
-			echo '</div>';
-		}
-	}
-}
-// Display price range in single product
-// !! Field is added with ACF plugin
-add_action('woocommerce_single_product_summary', 'moomx_price_range_acf');
-function moomx_price_range_acf() {
-	if (is_product()) {
-		echo '<div class="product_price_range">';
-		echo get_field( 'price_range' );
-		echo '</div>';
-	}
-}
+
+// Display price ranges and Select Options text
+// !! Price range field is added with ACF plugin
 add_action( 'astra_woo_shop_title_after', 'moomx_price_range_in_lists_acf', 10 );
 function moomx_price_range_in_lists_acf() {
 	if (is_product_category()) {
-		echo '<div class="product_price_range">';
+		echo '<div class="product_loop_price_and_range">';
+		echo '<div class="product_price_range price_loop_div">';
 		echo '<a href="'; 
 		echo the_permalink(); 
 		echo '" class="product_price_range_link">';
 		echo get_field( 'price_range' );
 		echo '</a>';
+		echo '</div>';
+		echo '<div class="product_select_options price_loop_div">';
+		echo '<a href="'; 
+		echo the_permalink(); 
+		echo '" class="archive_select_options">Select options</a>';
+		echo '</div>';
+		echo '</div>';
+	}
+}
+// Display price range in single product page as well
+add_action('woocommerce_single_product_summary', 'moomx_price_range_acf');
+function moomx_price_range_acf() {
+	if (is_product()) {
+		echo '<div class="product_price_range">';
+		echo get_field( 'price_range' );
 		echo '</div>';
 	}
 }
@@ -169,13 +159,25 @@ add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
 function moomx_save_cart_button() {
 	echo '<a href="https://test.omxgraphics.com/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
 }
-
 // Add the New flash banner to products in Archive pages
 add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );
 function moomx_new_product_flash() {
 	$should_new_badge = get_field( 'display_new_badge' );
 	if( $should_new_badge == '1' ) {
 		echo '<span class="new_product">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
+	}
+}
+// Output the Category Pre-Footer in category pages. 
+// !! Field is added with ACF plugin
+add_action( 'astra_content_after', 'moomx_category_pre_footer_output' );
+function moomx_category_pre_footer_output() {
+	if (is_product_category()) {
+		$product_cat_object = get_queried_object();
+		if(get_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id)) {
+			echo '<div class="category_pre_footer">';
+			the_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id);
+			echo '</div>';
+		}
 	}
 }
 
