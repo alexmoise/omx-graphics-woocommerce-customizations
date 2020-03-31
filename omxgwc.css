@@ -533,6 +533,7 @@ ul.products li.product .price_loop_div {
 }
 ul.products li.product .price_loop_div a {
     vertical-align: middle;
+	font-family: Kepler296;
 }
 ul.products li.product:hover .price_loop_div {
     transform: translateY(-28px);
