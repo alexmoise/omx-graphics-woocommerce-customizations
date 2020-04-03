@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.71
+ * Version 0.74
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -697,6 +697,35 @@ div#omx_add_to_cart .quantity:after {
     font-size: 22px;
     font-weight: bold;
     color: #ccc;
+}
+
+/* The OMX_Price display */
+.omx_price .sale_price, .omx_price .amount {
+    font-weight: normal;
+}
+.omx_price > del.reg_price {
+    margin: 0 4px 0 0;
+}
+.omx_price > ins.sale_price {
+    margin: 0 0 0 6px;
+}
+.omx_price {
+    font-size: 20px;
+}
+.omx_price span.price_separator {
+    vertical-align: middle;
+    font-weight: 100;
+    margin-right: 4px;
+    font-size: 18px;
+}
+.omx_price > .reg_price, .omx_price > .saved_percent, .omx_price > .percent_off, .omx_price > .sale_price {
+    vertical-align: middle;
+}
+.omx_price > .saved_percent, .omx_price > .percent_off {
+    font-weight: bold;
+}
+.omx_price del.reg_price {
+    color: #999 !important;
 }
 
 /* Style the Rider Name and Number fields in Single Product  */
