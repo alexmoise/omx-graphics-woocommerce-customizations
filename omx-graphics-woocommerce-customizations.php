@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.72
+ * Version: 0.73
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -72,33 +72,69 @@ function moomx_output_viewport_meta_tag() {
 // Remove hover zoom
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 // Remove the product price
-add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
-// Add the "Select options" link under the products in product archives. 
-// !! "Add To Cart" button needs to be disabled in theme customizer
+// add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
 
-// Display price ranges and Select Options text
-// !! Price range field is added with ACF plugin
-add_action( 'astra_woo_shop_title_after', 'moomx_price_range_in_lists_acf', 10 );
-function moomx_price_range_in_lists_acf() {
-	if (is_product_category()) {
-		echo '<div class="product_loop_price_and_range">';
-		echo '<div class="product_price_range price_loop_div">';
-		echo '<a href="'; 
-		echo the_permalink(); 
-		echo '" class="product_price_range_link">';
-		echo get_field( 'price_range' );
-		echo '</a>';
-		echo '</div>';
-		echo '<div class="product_select_options price_loop_div">';
-		echo '<a href="'; 
-		echo the_permalink(); 
-		echo '" class="archive_select_options">Select options</a>';
-		echo '</div>';
-		echo '</div>';
+// === OMX custom price display functions ===
+add_filter( 'woocommerce_get_price_html', 'moomx_omx_price');
+function moomx_omx_price($price) { 
+	// get product data first
+	global $product; 
+	// get default product attributes
+	$default_attributes = $product->get_default_attributes();
+	// then try to get product variations
+	$variations=$product->get_children();
+	// so, if we have more than 0 variations ...
+	if (count($variations) > 0) {
+		// ...then loop through them and:
+		foreach ($variations as $variationID) {
+			// get variation object
+			$product_variation = new WC_Product_Variation($variationID);
+			// ...then pick the attributes and prices
+			$var_attributes = $product_variation->get_variation_attributes();
+			$regular_price = $product_variation->regular_price;
+			$sale_price = $product_variation->sale_price;
+			// to compare variation attributes with product default attributes just array_diff them and count the differences
+			$ck_var_atts = array_diff($var_attributes, $default_attributes);
+			$ck_var_atts_count = count($ck_var_atts );
+			// if there's no difference that means we're hit the default configuration for the product ...
+			if ($ck_var_atts_count == 0) {
+				// ... so we can just pick the prices and get out of the foreach (might not be perfect in case there are more attributes and only some of them set as default - need to check later)
+				$chosen_reg_price = $regular_price;
+				$chosen_sale_price = $sale_price;
+				break;
+			} else { 
+				// ... otherwise we just add the prices to prices arrays so we can pick one later based on the numbers
+				$possible_reg_prices[$variationID] = $regular_price;
+				$possible_sales_prices[$variationID] = $sale_price;
+			 }
+		}
+		// if we still don't have chosen prices it means they are somewhere in the possible prices arrays, so pick the:
+		// *** BIGGEST *** 
+		// value from both usinf the "max" function (but can change later if requested)
+		if (!$chosen_reg_price) { $chosen_reg_price = max($possible_reg_prices); }
+		if (!$chosen_sale_price) { $chosen_sale_price = max($possible_sales_prices); }
+	} else {
+		// ... but if no variation is found, just extract the simple product prices:
+		$chosen_reg_price = $product->get_regular_price();
+		$chosen_sale_price = $product->get_sale_price();
 	}
+	// At this point we *have* the regular and sales prices. Sales might be missing if not defined though, but we're sure we searched for it thoroughly
+	if ($chosen_sale_price) {
+		// so if there's a sale price let's calculate the percentage of savings and display all 3 nicely ...
+		$saved_percent_raw = ($chosen_reg_price - $chosen_sale_price) / $chosen_reg_price * 100;
+		$saved_percent = round($saved_percent_raw, 0);
+		$omx_price = '<div class="omx_price"><del>'.wc_price($chosen_reg_price).'</del> | <span>'.$saved_percent.'<span><span>%</span> Off <ins>'.wc_price($chosen_sale_price).'</ins></div>';
+	} else {
+		// else let's just display the regular price
+		$omx_price = '<div class="omx_price"><ins>'.wc_price($chosen_reg_price).'</ins></div>';
+	}
+	// $price not used anymore
+	// return the newly composed price, finnaly!
+	return $omx_price; 
 }
+
 // Display price range in single product page as well
-add_action('woocommerce_single_product_summary', 'moomx_price_range_acf');
+// add_action('woocommerce_single_product_summary', 'moomx_price_range_acf');
 function moomx_price_range_acf() {
 	if (is_product()) {
 		echo '<div class="product_price_range">';
