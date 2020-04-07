@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.75
+ * Version 0.76
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
 	if(jQuery("body").hasClass("single-product")) {
 		jQuery("dl.rightpress_product_price_live_update dt").remove();
 		jQuery("<div/>", {id:"omx_add_to_cart"}).appendTo("form.cart");
-		jQuery("dl.rightpress_product_price_live_update").appendTo("button[name='add-to-cart']");
+		jQuery("dl.rightpress_product_price_live_update").appendTo("button.single_add_to_cart_button.button.alt");
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
 		/*

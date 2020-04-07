@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.75
+ * Version: 0.76
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -200,8 +200,18 @@ function moomx_save_cart_button() {
 // Add the New flash banner to products in Archive pages
 add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );
 function moomx_new_product_flash() {
-	$should_new_badge = get_field( 'display_new_badge' );
-	if( $should_new_badge == '1' ) {
+	global $product;
+	// $isonsale = $product->is_on_sale(); // that seems to work only if all variations are on sale; for *some* variations it does not, so we'll check each variation
+	$variations = $product->get_available_variations();
+	for ($vn = 0; $vn < count($variations); $vn++) {
+		$ck_var = wc_get_product($variations[$vn]['variation_id']);
+		if ($ck_var->is_on_sale()) {
+			$isonsale = 1;
+			break;
+		}
+	}
+	$display_new_badge = get_field( 'display_new_badge' );
+	if ($display_new_badge == '1' && $isonsale != 1) {
 		echo '<span class="new_product">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
 	}
 }
