@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.62
+ * Version 0.75
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -16,6 +16,7 @@ jQuery(document).ready(function() {
 		jQuery("dl.rightpress_product_price_live_update").appendTo("button[name='add-to-cart']");
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
+		/*
 		// Add the DOM elements needed to display the price at the beginning of the product form
 		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
 		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
@@ -40,6 +41,7 @@ jQuery(document).ready(function() {
 				jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
 			}, 500);
 		}); 
+		*/
 	}
 	// Call the plus_minus function here for the initial setup, but only for single-product and cart pages
 	if(jQuery("body").hasClass("single-product") || jQuery("body").hasClass("woocommerce-cart")) {
