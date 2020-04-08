@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.76
+ * Version: 0.77
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -77,7 +77,7 @@ add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 // === OMX custom price display functions ===
 add_filter( 'woocommerce_get_price_html', 'moomx_omx_price');
 function moomx_omx_price($price) { 
-	// get product data first
+	// get product object first
 	global $product; 
 	// get default product attributes
 	$default_attributes = $product->get_default_attributes();
@@ -89,36 +89,40 @@ function moomx_omx_price($price) {
 		foreach ($variations as $variationID) {
 			// get variation object
 			$product_variation = new WC_Product_Variation($variationID);
-			// ...then pick the attributes and prices
+			// ...then pick the attributes
 			$var_attributes = $product_variation->get_variation_attributes();
-			$regular_price = $product_variation->regular_price;
-			$sale_price = $product_variation->sale_price;
 			// to compare variation attributes with product default attributes just array_diff them and count the differences
 			$ck_var_atts = array_diff($var_attributes, $default_attributes);
 			$ck_var_atts_count = count($ck_var_atts );
-			// if there's no difference that means we're hit the default configuration for the product ...
+			// if there's no difference that means we've hit the default configuration for the product ...
 			if ($ck_var_atts_count == 0) {
-				// ... so we can just pick the prices and get out of the foreach (might not be perfect in case there are more attributes and only some of them set as default - need to check later)
-				$chosen_reg_price = $regular_price;
-				$chosen_sale_price = $sale_price;
+				// ... so we can just pick the ID of that variation for later use
+				$chosen_variation_id = $variationID;
+				// also keep the prices of it in the possible prices arrays, so we don't mess with variation object later (which can be huge) 
+				$possible_reg_prices[$variationID] = $product_variation->regular_price;
+				$possible_sale_prices[$variationID] = $product_variation->sale_price;
+				// then break out of the foreach as the rest are not needed
 				break;
 			} else { 
-				// ... otherwise we just add the prices to prices arrays so we can pick one later based on the numbers
-				$possible_reg_prices[$variationID] = $regular_price;
-				$possible_sales_prices[$variationID] = $sale_price;
-			 }
+				// ... otherwise we just add the prices to prices arrays so we can pick them later based on the amounts
+				$possible_reg_prices[$variationID] = $product_variation->regular_price;
+				$possible_sale_prices[$variationID] = $product_variation->sale_price;
+			}
 		}
-		// if we still don't have chosen prices it means they are somewhere in the possible prices arrays, so pick the:
-		// *** BIGGEST *** 
-		// value from both usinf the "max" function (but can change later if requested)
-		if (!$chosen_reg_price) { $chosen_reg_price = max($possible_reg_prices); }
-		if (!$chosen_sale_price) { $chosen_sale_price = max($possible_sales_prices); }
+		// if we don't have a choosen variation already means that there's no default variation match, so let's pick the one with the
+		// *** BIGGEST ***
+		// regular price (by using MAX below):
+		if (!$chosen_variation_id) { $chosen_variation_id = max(array_keys($possible_reg_prices)); }
+		// at this moment we're sure to have a choosen variation ID and its price in possible regular prices array; so extract that regular price from that array ...
+		$chosen_reg_price = $possible_reg_prices[$chosen_variation_id];
+		// ... and now let's plck the sale price if it exists:		
+		$chosen_sale_price = $possible_sale_prices[$chosen_variation_id];
 	} else {
 		// ... but if no variation is found, just extract the simple product prices:
 		$chosen_reg_price = $product->get_regular_price();
 		$chosen_sale_price = $product->get_sale_price();
 	}
-	// At this point we *have* the regular and sales prices. Sales might be missing if not defined though, but we're sure we searched for it thoroughly
+	// At this point we *have* the regular price. Sale price might be missing if not defined though, but we're sure we searched for it thoroughly, so let's proceed composing the price html based on that:
 	if ($chosen_sale_price) {
 		// so if there's a sale price let's calculate the percentage of savings and display all 3 nicely ...
 		$saved_percent_raw = ($chosen_reg_price - $chosen_sale_price) / $chosen_reg_price * 100;
@@ -129,21 +133,11 @@ function moomx_omx_price($price) {
 		$omx_price = '<div class="omx_price"><ins class="reg_price">'.wc_price($chosen_reg_price).'</ins></div>';
 	}
 	// "$price" not used anymore
-	// return the newly composed price, finnaly:
+	// return the newly composed price, finally:
 	return $omx_price; 
 }
-
-// Display price range in single product page as well
-// add_action('woocommerce_single_product_summary', 'moomx_price_range_acf');
-function moomx_price_range_acf() {
-	if (is_product()) {
-		echo '<div class="product_price_range">';
-		echo get_field( 'price_range' );
-		echo '</div>';
-	}
-}
 // Change places of woocommerce elements as needed
-add_action( 'init', 'moomx_rearrange_woocomemrce_features' );
+add_action( 'template_redirect', 'moomx_rearrange_woocomemrce_features' );
 function moomx_rearrange_woocomemrce_features() {
 	// get rid of the result count and breadcrumbs first
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
@@ -152,9 +146,12 @@ function moomx_rearrange_woocomemrce_features() {
 	add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 20, 0);
 	// additionally remove coupons feature from checkout
 	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
-	// remove Sale flash banner from single products
+	// remove Sale flash banner from single products and from loops
 	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 }
+// Empty the Sale Flash HTML
+add_filter('woocommerce_sale_flash', 'moomx_empty_sale_html', 10, 3);
+function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
 // Head to cart as soon as add to cart is hit
 add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_checkout');
 function moomx_goto_checkout() {
@@ -200,19 +197,43 @@ function moomx_save_cart_button() {
 // Add the New flash banner to products in Archive pages
 add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );
 function moomx_new_product_flash() {
-	global $product;
-	// $isonsale = $product->is_on_sale(); // that seems to work only if all variations are on sale; for *some* variations it does not, so we'll check each variation
-	$variations = $product->get_available_variations();
-	for ($vn = 0; $vn < count($variations); $vn++) {
-		$ck_var = wc_get_product($variations[$vn]['variation_id']);
-		if ($ck_var->is_on_sale()) {
-			$isonsale = 1;
-			break;
+	// get product object first
+	global $product; 
+	// get default product attributes
+	$default_attributes = $product->get_default_attributes();
+	// then try to get product variations
+	$variations=$product->get_children();
+	// so, if we have more than 0 variations ...
+	if (count($variations) > 0) {
+		// ...then loop through them and:
+		foreach ($variations as $variationID) {
+			// get variation object
+			$product_variation = new WC_Product_Variation($variationID);
+			// ...then pick the attributes
+			$var_attributes = $product_variation->get_variation_attributes();
+			// to compare variation attributes with product default attributes just array_diff them and count the differences
+			$ck_var_atts = array_diff($var_attributes, $default_attributes);
+			$ck_var_atts_count = count($ck_var_atts );
+			// if there's no difference that means we've hit the default configuration for the product ...
+			if ($ck_var_atts_count == 0) {
+				// ... so get its sale price ...
+				$the_sale_price = $product_variation->sale_price;
+				// ... and break out of the foreach as the rest are not needed
+				break;
+			} 
 		}
+	} else {
+		// if it's a simple product then get the sale price
+		$the_sale_price = $product->get_sale_price();
 	}
-	$display_new_badge = get_field( 'display_new_badge' );
-	if ($display_new_badge == '1' && $isonsale != 1) {
-		echo '<span class="new_product">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
+	// now based on sale price variable, display either Sale or New flag
+	if (!$the_sale_price) {
+		$display_new_badge = get_field( 'display_new_badge' );
+		if ($display_new_badge == '1') {
+			echo '<span class="new_product">' . esc_html__( 'New', 'woocommerce' ) . '</span>';
+		}
+	} else {
+		echo '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>';
 	}
 }
 // Output the Category Pre-Footer in category pages. 
