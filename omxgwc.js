@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.76
+ * Version 0.78
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -72,6 +72,11 @@ jQuery(document).ready(function() {
 		eachStyle = jQuery(this).attr('value');
 		jQuery('#wccf_product_field_number_style_container li > input[value="'+eachStyle+'"]').siblings('span.styled').css("font-family",eachStyle);
 	});
+	// Add "placeholder" strings for font sampling, synced with the defined placeholder
+	num_placeholder_val = jQuery("#wccf_product_field_rider_number").attr('placeholder');
+	jQuery(".styled.ridernumber").empty().text(num_placeholder_val);
+	name_placeholder_val = jQuery("#wccf_product_field_rider_name").attr('placeholder');
+	jQuery(".styled.ridername").empty().text(name_placeholder_val);
 	// Add "omx_read_more" class to <small> containers that have more text inside. Used further in CSS file to add the "after" element with the down/up arrow
 	function isEllipsisActive(e) { return (e.offsetWidth < e.scrollWidth); }
 	var elementList = document.querySelectorAll('small');

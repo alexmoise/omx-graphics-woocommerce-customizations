@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.76
+ * Version 0.78
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -769,7 +769,6 @@ input#wccf_product_field_rider_name {
 input#wccf_product_field_rider_number::placeholder, 
 input#wccf_product_field_rider_name::placeholder {
     color:lightgray;
-    font-size:16px;
 }
 /* Style the style-pickers */
 div#wccf_product_field_name_style_container {
