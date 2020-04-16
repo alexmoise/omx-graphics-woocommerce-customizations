@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.78
+ * Version 0.82
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -42,14 +42,25 @@ header#masthead {
 .main-header-bar .ast-site-identity {
     width: auto !important;
 }
-.main-header-bar .site-description { text-transform: uppercase; text-align: center; }
+.main-header-bar .site-description { 
+	text-transform: uppercase; 
+	text-align: center; 
+}
+@media(max-width:425px) {
+    .main-header-bar .site-branding a {
+        font-size: 80%;
+    }
+	.main-header-bar .site-description {
+		font-size: 66%;
+	}
+}
 /* move up the shop icon a bit to compensate for the "bag handle" */
 div#ast-site-header-cart {
-	margin-bottom: 5px;
+	margin-bottom: 8px;
 } 
 /* Styling the main menu */
 header#masthead nav#site-navigation {
-    height: 65px;
+    /* height: 65px; */
 }
 .main-header-bar-wrap > .main-header-bar {
     padding-top: 5px;
@@ -115,10 +126,7 @@ div#primary {
 }
 @media (min-width: 961px) {
 	div#primary {
-		margin-top: 158px !important;
-	}
-	body.home div#primary {
-		margin-top: 158px !important;
+		margin-top: 200px !important;
 	}
 	.ast-woocommerce-container {
 		padding-top: 0px !important;
@@ -128,14 +136,13 @@ div#primary {
 		margin-bottom: 20px;
 	}
 	body:not(.home) main#main {
-		margin-top: 20px;
+		/* margin-top: 20px; */
 	}
 }
 /* top padding of main container, same as menu breakpoint in theme options .. */
-@media (max-width: 960px) {
+@media (min-width: 769px) and (max-width: 960px) {
 	div#primary {
-		padding-top: 160px !important;
-		margin-top: 0 !important;
+		margin-top: 194px !important;
 	}
 	body.home div#primary {
 		padding-top: 156px !important;
@@ -148,6 +155,12 @@ div#primary {
 	}
 	.ast-separate-container .ast-article-post, .ast-separate-container .ast-article-single {
 		padding: 20px;
+	}
+}
+@media (max-width: 768px) {
+	div#primary {
+		padding-top: 0 !important;
+		margin-top: 160px !important;
 	}
 }
 @media (max-width: 370px) {
@@ -197,12 +210,6 @@ div#secondary h2.widget-title {
 }
 @media (min-width: 769px) {
 	div#secondary {
-		margin-top: 175px !important;
-	}
-	div#secondary .sidebar-main {
-		/* margin-top: 5.34em; */
-	}
-	div#secondary {
 		padding-right: 20px !important;
 	}
 }
@@ -216,7 +223,22 @@ div#secondary h2.widget-title {
 		padding: 0 2.14em !important;
 	}
 }
-
+@media (min-width: 961px) {
+	div#secondary {
+		margin-top: 200px !important;
+	}
+}
+/* top padding of main container, same as menu breakpoint in theme options .. */
+@media (min-width: 769px) and (max-width: 960px) {
+	div#secondary {
+		margin-top: 194px !important;
+	}
+}
+@media (max-width: 768px) {
+	div#secondary {
+		/* margin-top: 168px !important; */
+	}
+}
 /* WooBeWoo currency switcher in main menu */
 ul#primary-menu .wcuCurrencySwitcherWidget {
     margin-bottom: 0px !important;
@@ -384,6 +406,7 @@ form.cart abbr.required {
 }
 nav.woocommerce-breadcrumb {
     font-size: 10px !important;
+	margin-top: 10px !important;
     display: inline-block;
     text-transform: uppercase;
 }
@@ -418,6 +441,9 @@ form.woocommerce-checkout .variation * {
 }
 .woocommerce div.product div#wccf_product_field_master_container li label {
     cursor: pointer;
+}
+.woocommerce div.product div.images {
+    margin-bottom: 0;
 }
 .woocommerce-cart a.restore-item {
     background-color: #e8bc1f;
@@ -573,7 +599,7 @@ ul.products li.product:hover .price_loop_div {
 
 /* === Product page below:  */
 .ast-woocommerce-container .product {
-    margin-top: 20px !important;
+    /* margin-top: 20px !important; */
 }
 .single-product .product_price_range {
     color: #888;
