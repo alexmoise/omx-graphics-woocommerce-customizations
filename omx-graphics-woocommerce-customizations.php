@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.82
+ * Version: 0.83
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -91,65 +91,70 @@ add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 
 // === OMX custom price display functions ===
 add_filter( 'woocommerce_get_price_html', 'moomx_omx_price');
-function moomx_omx_price($price) { 
-	// get product object first
-	global $product; 
-	// get default product attributes
-	$default_attributes = $product->get_default_attributes();
-	// then try to get product variations
-	$variations=$product->get_children();
-	// so, if we have more than 0 variations ...
-	if (count($variations) > 0) {
-		// ...then loop through them and:
-		foreach ($variations as $variationID) {
-			// get variation object
-			$product_variation = new WC_Product_Variation($variationID);
-			// ...then pick the attributes
-			$var_attributes = $product_variation->get_variation_attributes();
-			// to compare variation attributes with product default attributes just array_diff them and count the differences
-			$ck_var_atts = array_diff($var_attributes, $default_attributes);
-			$ck_var_atts_count = count($ck_var_atts );
-			// if there's no difference that means we've hit the default configuration for the product ...
-			if ($ck_var_atts_count == 0) {
-				// ... so we can just pick the ID of that variation for later use
-				$chosen_variation_id = $variationID;
-				// also keep the prices of it in the possible prices arrays, so we don't mess with variation object later (which can be huge) 
-				$possible_reg_prices[$variationID] = $product_variation->regular_price;
-				$possible_sale_prices[$variationID] = $product_variation->sale_price;
-				// then break out of the foreach as the rest are not needed
-				break;
-			} else { 
-				// ... otherwise we just add the prices to prices arrays so we can pick them later based on the amounts
-				$possible_reg_prices[$variationID] = $product_variation->regular_price;
-				$possible_sale_prices[$variationID] = $product_variation->sale_price;
+function moomx_omx_price($price) {
+	// the whole thing below will only work in front end as only there we can access global $product - but will break in Gutenberg for example, when adding Handpicked Products - so we IF it accordingly:
+	if (is_product_category() || is_product() || is_shop() ) {
+		// get product object first
+		global $product; 
+		// get default product attributes
+		$default_attributes = $product->get_default_attributes();
+		// then try to get product variations
+		$variations=$product->get_children();
+		// so, if we have more than 0 variations ...
+		if (count($variations) > 0) {
+			// ...then loop through them and:
+			foreach ($variations as $variationID) {
+				// get variation object
+				$product_variation = new WC_Product_Variation($variationID);
+				// ...then pick the attributes
+				$var_attributes = $product_variation->get_variation_attributes();
+				// to compare variation attributes with product default attributes just array_diff them and count the differences
+				$ck_var_atts = array_diff($var_attributes, $default_attributes);
+				$ck_var_atts_count = count($ck_var_atts );
+				// if there's no difference that means we've hit the default configuration for the product ...
+				if ($ck_var_atts_count == 0) {
+					// ... so we can just pick the ID of that variation for later use
+					$chosen_variation_id = $variationID;
+					// also keep the prices of it in the possible prices arrays, so we don't mess with variation object later (which can be huge) 
+					$possible_reg_prices[$variationID] = $product_variation->regular_price;
+					$possible_sale_prices[$variationID] = $product_variation->sale_price;
+					// then break out of the foreach as the rest are not needed
+					break;
+				} else { 
+					// ... otherwise we just add the prices to prices arrays so we can pick them later based on the amounts
+					$possible_reg_prices[$variationID] = $product_variation->regular_price;
+					$possible_sale_prices[$variationID] = $product_variation->sale_price;
+				}
 			}
+			// if we don't have a choosen variation already means that there's no default variation match, so let's pick the one with the
+			// *** BIGGEST ***
+			// regular price (by using MAX below):
+			if (!$chosen_variation_id) { $chosen_variation_id = max(array_keys($possible_reg_prices)); }
+			// at this moment we're sure to have a choosen variation ID and its price in possible regular prices array; so extract that regular price from that array ...
+			$chosen_reg_price = $possible_reg_prices[$chosen_variation_id];
+			// ... and now let's plck the sale price if it exists:		
+			$chosen_sale_price = $possible_sale_prices[$chosen_variation_id];
+		} else {
+			// ... but if no variation is found, just extract the simple product prices:
+			$chosen_reg_price = $product->get_regular_price();
+			$chosen_sale_price = $product->get_sale_price();
 		}
-		// if we don't have a choosen variation already means that there's no default variation match, so let's pick the one with the
-		// *** BIGGEST ***
-		// regular price (by using MAX below):
-		if (!$chosen_variation_id) { $chosen_variation_id = max(array_keys($possible_reg_prices)); }
-		// at this moment we're sure to have a choosen variation ID and its price in possible regular prices array; so extract that regular price from that array ...
-		$chosen_reg_price = $possible_reg_prices[$chosen_variation_id];
-		// ... and now let's plck the sale price if it exists:		
-		$chosen_sale_price = $possible_sale_prices[$chosen_variation_id];
+		// At this point we *have* the regular price. Sale price might be missing if not defined though, but we're sure we searched for it thoroughly, so let's proceed composing the price html based on that:
+		if ($chosen_sale_price) {
+			// so if there's a sale price let's calculate the percentage of savings and display all 3 nicely ...
+			$saved_percent_raw = ($chosen_reg_price - $chosen_sale_price) / $chosen_reg_price * 100;
+			$saved_percent = round($saved_percent_raw, 0);
+			$omx_price = '<div class="omx_price"><del class="reg_price">'.wc_price($chosen_reg_price).'</del><span class="price_separator">|</span><span class="saved_percent">'.$saved_percent.'</span><span class="percent_off">% Off</span><ins class="sale_price">'.wc_price($chosen_sale_price).'</ins></div>';
+		} else {
+			// else let's just display the regular price
+			$omx_price = '<div class="omx_price"><ins class="reg_price">'.wc_price($chosen_reg_price).'</ins></div>';
+		}
+		// return the newly composed $omx_price instead of the regular $price:
+		return $omx_price; 
 	} else {
-		// ... but if no variation is found, just extract the simple product prices:
-		$chosen_reg_price = $product->get_regular_price();
-		$chosen_sale_price = $product->get_sale_price();
+		// ... otherwise we return the good ol' $price untouched:
+		return $price;
 	}
-	// At this point we *have* the regular price. Sale price might be missing if not defined though, but we're sure we searched for it thoroughly, so let's proceed composing the price html based on that:
-	if ($chosen_sale_price) {
-		// so if there's a sale price let's calculate the percentage of savings and display all 3 nicely ...
-		$saved_percent_raw = ($chosen_reg_price - $chosen_sale_price) / $chosen_reg_price * 100;
-		$saved_percent = round($saved_percent_raw, 0);
-		$omx_price = '<div class="omx_price"><del class="reg_price">'.wc_price($chosen_reg_price).'</del><span class="price_separator">|</span><span class="saved_percent">'.$saved_percent.'</span><span class="percent_off">% Off</span><ins class="sale_price">'.wc_price($chosen_sale_price).'</ins></div>';
-	} else {
-		// else let's just display the regular price
-		$omx_price = '<div class="omx_price"><ins class="reg_price">'.wc_price($chosen_reg_price).'</ins></div>';
-	}
-	// "$price" not used anymore
-	// return the newly composed price, finally:
-	return $omx_price; 
 }
 // Make sure we'll have 2 decimals all over the shop
 add_filter( 'wc_get_price_decimals', 'moomx_change_prices_decimals', 20, 1 );
