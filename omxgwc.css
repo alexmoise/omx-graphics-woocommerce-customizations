@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.84
+ * Version 0.85
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -25,10 +25,15 @@ header#masthead {
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
 }
 /* Move the header up when scrolled (based on class added via JS) */
-@media (min-width: 961px) { .omx-scrolled header#masthead { transform: translateY(-94px); } }
-@media (max-width: 960px) and (min-width: 768px) { .omx-scrolled header#masthead { transform: translateY(-86px); } }
-@media (max-width: 767px) { .omx-scrolled header#masthead { transform: translateY(-86px);} }
-.admin-bar.omx-scrolled header#masthead { transform: translateY(-128px) !important; }
+					   @media (min-width: 1361px) { .omx-scrolled header#masthead { transform: translateY(-114px); } }
+@media (max-width: 1360px) and (min-width: 768px) { .omx-scrolled header#masthead { transform: translateY(-100px); } }
+@media (max-width: 767px)  and (min-width: 426px) { .omx-scrolled header#masthead { transform: translateY(-100px);} }
+@media (max-width: 425px)  and (min-width: 371px) { .omx-scrolled header#masthead { transform: translateY(-95px);} }
+						@media (max-width: 370px) { .omx-scrolled header#masthead { transform: translateY(-90px);} }
+/* Adjust header position in case Admin Bar is present */
+@media (min-width: 783px) { .omx-scrolled header#masthead { margin-top:-32px !important } }
+@media (max-width: 782px) { .omx-scrolled header#masthead { margin-top:-46px !important } }
+/* Also adjust Notification Bar position in case Admin Bar is present */
 @media (min-width: 783px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-32px) !important; position: sticky; } }
 @media (max-width: 782px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-46px) !important; position: sticky; } }
 /* Some logo and branding styles */
@@ -93,7 +98,7 @@ header#masthead nav#site-navigation {
     display: none;
 }
 /* Adding the logo at the left of menu when scrolling */
-@media (min-width: 961px) {
+@media (min-width: 1361px) {
 	.main-header-bar .ast-main-header-bar-alignment {
 		position: relative;
 	}
@@ -107,7 +112,7 @@ header#masthead nav#site-navigation {
 		top: 10px;
 	}
 }
-@media (max-width: 960px) {
+@media (max-width: 1360px) {
 	.omx-scrolled .main-header-bar .ast-masthead-custom-menu-items.woocommerce-custom-menu-item:before {
 		content: url(/wp-content/uploads/2020/01/omx_logo_sq32_b.png);
 		position: absolute;
@@ -118,13 +123,26 @@ header#masthead nav#site-navigation {
 		top: 10px;
 	}
 }
+/* Notification bar styling */
+@media (min-width:768px) {
+	#wpfront-notification-bar .wpfront-message {
+		max-width: 1700px !important;
+		width: calc(100% - 10px);
+	}
+	#wpfront-notification-bar span.topbar_left {
+		float: left;
+	}
+	#wpfront-notification-bar span.topbar_right {
+		float: right;
+	}
+}
 
 /* === Site containers or otherwise site-wide styling  */
 div#primary {
 	margin-bottom: 20px !important;
 	padding-bottom: 0 !important;
 }
-@media (min-width: 961px) {
+@media (min-width: 1361px) {
 	div#primary {
 		margin-top: 200px !important;
 	}
@@ -137,7 +155,7 @@ div#primary {
 	}
 }
 /* top padding of main container, same as menu breakpoint in theme options .. */
-@media (min-width: 769px) and (max-width: 960px) {
+@media (min-width: 769px) and (max-width: 1360px) {
 	div#primary {
 		margin-top: 194px !important;
 	}
@@ -152,11 +170,23 @@ div#primary {
 	}
 }
 @media (min-width: 769px) {
-	div#primary {
+	body:not(.home) div#primary {
 		padding-top: 20px;
 	}
 }
-@media (max-width: 768px) {
+@media (min-width: 426px) and (max-width: 768px) {
+	div#primary {
+		padding-top: 0 !important;
+		margin-top: 168px !important;
+	}
+}
+@media (min-width: 371px) and (max-width: 425px) {
+	div#primary {
+		padding-top: 0 !important;
+		margin-top: 164px !important;
+	}
+}
+@media (max-width: 370px) {
 	div#primary {
 		padding-top: 0 !important;
 		margin-top: 160px !important;
