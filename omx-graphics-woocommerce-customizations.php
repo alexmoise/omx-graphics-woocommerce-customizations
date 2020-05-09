@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.85
+ * Version: 0.86
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -35,49 +35,55 @@ function moomx_adding_styles() {
 }
 // Add a small JS function to automatically replace spaces and dashes with underscores in Options - so the fields edits faster
 add_action('in_admin_footer', 'moomx_only_dashes_in_custom_fields_options');
-function moomx_only_dashes_in_custom_fields_options() {
-	echo '
-	<script>
-		jQuery(document).ready(function() {
-			jQuery(".wccf_post_options").on("keyup", "input.wccf_post_config_options_key", function(event) {
-				this.value = this.value.replace(/ /g, "_");
+function moomx_only_dashes_in_custom_fields_options() {	
+	global $pagenow;
+	if ( $pagenow == 'post.php' ) {
+		echo '
+		<script>
+			jQuery(document).ready(function() {
+				jQuery(".wccf_post_options").on("keyup", "input.wccf_post_config_options_key", function(event) {
+					this.value = this.value.replace(/ /g, "_");
+				});
+				jQuery(".wccf_post_options").on("keyup", "input.wccf_post_config_options_key", function(event) {
+					this.value = this.value.replace(/-/g, "_");
+				});
+				jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+					this.value = this.value.replace(/ /g, "_");
+				});
+				jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+					this.value = this.value.replace(/-/g, "_");
+				});
+				jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
+					jQuery(this).val(jQuery(this).val().toLowerCase());
+				});
+				jQuery(".wccf_post_settings").on("keyup", "input#wccf_post_config_key", function(event) {
+					this.value = this.value.replace(/ /g, "_");
+				});
+				jQuery(".wccf_post_settings").on("keyup", "input#wccf_post_config_key", function(event) {
+					this.value = this.value.replace(/-/g, "_");
+				});
 			});
-			jQuery(".wccf_post_options").on("keyup", "input.wccf_post_config_options_key", function(event) {
-				this.value = this.value.replace(/-/g, "_");
-			});
-			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
-				this.value = this.value.replace(/ /g, "_");
-			});
-			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
-				this.value = this.value.replace(/-/g, "_");
-			});
-			jQuery(".wccf_post_conditions").on("keyup", "input.wccf_condition_text", function(event) {
-				jQuery(this).val(jQuery(this).val().toLowerCase());
-			});
-			jQuery(".wccf_post_settings").on("keyup", "input#wccf_post_config_key", function(event) {
-				this.value = this.value.replace(/ /g, "_");
-			});
-			jQuery(".wccf_post_settings").on("keyup", "input#wccf_post_config_key", function(event) {
-				this.value = this.value.replace(/-/g, "_");
-			});
-		});
-	</script>
-	';
+		</script>
+		';
+	}
 }
 // Add few CSS rules to admin header to improve Products Bulk Edit tables
 add_action('admin_head', 'moomx_admin_styles');
 function moomx_admin_styles() {
-	echo '
-	<style>
-		div#myGrid input[type="text"] {
-			min-height: unset;
-		}
-		div#myGrid input:focus {
-			border: 0px solid transparent;
-			box-shadow: none;
-		}
-	<style>
-	';
+	global $pagenow;
+	if ( $pagenow == 'post.php' ) {
+		echo '
+		<style>
+			div#myGrid input[type="text"] {
+				min-height: unset;
+			}
+			div#myGrid input:focus {
+				border: 0px solid transparent;
+				box-shadow: none;
+			}
+		<style>
+		';
+	}
 }
 // Stop Safari from zooming in on fields. Also stop Androids zoomig at all
 add_action('wp_head', 'moomx_output_viewport_meta_tag', 0);

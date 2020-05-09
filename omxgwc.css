@@ -908,7 +908,7 @@ small.omx_read_more.omx_expanded:after {
 .products .product .onsale {
     border-radius: 0;
     transform: rotate(-45deg);
-    min-height: 20px;
+    min-height: 20px !important;
     right: unset !important;
     background-color: black;
     color: #e8bc1f;
@@ -920,7 +920,7 @@ small.omx_read_more.omx_expanded:after {
 @media(min-width:961px) {
 	.products .product .onsale {
 		width: 98px;
-		line-height: 24px;
+		line-height: 24px !important;
 		margin: 14px 0px 0 -23px !important;
 		font-size: 18px;
 	}
@@ -928,7 +928,7 @@ small.omx_read_more.omx_expanded:after {
 @media(max-width:960px) {
 	.products .product .onsale {
 		width: 72px;
-		line-height: 18px;
+		line-height: 18px !important;
 		margin: 10px 0 0 -17px !important;
 		font-size: 14px;
 		min-height: unset;	
@@ -948,7 +948,7 @@ small.omx_read_more.omx_expanded:after {
 @media(min-width:961px) {
 	.products .product .new_product {
 		width: 98px;
-		line-height: 24px;
+		line-height: 24px !important;
 		margin: 14px 0 0 -23px;
 		font-size: 18px;
 	}
@@ -956,7 +956,7 @@ small.omx_read_more.omx_expanded:after {
 @media(max-width:960px) {
 	.products .product .new_product {
 		width: 71px;
-		line-height: 18px;
+		line-height: 18px !important;
 		margin: 10px 0 0 -17px;
 		font-size: 14px;
 	}
