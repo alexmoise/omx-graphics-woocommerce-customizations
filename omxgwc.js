@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.78
+ * Version 0.87
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -132,13 +132,13 @@ jQuery('#wccf_product_field_number_style_container input').change(function(e) {
 jQuery("#wccf_product_field_rider_name").on('input', function(e) {
 	setTimeout(function() {
 		jQuery(".styled.ridername").empty().text( jQuery("#wccf_product_field_rider_name").val() );
-	}, 1500);
+	}, 200);
 });
 // Dynamically change the Rider Number in styles list
 jQuery("#wccf_product_field_rider_number").on('input', function(e) {
 	setTimeout(function() {
 		jQuery(".styled.ridernumber").empty().text( jQuery("#wccf_product_field_rider_number").val() );
-	}, 1500);
+	}, 200);
 });
 
 // Dynamically change the background color of rider number
