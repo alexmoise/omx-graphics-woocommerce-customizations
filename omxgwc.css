@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 0.87
+ * Version 1.0.0
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -31,8 +31,8 @@ header#masthead {
 @media (max-width: 425px)  and (min-width: 371px) { .omx-scrolled header#masthead { transform: translateY(-95px);} }
 						@media (max-width: 370px) { .omx-scrolled header#masthead { transform: translateY(-90px);} }
 /* Adjust header position in case Admin Bar is present */
-@media (min-width: 783px) { .omx-scrolled header#masthead { margin-top:-32px !important } }
-@media (max-width: 782px) { .omx-scrolled header#masthead { margin-top:-46px !important } }
+@media (min-width: 783px) { .admin-bar.omx-scrolled header#masthead { margin-top:-32px !important } }
+@media (max-width: 782px) { .admin-bar.omx-scrolled header#masthead { margin-top:-46px !important } }
 /* Also adjust Notification Bar position in case Admin Bar is present */
 @media (min-width: 783px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-32px) !important; position: sticky; } }
 @media (max-width: 782px) { .admin-bar.omx-scrolled #wpfront-notification-bar-spacer { transform: translateY(-46px) !important; position: sticky; } }
@@ -431,6 +431,9 @@ h2.home_shop_mx_h2 {
 }
 
 /* === Woocommerce elements */
+table.variations {
+    border: none !important;
+}
 form.cart abbr.required {
     text-decoration-line: none;
 }

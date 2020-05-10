@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 0.87
+ * Version: 1.0.0
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -13,10 +13,6 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {	exit(0);}
-
-// Display a debug text, for control
-// add_action( 'woocommerce_product_meta_end', 'moomx_display_dbg_for_products', 90 );
-function moomx_display_dbg_for_products() { echo 'DBG 18'; }
 
 // Increase image quality a bit, so all the straight lines appears smooth
 add_filter('jpeg_quality', function($arg){return 92;});
@@ -184,6 +180,8 @@ function moomx_rearrange_woocomemrce_features() {
 // Empty the Sale Flash HTML
 add_filter('woocommerce_sale_flash', 'moomx_empty_sale_html', 10, 3);
 function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
+// Empty the Clear reset variations link
+add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 // Head to cart as soon as add to cart is hit
 add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_checkout');
 function moomx_goto_checkout() {

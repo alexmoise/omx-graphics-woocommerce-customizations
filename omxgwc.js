@@ -1,11 +1,8 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 0.87
+ * Version 1.0.0
  * (version above is equal with main plugin file version when this file was updated)
  */
-
-// Let's have it tested first (will remove this after a while)
-jQuery(document).ready(function() { console.log('JS Loaded - v74'); });
 
 // === START adding some stuff to do when document.ready:
 jQuery(document).ready(function() {
@@ -16,32 +13,6 @@ jQuery(document).ready(function() {
 		jQuery("dl.rightpress_product_price_live_update").appendTo("button.single_add_to_cart_button.button.alt");
 		jQuery("button[type='submit']").prependTo("div#omx_add_to_cart");
 		jQuery("div.quantity").prependTo("div#omx_add_to_cart");
-		/*
-		// Add the DOM elements needed to display the price at the beginning of the product form
-		jQuery("<div/>", {id:"omx_dynamic_price_wrapper"}).prependTo("form.cart");
-		jQuery("<div class='dynamic_price_label'>Price: </div>").prependTo("div#omx_dynamic_price_wrapper");
-		jQuery("<div class='dynamic_price_value'><span class='dynamic_price_updating'>...</SPAN></div>").appendTo("div#omx_dynamic_price_wrapper");
-		// Try to Add the initial price at the beginning of the product form every half second for 10 seconds
-		var startPriceDuplicateTimer = (new Date()).getTime();
-		var timer_id = setInterval(function(){
-			var currentPriceDuplicateTimer = (new Date()).getTime();
-			if((currentPriceDuplicateTimer - startPriceDuplicateTimer)/1000 > 10) clearInterval(timer_id);
-			// console.log('Duplicating ... ');
-			jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
-		}, 500);
-		// Then at any form change do as follows:
-		jQuery("form.cart").change(function() { 
-			jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
-			// Try to update the price every half second for 5 seconds
-			var startPriceUpdateTimer = (new Date()).getTime();
-			var timer_id = setInterval(function(){
-				var currentPriceUpdateTimer = (new Date()).getTime();
-				if((currentPriceUpdateTimer - startPriceUpdateTimer)/1000 > 5) clearInterval(timer_id);
-				// console.log('Updating ... ');
-				jQuery(".dynamic_price_value").html(jQuery(".rightpress_product_price_live_update").html());
-			}, 500);
-		}); 
-		*/
 	}
 	// Call the plus_minus function here for the initial setup, but only for single-product and cart pages
 	if(jQuery("body").hasClass("single-product") || jQuery("body").hasClass("woocommerce-cart")) {
