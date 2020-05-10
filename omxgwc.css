@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.0
+ * Version 1.0.1
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -97,6 +97,26 @@ header#masthead nav#site-navigation {
 .omx-scrolled span.site-logo-img {
     display: none;
 }
+@media (min-width: 961px) and (max-width: 1360px) {
+	.menu-item button.ast-menu-toggle {
+		height: 54px;
+		line-height: unset !important;
+	}
+	.menu-item button.ast-menu-toggle::before {
+		line-height: 100%;
+		display: block !important;
+	}
+}
+@media (max-width: 960px) {
+	.menu-item button.ast-menu-toggle {
+		height: 34px;
+		line-height: unset !important;
+	}
+	.menu-item button.ast-menu-toggle::before {
+		line-height: 100%;
+		display: block !important;
+	}
+}
 /* Adding the logo at the left of menu when scrolling */
 @media (min-width: 1361px) {
 	.main-header-bar .ast-main-header-bar-alignment {
@@ -163,7 +183,7 @@ div#primary {
 		padding-top: 30px;
 	}
 	.ast-flex.main-header-container {
-		margin-bottom: 11px;
+		/* margin-bottom: 11px; */
 	}
 	.ast-separate-container .ast-article-post, .ast-separate-container .ast-article-single {
 		padding: 20px;
@@ -290,6 +310,12 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
     background-color: gray !important;
     background-image: none;
 }
+/* WooBeWoo currency switcher widget in main menu */
+@media(max-width:1360px) {
+	#primary-menu .wcuCurrencySwitcherWidget > select {
+		border: none;
+	}
+}
 /* WooBeWoo currency switcher in sidebar */
 .sidebar-main .wcuCurrencySwitcherWidget a.chosen-single {
     background: no-repeat;
@@ -313,7 +339,7 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 }
 
 /* Social icons in main menu */
-@media(max-width:960px) {
+@media(max-width:1360px) {
 	.omx_social_menu_item {
 		width: 30px !important;
 		padding: 0 !important;
@@ -324,15 +350,15 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 	.omx_social_menu_wrapper {
 		padding: 0 20px;
 		border-bottom: 1px solid #eee;
-		height: 34px;
+		height: 54px;
 	}
 	.omx_social_menu_item > img {
-		vertical-align: text-bottom;
+		vertical-align: text-top;
 	}
 }
 @media(min-width:961px) {
 	img.menu-image.menu-image-title-hide {
-		margin-bottom: 6px;
+		/* margin-bottom: 6px; */
 	}
 }
 
