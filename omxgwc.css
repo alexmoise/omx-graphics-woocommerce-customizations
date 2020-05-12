@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.1
+ * Version 1.0.2
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -314,6 +314,7 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 @media(max-width:1360px) {
 	#primary-menu .wcuCurrencySwitcherWidget > select {
 		border: none;
+		padding: 12px 20px;
 	}
 }
 /* WooBeWoo currency switcher in sidebar */
@@ -577,6 +578,9 @@ body.woocommerce-checkout h3#order_review_heading {
 }
 .woocommerce-cart #shipping_method > li > * {
     vertical-align: middle;
+}
+input#terms.input-checkbox {
+    display: inline-block;
 }
 /* ===================================================================================================================================================================== */
 header#masthead li.mini_cart_item > dl.variation {
