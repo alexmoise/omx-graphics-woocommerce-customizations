@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -89,7 +89,13 @@ function moomx_output_viewport_meta_tag() {
 // Remove hover zoom
 add_filter( 'woocommerce_single_product_zoom_enabled', '__return_false' );
 // Remove the product price
-// add_filter( 'woocommerce_get_price_html', function ($price) { return ''; } );
+add_filter( 'woocommerce_get_price_html', 'moomx_return_false', 10 );
+add_filter( 'woocommerce_variable_price_html', 'moomx_return_false', 10 );
+add_filter( 'woocommerce_grouped_price_html', 'moomx_return_false', 10 );
+add_filter( 'woocommerce_variable_sale_price_html', 'moomx_return_false', 10 );
+function moomx_return_false($price) { return false; }
+
+
 
 // === OMX custom price display functions ===
 add_filter( 'woocommerce_get_price_html', 'moomx_omx_price');

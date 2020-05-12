@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.2
+ * Version 1.0.3
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -661,6 +661,10 @@ ul.products li.product:hover .price_loop_div {
 }
 
 /* === Product page below:  */
+/* Hide the "normal" variation price first */
+.woocommerce-variation .woocommerce-variation-price {
+    display: none;
+}
 .ast-woocommerce-container .product {
     /* margin-top: 20px !important; */
 }
@@ -680,6 +684,9 @@ ul.products li.product:hover .price_loop_div {
     display: none;
 }
 /* The "omx_add_to_cart" div container (added with JS) */
+.rightpress_dots {
+    color: #e8bc1f;
+}
 form.cart > dl.rightpress_product_price_live_update, 
 form.cart > div.quantity, 
 form.cart > button.single_add_to_cart_button {
