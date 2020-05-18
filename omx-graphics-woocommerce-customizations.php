@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -98,7 +98,7 @@ function moomx_return_false($price) { return false; }
 
 
 // === OMX custom price display functions ===
-add_filter( 'woocommerce_get_price_html', 'moomx_omx_price');
+if ( !is_admin() ) { add_filter( 'woocommerce_get_price_html', 'moomx_omx_price'); }
 function moomx_omx_price($price) {
 	// the whole thing below will only work in front end as only there we can access global $product - but will break in Gutenberg for example, when adding Handpicked Products - so we IF it accordingly:
 	if (is_product_category() || is_product() || is_shop() ) {
