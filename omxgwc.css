@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.3
+ * Version 1.0.7
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -10,10 +10,13 @@ div#content {min-height: 100vh;}
 
 /* === General usage rules */
 .omx_orange {
-	color: #e8bc1f
+	color: #e8bc1f;
 }
 .omx_kepler {
-	font-family: Kepler296
+	font-family: Kepler296;
+}
+.omx_equalmargins {
+	margin: 10px !important;
 }
 /* === Header styling:  */
 /* Fixed main header - and its dependencies */
