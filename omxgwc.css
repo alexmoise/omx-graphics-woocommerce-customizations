@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.9
+ * Version 1.0.10
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -458,6 +458,18 @@ h2.home_shop_mx_h2 {
 	.footer-adv .widget_media_image {
 		text-align: center;
 	}
+	#colophon.site-footer h2.widget-title {
+		text-align: center;
+	}
+}
+#colophon.site-footer .widget_nav_menu ul ul.sub-menu li {
+    padding-left: 10px;
+}
+#colophon.site-footer .footer-adv-widget-4 > div {
+    margin-bottom: 15px;
+}
+#colophon.site-footer .footer-adv-widget-4 > div#nav_menu-2 {
+    font-size: 16px !important;
 }
 
 /* === Woocommerce elements */
