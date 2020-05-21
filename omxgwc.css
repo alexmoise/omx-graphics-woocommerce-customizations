@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.7
+ * Version 1.0.9
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -654,6 +654,9 @@ ul.products li.product:hover .price_loop_div {
     text-align: center;
     color: #7b7b7b;
     line-height: normal;	
+}
+.archive.woocommerce .woocommerce-products-header .pwb-brand-description {
+    text-align: center;
 }
 .archive.woocommerce .woocommerce-products-header .term-description p {
     margin-bottom: 0;
