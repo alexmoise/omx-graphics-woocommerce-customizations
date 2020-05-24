@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.10
+ * Version: 1.0.11
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -273,17 +273,18 @@ function moomx_new_product_flash() {
 		echo '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>';
 	}
 }
-// Output the Category Pre-Footer in category pages. 
+// Output the Category Pre-Footer in 'product_cat' pages and 'pwb-brand' pages. 
 // !! Field is added with ACF plugin
 add_action( 'astra_content_after', 'moomx_category_pre_footer_output' );
 function moomx_category_pre_footer_output() {
-	if (is_product_category()) {
+	if ( is_tax('product_cat') || is_tax('pwb-brand') ) {
 		$product_cat_object = get_queried_object();
 		if(get_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id)) {
 			echo '<div class="category_pre_footer">';
 			the_field( 'category_pre_footer', 'product_cat_'.$product_cat_object->term_id);
 			echo '</div>';
 		}
+		
 	}
 }
 // Adjust shop and gallery thumbnails to match the new shop design
