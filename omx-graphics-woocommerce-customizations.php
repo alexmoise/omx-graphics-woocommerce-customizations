@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.11
+ * Version: 1.0.12
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -308,6 +308,13 @@ add_filter('woocommerce_gallery_thumbnail_size', function($size) {
 add_filter( 'woocommerce_email_recipient_failed_order', 'moomx_cancelled_order_add_customer_email', 10, 2 );
 function moomx_cancelled_order_add_customer_email( $recipient, $order ){
      return $recipient . ',' . $order->billing_email;
+}
+
+// Change tag of site title - Add conditions later if needed
+add_filter( 'astra_site_title_tag', 'moomx_astra_change_site_title_tag' );
+function moomx_astra_change_site_title_tag( $tag ) {
+    $tag = 'span';
+    return $tag;
 }
 
 ?>
