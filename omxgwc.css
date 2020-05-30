@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.16
+ * Version 1.0.17
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -150,7 +150,7 @@ header#masthead nav#site-navigation {
 .easy-notification-bar {
     position: sticky;
     top: 0px !important;
-    z-index: 9999999 !important;
+    z-index: 999999 !important;
 }
 .easy-notification-bar-message {
 	max-width: 1700px !important;
