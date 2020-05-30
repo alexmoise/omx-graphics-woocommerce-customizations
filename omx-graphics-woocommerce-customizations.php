@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.13
+ * Version: 1.0.14
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -206,6 +206,7 @@ add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );
 function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 $translated = str_ireplace( 'An error occurred, please try again or try an alternate form of payment.', 'An error occurred. In case of failed Credit Card Payment please try to use PayPal payment option. No PayPal account needed.', $translated );
+$translated = str_ireplace( 'Proceed to PayPal', 'Place order', $translated );
 return $translated;
 }
 // Woocommerce templates overrides
@@ -315,6 +316,12 @@ add_filter( 'astra_site_title_tag', 'moomx_astra_change_site_title_tag' );
 function moomx_astra_change_site_title_tag( $tag ) {
     $tag = 'span';
     return $tag;
+}
+
+// Change PayPal icon in checkout
+add_filter( 'woocommerce_paypal_icon', 'moomx_replace_paypal_icon' );
+function moomx_replace_paypal_icon() {
+   return 'https://omxgraphics.com/files/static/payments-methods-01.png';
 }
 
 ?>

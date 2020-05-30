@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.13
+ * Version 1.0.14
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -546,6 +546,12 @@ form.woocommerce-checkout .variation * {
 }
 .woocommerce-checkout #payment ul.payment_methods a.about_paypal {
     line-height: 30px !important;
+    float: none;
+    font-size: 12px;
+    display: block;
+}
+.woocommerce-checkout #payment ul.payment_methods li img {
+    margin-left: 0;
 }
 .woocommerce-cart table.cart td.actions .button {
     margin: 0px !important;
