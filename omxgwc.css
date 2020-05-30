@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.14
+ * Version 1.0.15
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -537,6 +537,7 @@ form.woocommerce-checkout .variation * {
 .woocommerce-checkout button#place_order {
     padding: 24px 10px;
     font-size: 18px;
+	margin-top: 20px;
 }
 .woocommerce-checkout #payment ul.payment_methods li {
     padding: 8px 0;
