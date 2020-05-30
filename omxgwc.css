@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.15
+ * Version 1.0.16
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -147,16 +147,42 @@ header#masthead nav#site-navigation {
 	}
 }
 /* Notification bar styling */
-@media (min-width:768px) {
-	#wpfront-notification-bar .wpfront-message {
-		max-width: 1700px !important;
-		width: calc(100% - 10px);
+.easy-notification-bar {
+    position: sticky;
+    top: 0px !important;
+    z-index: 9999999 !important;
+}
+.easy-notification-bar-message {
+	max-width: 1700px !important;
+	width: calc(100% - 10px);
+}
+.easy-notification-bar-message span.topbar_left {
+	float: left;
+}
+.easy-notification-bar-message span.topbar_right {
+	float: right;
+}
+.easy-notification-bar-message * {
+    font-family: Kepler296;
+    font-size: 13px;
+}
+@media (min-width:426px) {
+	.easy-notification-bar {
+		line-height: 14px;
 	}
-	#wpfront-notification-bar span.topbar_left {
-		float: left;
+}
+@media (max-width:425px) {
+	.easy-notification-bar {
+		line-height: 18px;
+		padding: 5px;
 	}
-	#wpfront-notification-bar span.topbar_right {
-		float: right;
+	.easy-notification-bar-message span.topbar_left {
+		float: none;
+		display: block;
+	}
+	.easy-notification-bar-message span.topbar_right {
+		float: none;
+		display: block;
 	}
 }
 
@@ -885,7 +911,10 @@ span.styled {
     font-size: large;
 }
 #wccf_product_field_rider_number_container small.wccf_min_max_limit {
-    display: none;
+    display: none !important;
+}
+#wccf_product_field_year_mx_bike_container small.wccf_character_limit {
+    display: none !important;
 }
 input#wccf_product_field_rider_number, 
 input#wccf_product_field_rider_name {
