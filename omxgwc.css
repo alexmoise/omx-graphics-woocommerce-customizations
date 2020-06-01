@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.17
+ * Version 1.0.18
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1066,7 +1066,7 @@ small.omx_read_more.omx_expanded:after {
 /* RADIO BUTTONS STYLYNG */
 input[type='radio'] {
   -webkit-appearance:none;
-  width:18px;
+  width:18px !important;
   height:18px;
   border:2px solid black;
   border-radius:50%;
@@ -1091,7 +1091,7 @@ input[type='radio']:checked {
 /* ...AND CHECKBOX STYLING! */
 input[type='checkbox'] {
   -webkit-appearance:none;
-  width:18px;
+  width:18px !important;
   height:18px;
   border:2px solid black;
   border-radius:25%;
