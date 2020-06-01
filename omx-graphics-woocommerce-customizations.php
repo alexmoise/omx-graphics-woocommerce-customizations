@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.18
+ * Version: 1.0.19
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -319,9 +319,19 @@ function moomx_astra_change_site_title_tag( $tag ) {
 }
 
 // Change PayPal icon in checkout
-add_filter( 'woocommerce_paypal_icon', 'moomx_replace_paypal_icon' );
+// add_filter( 'woocommerce_paypal_icon', 'moomx_replace_paypal_icon' );
 function moomx_replace_paypal_icon() {
    return 'https://omxgraphics.com/files/static/payments-methods-01.png';
+}
+
+// Display "Free" as cost when shipping cost is zero
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'moomx_add_0_to_shipping_label', 10, 2 );
+function moomx_add_0_to_shipping_label( $label, $method ) {
+	if ( ! ( $method->cost > 0 ) ) {
+		// $label .= ': ' . wc_price(0);
+		$label .= ': <strong>Free</strong>';
+	}
+	return $label;
 }
 
 ?>
