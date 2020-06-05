@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.18
+ * Version 1.0.21
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -411,6 +411,9 @@ h2.home_shop_mx_h2 {
 .home_shop_mx_products {
     margin-left: auto !important;
     margin-right: auto !important;
+}
+.home_shop_mx_products .wp-block-button {
+    text-align: center;
 }
 .home_shop_mx_products li.wc-block-grid__product {
     margin-bottom: 0 !important;
