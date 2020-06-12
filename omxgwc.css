@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.22
+ * Version 1.0.23
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -623,6 +623,10 @@ body.woocommerce-checkout .woocommerce-checkout-review-order-table .shipping-opt
 }
 body.woocommerce-checkout h3#order_review_heading {
     padding: 20px 0 0 5px !important;
+}
+body.woocommerce-checkout .error_paypal_link{
+	font-weight: bold;
+    text-decoration: underline;
 }
 /* ===================================================================================================================================================================== */
 .woocommerce-cart .woocommerce table.shop_table_responsive tr td::before, 
