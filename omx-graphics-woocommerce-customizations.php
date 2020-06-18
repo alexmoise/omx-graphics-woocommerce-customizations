@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.23
+ * Version: 1.0.24
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -207,8 +207,8 @@ function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 $translated = str_ireplace( 'An error occurred, please try again or try an alternate form of payment.', 'An error occurred. In case of failed Credit Card Payment please try to use PayPal payment option. No PayPal account needed.', $translated );
 $translated = str_ireplace( 'Proceed to PayPal', 'Place order', $translated );
-$translated = str_ireplace( 'An error occurred while processing the card.', 'It seems your card cannot be charged right now, why don\'t you try completing the transaction with <a class="error_paypal_link" href="#payment_method_paypal">PayPal</a> instead?', $translated );
-$translated = str_ireplace( 'The card was declined.', 'It seems your card cannot be charged right now, why don\'t you try completing the transaction with <a class="error_paypal_link" href="#payment_method_paypal">PayPal</a> instead?', $translated );
+$translated = str_ireplace( 'An error occurred while processing the card.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="#payment_method_paypal">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
+$translated = str_ireplace( 'The card was declined.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="#payment_method_paypal">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
 return $translated;
 }
 // Woocommerce templates overrides
