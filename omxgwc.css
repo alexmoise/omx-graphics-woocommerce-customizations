@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.23
+ * Version 1.0.26
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -642,6 +642,11 @@ body.woocommerce-checkout .error_paypal_link{
 }
 input#terms.input-checkbox {
     display: inline-block;
+}
+/* ===================================================================================================================================================================== */
+.single-product .product #wc-stripe-payment-request-wrapper {
+    max-width: 330px;
+    margin: 0 auto;
 }
 /* ===================================================================================================================================================================== */
 header#masthead li.mini_cart_item > dl.variation {
