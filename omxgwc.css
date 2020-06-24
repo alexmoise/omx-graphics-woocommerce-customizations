@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.27
+ * Version 1.0.28
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -639,30 +639,82 @@ body.woocommerce-checkout .error_paypal_link{
 #wc-stripe-payment-request-button > #wc-stripe-branded-button:not(:first-child) {
     display: none;
 }
-/* Coupon form in cart/checkout combined page */
-.woocommerce-cart-form .cart .coupon {
-    margin-left: 10px !important;
+/* The Cart/Checkout combined page */
+.woocommerce-cart-form .shop_table td {
+    padding-left: 10px !important;
+}.woocommerce-cart-form .shop_table td {
+    border: none !important;
 }
-.woocommerce-cart-form .cart .coupon 
- input#coupon_code {
+.woocommerce-cart-form .shop_table {
+    border-collapse:collapse !important;
+}
+.woocommerce-cart-form .shop_table .cart_item {
+    border-bottom: 1px solid #e4e4e4 !important;
+}
+.woocommerce-cart-form .woocommerce-Price-amount.amount {
+    display: block;
+    text-align: right;
+}
+.woocommerce-cart-form .product-quantity .quantity {
+    display: block;
+    text-align: right;
+}
+.woocommerce-cart-form .cart .coupon {
+    /* margin-left: 10px !important; */
+}
+.woocommerce-cart-form .cart .coupon input#coupon_code {
     padding: 20px 5px;
 }
 .woocommerce-cart-form .cart .coupon button.button {
     padding: 10px 10px !important;
 }
-
-@media (max-width:544px) {
+.woocommerce-cart-form .save_share_cart_link {
+	display: inline-block;
+    padding: 3px 6px;
+    margin-left: 5px;
+    background-color: #7b7b7b;
+    font-weight: bold;
+    color: black;
+    border: 1px solid #7b7b7b;
+}
+.woocommerce-cart-form .save_share_cart_link:hover {
+    background-color: black;
+    border-color: black;
+    color: #e8bc1f;
+}
+.woocommerce-cart-form button[name=update_cart] {
+	margin-left: 0px !important;
+}
+@media (max-width:800px) {
 	.woocommerce-cart-form .cart .coupon input#coupon_code {
 		width: 100% !important;
 		margin-bottom: 8px;
 	}
 	.woocommerce-cart-form .cart .coupon {
 		display: block !important;
-		margin-left: 5px !important;
+		/* margin-left: 5px !important; */
 		width: 100%;
 	}
 	.woocommerce-cart-form .cart .coupon button.button {
 		width: 100% !important;
+	}
+	.woocommerce-cart-form .save_share_cart_link {
+		width: 100%;
+		text-align: center;
+		margin-top: 10px;
+		margin-left: 0px;
+	}
+	.woocommerce-cart-form button[name=update_cart] {
+		width: 100% !important;
+	}
+	.woocommerce-cart-form button[name=apply_coupon] {
+		margin-bottom: 8px;
+		margin-left: 0 !important;
+	}
+}
+@media (max-width: 768px) {
+	.woocommerce-cart-form .shop_table .coupon {
+		padding-bottom: 0 !important;
 	}
 }
 

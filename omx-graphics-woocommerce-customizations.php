@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.27
+ * Version: 1.0.28
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -195,11 +195,17 @@ function moomx_goto_checkout() {
 	$checkout_url = wc_get_cart_url();
 	return $checkout_url;
 }
-// Change "Product has been added to your cart" message since we go directly to checkout anyway
+// Change "Product has been added to your cart" message since we go directly to Cart anyway
 add_filter( 'wc_add_to_cart_message_html', 'moomx_change_addtocart_notice' );
 function moomx_change_addtocart_notice($products) {
 	$addtocart_notice = 'You made a great choice! Just one more step to get your order on its way.';
 	return $addtocart_notice;
+}
+// Add Save & Share Cart link in Cart form, right after Update Cart button
+add_action( 'woocommerce_cart_actions', 'moomx_save_share_cart_link');
+function moomx_save_share_cart_link() {
+	$save_share_cart_link_html = '<a class="save_share_cart_link" href="https://test.omxgraphics.com/cart/#email-cart">Save &amp; Share Cart</a>';
+	echo $save_share_cart_link_html;
 }
 // Translate/change some strings as needed
 add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );
