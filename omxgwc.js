@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.27
+ * Version 1.0.29
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -130,14 +130,9 @@ jQuery('#wccf_product_field_number_color_container input').change(function(e) {
 
 // Dynamically scroll the checkout so the Place Order/Proceed to Paypal button gets in the view at gateway change
 jQuery('#payment.woocommerce-checkout-payment').live('focusin', 'li.wc_payment_method input', (function(event) {
-	if (jQuery("body").hasClass("admin-bar")) { var small_scroll_unit = 160; big_scroll_unit = 400; } else { var small_scroll_unit = 120; big_scroll_unit = 360; }
 	setTimeout(function() {
-		if (jQuery(window).width() < 961) {
-			jQuery("html").animate({ scrollTop: jQuery("#place_order").position().top-jQuery(window).height()+small_scroll_unit},250);
-		} else {
-			jQuery("html").animate({ scrollTop: jQuery("#place_order").position().top-jQuery(window).height()+big_scroll_unit},250);
-		}
-	}, 250);
+		jQuery(".form-row.place-order")[0].scrollIntoView({ behavior: "smooth", block: "end" });
+	}, 350);
 }));
 
 // Change payment method to PayPal when clicking on PayPal link in custom error message
