@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.28
+ * Version 1.1.0
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -18,6 +18,12 @@ div#content {min-height: 100vh;}
 .omx_equalmargins {
 	margin: 10px !important;
 }
+h1.entry-title {
+    text-align: center;
+    margin-bottom: 0px;
+    color: black;
+}
+
 /* === Header styling:  */
 /* Fixed main header - and its dependencies */
 header#masthead {
@@ -659,6 +665,11 @@ body.woocommerce-checkout .error_paypal_link{
     display: block;
     text-align: right;
 }
+.woocommerce-cart-form .shop_table thead th.product-price, 
+.woocommerce-cart-form .shop_table thead th.product-quantity, 
+.woocommerce-cart-form .shop_table thead th.product-subtotal {
+    text-align: right;
+}
 .woocommerce-cart-form .cart .coupon {
     /* margin-left: 10px !important; */
 }
@@ -716,6 +727,13 @@ body.woocommerce-checkout .error_paypal_link{
 	.woocommerce-cart-form .shop_table .coupon {
 		padding-bottom: 0 !important;
 	}
+}
+.cart-collaterals .cart_grand_total {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+	font-size: 24px;
 }
 
 /* ===================================================================================================================================================================== */

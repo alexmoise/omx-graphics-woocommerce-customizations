@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.0.29
+ * Version: 1.1.0
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -95,8 +95,6 @@ add_filter( 'woocommerce_grouped_price_html', 'moomx_return_false', 10 );
 add_filter( 'woocommerce_variable_sale_price_html', 'moomx_return_false', 10 );
 function moomx_return_false($price) { return false; }
 
-
-
 // === OMX custom price display functions ===
 if ( !is_admin() ) { add_filter( 'woocommerce_get_price_html', 'moomx_omx_price'); }
 function moomx_omx_price($price) {
@@ -170,6 +168,7 @@ function moomx_change_prices_decimals( $decimals ){
     $decimals = 2;
     return $decimals;
 }
+
 // Change places of woocommerce elements as needed
 add_action( 'template_redirect', 'moomx_rearrange_woocomemrce_features' );
 function moomx_rearrange_woocomemrce_features() {
@@ -183,11 +182,13 @@ function moomx_rearrange_woocomemrce_features() {
 	// remove Sale flash banner from single products and from loops
 	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 }
+
 // Empty the Sale Flash HTML
 add_filter('woocommerce_sale_flash', 'moomx_empty_sale_html', 10, 3);
 function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
 // Empty the Clear reset variations link
 add_filter('woocommerce_reset_variations_link', '__return_empty_string');
+
 // Head to cart as soon as add to cart is hit
 add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_checkout');
 function moomx_goto_checkout() {
@@ -201,12 +202,45 @@ function moomx_change_addtocart_notice($products) {
 	$addtocart_notice = 'You made a great choice! Just one more step to get your order on its way.';
 	return $addtocart_notice;
 }
+
 // Add Save & Share Cart link in Cart form, right after Update Cart button
 add_action( 'woocommerce_cart_actions', 'moomx_save_share_cart_link');
 function moomx_save_share_cart_link() {
-	$save_share_cart_link_html = '<a class="save_share_cart_link" href="https://test.omxgraphics.com/cart/#email-cart">Save &amp; Share Cart</a>';
+	$save_share_cart_link_html = '<a class="save_share_cart_link" href="/cart/#email-cart">Save &amp; Share Cart</a>';
 	echo $save_share_cart_link_html;
 }
+// Add Save and Share cart button right after Proceed to Checkout button in Cart (not needed since one-page checkout)
+// add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
+function moomx_save_cart_button() {
+	echo '<a href="/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
+}
+
+// Display total amount before Payment Request buttons
+add_action( 'woocommerce_cart_collaterals', 'moomx_totals_for_cart_display' );
+function moomx_totals_for_cart_display() { 
+	?>
+		<div class="cart_grand_total" ><span class="cart_grand_total_text">Order total:</span><span class="cart_grand_total_amount"><?php wc_cart_totals_order_total_html(); ?></span></div>
+	<?php 
+}
+// Also update it via the checkout Order Review ajax fragment
+add_filter( 'woocommerce_update_order_review_fragments', 'moomx_totals_for_cart_display_fragment' );
+function moomx_totals_for_cart_display_fragment( $fragments ) {
+	global $woocommerce;
+	ob_start();
+	?>
+		<span class="cart_grand_total_amount"><?php wc_cart_totals_order_total_html(); ?></span>
+	<?php
+	$fragments['span.cart_grand_total_amount'] = ob_get_clean();
+	return $fragments;
+}
+
+// Stripe filters for Payment Request buttons
+add_filter('wc_stripe_hide_payment_request_on_product_page', 'moomx_return_true');
+add_filter('wc_stripe_show_payment_request_on_checkout', 'moomx_return_true');
+function moomx_return_true() {
+	return true;
+}
+
 // Translate/change some strings as needed
 add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );
 function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
@@ -217,6 +251,7 @@ $translated = str_ireplace( 'An error occurred while processing the card.', 'We 
 $translated = str_ireplace( 'The card was declined.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="#payment_method_paypal">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
 return $translated;
 }
+
 // Woocommerce templates overrides
 add_filter( 'woocommerce_locate_template', 'moomx_replace_woocommerce_templates', 20, 3 );
 function moomx_replace_woocommerce_templates( $template, $template_name, $template_path ) {
@@ -235,11 +270,7 @@ function moomx_replace_woocommerce_templates( $template, $template_name, $templa
 	if ( ! $template ) { $template = $_template; }
 	return $template;
 }
-// Add Save and Share cart button right after Proceed to Checkout button in Cart
-add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
-function moomx_save_cart_button() {
-	echo '<a href="https://test.omxgraphics.com/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
-}
+
 // Add the New flash banner to products in Archive pages
 add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );
 function moomx_new_product_flash() {
@@ -282,6 +313,7 @@ function moomx_new_product_flash() {
 		echo '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>';
 	}
 }
+
 // Output the Category Pre-Footer in 'product_cat' pages and 'pwb-brand' pages. 
 // !! Field is added with ACF plugin
 add_action( 'astra_content_after', 'moomx_category_pre_footer_output' );
@@ -296,6 +328,7 @@ function moomx_category_pre_footer_output() {
 		
 	}
 }
+
 // Adjust shop and gallery thumbnails to match the new shop design
 add_filter('woocommerce_get_image_size_gallery_thumbnail', function($size) {
 	return array (
@@ -340,13 +373,6 @@ function moomx_add_0_to_shipping_label( $label, $method ) {
 		$label .= ': <strong>Free</strong>';
 	}
 	return $label;
-}
-
-// Stripe filters
-add_filter('wc_stripe_hide_payment_request_on_product_page', 'moomx_return_true');
-add_filter('wc_stripe_show_payment_request_on_checkout', 'moomx_return_true');
-function moomx_return_true() {
-	return true;
 }
 
 ?>
