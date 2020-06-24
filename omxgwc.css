@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.26
+ * Version 1.0.27
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -555,7 +555,7 @@ form.woocommerce-checkout .variation * {
 .woocommerce div.product div.images {
     margin-bottom: 0;
 }
-.woocommerce-cart a.restore-item {
+.woocommerce-checkout a.restore-item {
     background-color: #e8bc1f;
     padding: 8px 20px;
     font-weight: bold;
@@ -583,11 +583,11 @@ form.woocommerce-checkout .variation * {
 .woocommerce-checkout #payment ul.payment_methods li img {
     margin-left: 0;
 }
-.woocommerce-cart table.cart td.actions .button {
-    margin: 0px !important;
-    padding: 9px 12px 10px 12px !important;
+.woocommerce-checkout table.cart td.actions .button {
+    /* margin: 0px !important; */
+    padding: 11px 8px !important;
 }
-.woocommerce-cart table.shop_table .product-thumbnail img {
+.woocommerce-checkout table.shop_table .product-thumbnail img {
     max-width: 180px;
 }
 /* ===================================================================================================================================================================== */
@@ -628,6 +628,44 @@ body.woocommerce-checkout .error_paypal_link{
 	font-weight: bold;
     text-decoration: underline;
 }
+/* === Stripe form styles ============================================================================================================================================== */
+.woocommerce-checkout-payment .payment_method_stripe fieldset#wc-stripe-cc-form > .form-row {
+    margin-bottom: 10px !important;
+    padding: 0 !important;
+    display: block !important;
+    width: 100%;
+}
+/* === Multiple payment request buttons CSS trick ======================================================================================================================= */
+#wc-stripe-payment-request-button > #wc-stripe-branded-button:not(:first-child) {
+    display: none;
+}
+/* Coupon form in cart/checkout combined page */
+.woocommerce-cart-form .cart .coupon {
+    margin-left: 10px !important;
+}
+.woocommerce-cart-form .cart .coupon 
+ input#coupon_code {
+    padding: 20px 5px;
+}
+.woocommerce-cart-form .cart .coupon button.button {
+    padding: 10px 10px !important;
+}
+
+@media (max-width:544px) {
+	.woocommerce-cart-form .cart .coupon input#coupon_code {
+		width: 100% !important;
+		margin-bottom: 8px;
+	}
+	.woocommerce-cart-form .cart .coupon {
+		display: block !important;
+		margin-left: 5px !important;
+		width: 100%;
+	}
+	.woocommerce-cart-form .cart .coupon button.button {
+		width: 100% !important;
+	}
+}
+
 /* ===================================================================================================================================================================== */
 .woocommerce-cart .woocommerce table.shop_table_responsive tr td::before, 
 .woocommerce-cart .woocommerce-page table.shop_table_responsive tr td::before {
