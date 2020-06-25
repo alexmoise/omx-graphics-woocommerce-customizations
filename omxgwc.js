@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.0.29
+ * Version 1.1.2
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -139,4 +139,9 @@ jQuery('#payment.woocommerce-checkout-payment').live('focusin', 'li.wc_payment_m
 jQuery(document).on("click", ".error_paypal_link", function(){
   jQuery("#payment_method_paypal").click(); 
   jQuery("#payment_method_paypal").click();
+});
+
+// Trigger Ajax update checkout when updating shippin method
+jQuery("#shipping_method input").on("change", function() {
+	jQuery(document.body).trigger("update_checkout");
 });

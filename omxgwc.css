@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.1.0
+ * Version 1.1.2
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -641,11 +641,16 @@ body.woocommerce-checkout .error_paypal_link{
     display: block !important;
     width: 100%;
 }
-/* === Multiple payment request buttons CSS trick ======================================================================================================================= */
+/* === Multiple payment request buttons CSS trick ====================================================================================================================== */
 #wc-stripe-payment-request-button > #wc-stripe-branded-button:not(:first-child) {
     display: none;
 }
-/* The Cart/Checkout combined page */
+/* === The Cart/Checkout combined page ================================================================================================================================= */
+@media (min-width: 769px) {
+	body.woocommerce-checkout.page-id-4428 .ast-container {
+		max-width: 980px;
+	}
+}
 .woocommerce-cart-form .shop_table td {
     padding-left: 10px !important;
 }.woocommerce-cart-form .shop_table td {
@@ -724,6 +729,9 @@ body.woocommerce-checkout .error_paypal_link{
 	}
 }
 @media (max-width: 768px) {
+	body.woocommerce-checkout.page-id-4428 #main > .ast-article-single {
+		padding: 1.5em 0px;
+	}
 	.woocommerce-cart-form .shop_table .coupon {
 		padding-bottom: 0 !important;
 	}
@@ -734,6 +742,13 @@ body.woocommerce-checkout .error_paypal_link{
     border-radius: 4px;
     text-align: center;
 	font-size: 24px;
+}
+.omx-one-column-checkout, 
+.omx-custom-onepage-checkout-form #order_review_heading {
+    width: 100% !important;
+}
+.omx-custom-onepage-customer-details #ship-to-different-address-checkbox {
+    margin: 5px 0;
 }
 
 /* ===================================================================================================================================================================== */

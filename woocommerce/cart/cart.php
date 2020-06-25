@@ -157,6 +157,40 @@ do_action( 'woocommerce_before_cart' ); ?>
 		</tbody>
 	</table>
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
+	
+	
+	
+	<!-- OMX One-page checkout, next part added from review-order.php -->
+	
+	<div class="omx-custom-onepage-shipping">
+		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
+
+			<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>
+
+			<?php wc_cart_totals_shipping_html(); ?>
+
+			<?php do_action( 'woocommerce_cart_totals_after_shipping' ); ?>
+
+		<?php elseif ( WC()->cart->needs_shipping() && 'yes' === get_option( 'woocommerce_enable_shipping_calc' ) ) : ?>
+
+			<tr class="shipping">
+				<th><?php esc_html_e( 'Shipping', 'woocommerce' ); ?></th>
+				<td data-title="<?php esc_attr_e( 'Shipping', 'woocommerce' ); ?>"><?php woocommerce_shipping_calculator(); ?></td>
+			</tr>
+
+		<?php endif; ?>
+	</div>
+	
+	
+	
+	<!--  -->
+	
+	
+	
+	
+	
+	
+	
 </form>
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
