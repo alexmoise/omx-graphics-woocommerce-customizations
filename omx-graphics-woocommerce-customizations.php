@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.1.2
+ * Version: 1.2.0
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -190,8 +190,8 @@ function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
 add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
 // Head to cart as soon as add to cart is hit
-add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_checkout');
-function moomx_goto_checkout() {
+add_filter('woocommerce_add_to_cart_redirect', 'moomx_goto_cart');
+function moomx_goto_cart() {
 	global $woocommerce;
 	$checkout_url = wc_get_cart_url();
 	return $checkout_url;
@@ -204,26 +204,26 @@ function moomx_change_addtocart_notice($products) {
 }
 
 // Add Save & Share Cart link in Cart form, right after Update Cart button
-add_action( 'woocommerce_cart_actions', 'moomx_save_share_cart_link');
+// add_action( 'woocommerce_cart_actions', 'moomx_save_share_cart_link');
 function moomx_save_share_cart_link() {
 	$save_share_cart_link_html = '<a class="save_share_cart_link" href="/cart/#email-cart">Save &amp; Share Cart</a>';
 	echo $save_share_cart_link_html;
 }
 // Add Save and Share cart button right after Proceed to Checkout button in Cart (not needed since one-page checkout)
-// add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
+add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
 function moomx_save_cart_button() {
 	echo '<a href="/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
 }
 
 // Display total amount before Payment Request buttons
-add_action( 'woocommerce_cart_collaterals', 'moomx_totals_for_cart_display' );
+// add_action( 'woocommerce_cart_collaterals', 'moomx_totals_for_cart_display' );
 function moomx_totals_for_cart_display() { 
 	?>
 		<div class="cart_grand_total" ><span class="cart_grand_total_text">Order total:</span><span class="cart_grand_total_amount"><?php wc_cart_totals_order_total_html(); ?></span></div>
 	<?php 
 }
 // Also update it via the checkout Order Review ajax fragment
-add_filter( 'woocommerce_update_order_review_fragments', 'moomx_totals_for_cart_display_fragment' );
+// add_filter( 'woocommerce_update_order_review_fragments', 'moomx_totals_for_cart_display_fragment' );
 function moomx_totals_for_cart_display_fragment( $fragments ) {
 	global $woocommerce;
 	ob_start();
@@ -235,11 +235,10 @@ function moomx_totals_for_cart_display_fragment( $fragments ) {
 }
 
 // Stripe filters for Payment Request buttons
+function moomx_return_true() { return true; }
 add_filter('wc_stripe_hide_payment_request_on_product_page', 'moomx_return_true');
-add_filter('wc_stripe_show_payment_request_on_checkout', 'moomx_return_true');
-function moomx_return_true() {
-	return true;
-}
+// add_filter('wc_stripe_show_payment_request_on_checkout', 'moomx_return_true');
+
 
 // Translate/change some strings as needed
 add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );
