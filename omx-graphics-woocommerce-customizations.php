@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -181,6 +181,9 @@ function moomx_rearrange_woocomemrce_features() {
 	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 	// remove Sale flash banner from single products and from loops
 	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+	// Change position of Proceed to Checkout button (lower, so Angelleye Paypal button - on prio 22 - gets on top of it)
+	remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
+	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 40 );
 }
 
 // Empty the Sale Flash HTML
@@ -209,29 +212,10 @@ function moomx_save_share_cart_link() {
 	$save_share_cart_link_html = '<a class="save_share_cart_link" href="/cart/#email-cart">Save &amp; Share Cart</a>';
 	echo $save_share_cart_link_html;
 }
-// Add Save and Share cart button right after Proceed to Checkout button in Cart (not needed since one-page checkout)
+// Add Save and Share cart button right after Proceed to Checkout button in Cart
 add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
 function moomx_save_cart_button() {
 	echo '<a href="/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
-}
-
-// Display total amount before Payment Request buttons
-// add_action( 'woocommerce_cart_collaterals', 'moomx_totals_for_cart_display' );
-function moomx_totals_for_cart_display() { 
-	?>
-		<div class="cart_grand_total" ><span class="cart_grand_total_text">Order total:</span><span class="cart_grand_total_amount"><?php wc_cart_totals_order_total_html(); ?></span></div>
-	<?php 
-}
-// Also update it via the checkout Order Review ajax fragment
-// add_filter( 'woocommerce_update_order_review_fragments', 'moomx_totals_for_cart_display_fragment' );
-function moomx_totals_for_cart_display_fragment( $fragments ) {
-	global $woocommerce;
-	ob_start();
-	?>
-		<span class="cart_grand_total_amount"><?php wc_cart_totals_order_total_html(); ?></span>
-	<?php
-	$fragments['span.cart_grand_total_amount'] = ob_get_clean();
-	return $fragments;
 }
 
 // Stripe filters for Payment Request buttons
@@ -239,6 +223,13 @@ function moomx_return_true() { return true; }
 add_filter('wc_stripe_hide_payment_request_on_product_page', 'moomx_return_true');
 // add_filter('wc_stripe_show_payment_request_on_checkout', 'moomx_return_true');
 
+// Change Proceed to Checkout button text
+function woocommerce_button_proceed_to_checkout() {
+	$checkout_url = WC()->cart->get_checkout_url();
+	?>
+	<a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Regular checkout' ); ?></a>
+	<?php
+}
 
 // Translate/change some strings as needed
 add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );

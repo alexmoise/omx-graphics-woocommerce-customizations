@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.0
+ * Version 1.2.1
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -593,9 +593,6 @@ form.woocommerce-checkout .variation * {
     /* margin: 0px !important; */
     padding: 11px 8px !important;
 }
-.woocommerce-checkout table.shop_table .product-thumbnail img {
-    max-width: 180px;
-}
 /* ===================================================================================================================================================================== */
 body.woocommerce-checkout .woocommerce-shipping-totals.shipping .ship {
     display: inline-block;
@@ -645,12 +642,15 @@ body.woocommerce-checkout .error_paypal_link{
 #wc-stripe-payment-request-button > #wc-stripe-branded-button:not(:first-child) {
     display: none;
 }
-/* === The Cart/Checkout combined page ================================================================================================================================= */
+/* === The Cart page with Smart Buttons ================================================================================================================================= */
 .woocommerce-cart-form .shop_table {
     border-collapse:collapse !important;
 }
 .woocommerce-cart-form .shop_table .cart_item {
     border-bottom: 1px solid #e4e4e4 !important;
+}
+.woocommerce-cart-form table.shop_table .product-thumbnail img {
+    max-width: 180px;
 }
 .woocommerce-cart-form .woocommerce-Price-amount.amount {
     display: block;
@@ -745,6 +745,59 @@ body.woocommerce-checkout .error_paypal_link{
     border-radius: 4px;
     text-align: center;
 	font-size: 24px;
+}
+/* === Style the Smart Payment Buttons in Cart page only =============================================================================================================== */
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye-proceed-to-checkout-button-separator, 
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payment-request-button-separator {
+    display: none !important;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye_smart_button_bottom {
+    max-width: 100%;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payment-request-wrapper, 
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye_smart_button_bottom, 
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
+    margin: 12px 0 !important;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payment-request-wrapper {
+    padding: 0 !important;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .paypal-button.paypal-button-context-iframe {
+    background-color: #009cde;
+    border-radius: 4px;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .paypal-button.paypal-button-context-iframe:hover {
+    background-color: #29b1ea;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
+    border-radius: 4px !important;
+}
+/* Adjust buttons size to match Paypal's which is in an iFrame, unfortunately */
+@media (min-width: 625px) {
+	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-branded-button {
+		height: 56px !important;
+	}
+	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
+		padding: 8px 0 !important;
+	}
+}
+@media (min-width: 365px) and (max-width: 624px) {
+	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-branded-button {
+		height: 46px !important;
+	}
+	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
+		padding: 5px 0 !important;
+		font-size: 18px;
+	}
+}
+@media (max-width: 364px) {
+	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-branded-button {
+		height: 35px !important;
+	}
+	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
+		padding: 3px 0 !important;
+		font-size: 15px;
+	}
 }
 
 /* ===================================================================================================================================================================== */
@@ -1130,6 +1183,21 @@ small.omx_read_more.omx_expanded:after {
     width: 100%;
     text-align: center;
 	background-color: #bbb;
+	border-radius: 3px;
+}
+.wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward:hover {
+    background-color: #383838;
+}
+@media(min-width:365px) and (max-width:624px) {
+	.wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
+		font-size: 16px;
+	}
+}
+@media(max-width: 364px) {
+	.wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
+		font-size: 14px;
+		padding: 7px 2px;
+	}
 }
 /* Sale and New product badges */
 .products .product .astra-shop-thumbnail-wrap {
