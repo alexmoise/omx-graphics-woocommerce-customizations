@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.1
+ * Version 1.2.3
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -561,7 +561,7 @@ form.woocommerce-checkout .variation * {
 .woocommerce div.product div.images {
     margin-bottom: 0;
 }
-.woocommerce-checkout a.restore-item {
+.woocommerce-cart a.restore-item {
     background-color: #e8bc1f;
     padding: 8px 20px;
     font-weight: bold;
@@ -798,6 +798,9 @@ body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button
 		padding: 3px 0 !important;
 		font-size: 15px;
 	}
+}
+body.woocommerce-cart .cart-collaterals .cart-discount > td {
+    text-align: right;
 }
 
 /* ===================================================================================================================================================================== */
