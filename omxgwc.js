@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.3
+ * Version 1.2.4
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -88,11 +88,6 @@ function quantity_plus_minus() {
 };
 // Call the plus_minus function at each cart update
 jQuery(document.body).on('updated_cart_totals', function() { quantity_plus_minus(); });
-
-// Remove all Payment Request Buttons except the first one (used in one-page cart & checkout page)
-jQuery('#wc-stripe-payment-request-button').bind('DOMSubtreeModified', function() {
-  jQuery('#wc-stripe-payment-request-button > #wc-stripe-branded-button:not(:first-child)').remove();
-});
 
 // Dynamically change the font of Rider Name and Number in its input field
 jQuery('#wccf_product_field_name_style_container input').change(function(e) {

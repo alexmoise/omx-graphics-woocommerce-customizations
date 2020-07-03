@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.3
+ * Version 1.2.4
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -637,10 +637,6 @@ body.woocommerce-checkout .error_paypal_link{
     padding: 0 !important;
     display: block !important;
     width: 100%;
-}
-/* === Multiple payment request buttons CSS trick ====================================================================================================================== */
-#wc-stripe-payment-request-button > #wc-stripe-branded-button:not(:first-child) {
-    display: none;
 }
 /* === The Cart page with Smart Buttons ================================================================================================================================= */
 .woocommerce-cart-form .shop_table {
