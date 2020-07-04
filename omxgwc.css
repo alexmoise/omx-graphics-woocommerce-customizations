@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.6
+ * Version 1.2.7
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -863,6 +863,8 @@ header#masthead .woocommerce-mini-cart__buttons.buttons > a.button.wc-forward:ho
 header#masthead .woocommerce-mini-cart__buttons.buttons > a.button.wc-forward {
     color: black !important;
     background-color: #e8bc1f !important;
+    padding: 16px 0;
+    font-size: 20px;
 }
 
 /* === Product archives styling: */
