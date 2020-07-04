@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.4
+ * Version 1.2.5
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -808,8 +808,25 @@ body.woocommerce-cart .cart-collaterals .cart-discount > td {
 .woocommerce-cart .order-total > td {
     text-align: right;
 }
+@media (max-width:768px) {
+	.woocommerce-cart .shop_table .cart-discount > th, 
+	.woocommerce-cart .shop_table .cart-subtotal > th {
+		display: inline-block !important;
+		width: 50% !important;
+	}
+	.woocommerce-cart .shop_table .cart-discount > td, 
+	.woocommerce-cart .shop_table .cart-subtotal > td {
+		display: inline-block !important;
+		float: right;
+		width: 50%;
+	}
+}
 .woocommerce-cart #shipping_method > li > * {
     vertical-align: middle;
+}
+.omx-custom-onepage-cart-shipping .th.ship {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 input#terms.input-checkbox {
     display: inline-block;
