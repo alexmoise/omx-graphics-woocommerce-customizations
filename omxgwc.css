@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.11
+ * Version 1.2.12
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -690,6 +690,11 @@ body.woocommerce-checkout .error_paypal_link{
 }
 .woocommerce-cart-form button[name=update_cart] {
 	margin-left: 0px !important;
+}
+.woocommerce-cart-form .shop_table .coupon button[name=apply_coupon] {
+    background-color: #eeeeee;
+    border-color: #cccccc;
+    color: #999999;
 }
 @media (max-width:800px) {
 	.woocommerce-cart-form .shop_table td, 
