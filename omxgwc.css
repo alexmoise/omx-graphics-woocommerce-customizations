@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.16
+ * Version 1.2.17
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -783,27 +783,27 @@ body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button
 /* Adjust buttons size to match Paypal's which is in an iFrame, unfortunately */
 @media (min-width: 625px) {
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-branded-button {
-		height: 56px !important;
+		height: 52px !important;
 	}
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
-		padding: 8px 0 !important;
+		padding: 7px 0 !important;
 	}
 }
 @media (min-width: 365px) and (max-width: 624px) {
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-branded-button {
-		height: 46px !important;
+		height: 50px !important;
 	}
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
-		padding: 5px 0 !important;
+		padding: 8px 0 !important;
 		font-size: 18px;
 	}
 }
 @media (max-width: 364px) {
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-branded-button {
-		height: 35px !important;
+		height: 50px !important;
 	}
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
-		padding: 3px 0 !important;
+		padding: 10px 0 !important;
 		font-size: 15px;
 	}
 }
