@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.15
+ * Version 1.2.16
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -763,6 +763,9 @@ body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payme
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye_smart_button_bottom, 
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
     margin: 12px 0 !important;
+}
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye_smart_button_bottom {
+    width: 100%;
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payment-request-wrapper {
     padding: 0 !important;
