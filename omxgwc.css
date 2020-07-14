@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.12
+ * Version 1.2.15
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -30,7 +30,7 @@ header#masthead {
 	position: fixed;
 	margin-top: 0px !important;
 	width: 100%;
-	z-index: 999900; 
+	z-index: 9999; 
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.26, 0.99);
 }
 /* Move the header up when scrolled (based on class added via JS) */
