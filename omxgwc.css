@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.17
+ * Version 1.2.19
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -83,9 +83,15 @@ header#masthead nav#site-navigation {
 .main-header-bar-wrap > .main-header-bar {
     padding-top: 5px;
 }
+.main-header-bar .main-header-bar-navigation .menu-item-has-children>a:after {
+    margin-left: 8px;
+}
 #primary-menu > li.menu-item > a {
     font-family: Kepler296;
     text-transform: uppercase;
+}
+.secondary a *, .site-footer a *, .site-header a *, a {
+    transition: none;
 }
 @media (max-width:960px) {
 	.omx-scrolled .main-header-container .woocommerce-custom-menu-item {
@@ -101,6 +107,8 @@ header#masthead nav#site-navigation {
 	}
 	#primary-menu > li.menu-item > a {
 		font-size: small;
+		padding: 0 10px;
+		letter-spacing: -0.4px;
 	}
 }
 .omx-scrolled .site-branding {
@@ -379,6 +387,9 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 }
 
 /* Social icons in main menu */
+.omx_social_menu_wrapper a.omx_social_menu_item {
+    padding: 0 10px 8px 10px;
+}
 @media(max-width:1360px) {
 	.omx_social_menu_item {
 		width: 30px !important;

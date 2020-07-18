@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.4
+ * Version 1.2.18
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -59,6 +59,21 @@ jQuery(document).ready(function() {
 	// Opening & closing class of <small> containers that have "omx_read_more" class 
 	jQuery( ".wccf_field_container small.omx_read_more" ).click(function() {
 		jQuery( this ).toggleClass( "omx_expanded" );
+	});
+	// Change selected variation based on thumbnail click 
+	// ## Attribute slug MUST BE "color_combination" for this to work! ##
+	var variation_data = jQuery('.variations_form').data("product_variations");
+	jQuery( ".woocommerce-product-gallery img" ).on( "touchend mouseup", function() {
+		// a slight delay allowing for WooCommerce functions to assign '.flex-active-slide' class to the new thumb in the first place
+		setTimeout(function() {
+			var selected_thumb = jQuery('.flex-active-slide').children("a").prop('href');
+			jQuery.each(variation_data, function(i, v) {
+				if(this.image.full_src == selected_thumb) {
+					// console.log(this.attributes.attribute_pa_color_combination);
+					jQuery("#pa_color_combination").val(this.attributes.attribute_pa_color_combination).change();
+				}
+			});
+		}, 25);
 	});
 });
 // === END adding some stuff to do when document.ready
