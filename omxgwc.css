@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.20
+ * Version 1.2.21
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -390,7 +390,6 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 .anr_captcha_field {
     padding: 3px 3px 5px 3px;
 }
-
 /* Woocommerce register and login forms (mostly also for Advanced Recaptcha above) */
 .woocommerce form.login, 
 .woocommerce form.register {
@@ -406,6 +405,19 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 }
 @media(max-width:768px) {
 	.woocommerce-ResetPassword button.woocommerce-Button.button {
+		width: 100%;
+	}
+}
+
+/* CF7 contact forms */
+.wpcf7-form p {
+    margin-bottom: 8px !important;
+}
+.wpcf7-form input.wpcf7-submit {
+    font-weight: bold;
+}
+@media(max-width:768px) {
+	.wpcf7-form input.wpcf7-submit {
 		width: 100%;
 	}
 }
