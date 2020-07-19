@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.19
+ * Version 1.2.20
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -384,6 +384,30 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 .sidebar-main .wcuCurrencySwitcherWidget div:first-child {
     font-family: Kepler296;
     text-transform: uppercase;
+}
+
+/* Advanced ReCaptcha */
+.anr_captcha_field {
+    padding: 3px 3px 5px 3px;
+}
+
+/* Woocommerce register and login forms (mostly also for Advanced Recaptcha above) */
+.woocommerce form.login, 
+.woocommerce form.register {
+    padding: 12px;
+}
+.woocommerce-form-register__submit, 
+.woocommerce-form-login__submit {
+    width: 100%;
+    padding: 20px !important;
+}
+.woocommerce-ResetPassword button.woocommerce-Button.button {
+	padding: 20px;
+}
+@media(max-width:768px) {
+	.woocommerce-ResetPassword button.woocommerce-Button.button {
+		width: 100%;
+	}
 }
 
 /* Social icons in main menu */

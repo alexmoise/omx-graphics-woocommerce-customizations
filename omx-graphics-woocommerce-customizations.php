@@ -5,11 +5,11 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.19
+ * Version: 1.2.20
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
- * WC tested up to: 4.1.1
+ * WC tested up to: 4.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {	exit(0);}
@@ -240,6 +240,8 @@ function woocommerce_button_proceed_to_checkout() {
 // Translate/change some strings as needed
 add_filter( 'gettext', 'moomx_translate_woocommerce_strings', 999, 3 );
 function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
+$translated = str_ireplace( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'Lost your password? Or need to create a brand new one? Please enter your username or email address. You will receive a link to create a new password via email.', $translated );
+$translated = str_ireplace( 'Reset password', 'Get password setting link', $translated );
 $translated = str_ireplace( 'Cart totals', 'Shipping & Totals', $translated );
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 $translated = str_ireplace( 'An error occurred, please try again or try an alternate form of payment.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="https://test.omxgraphics.com/cart/#omx-custom-onepage-cart-shipping">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
@@ -391,6 +393,70 @@ function moomx_add_0_to_shipping_label( $label, $method ) {
 		$label .= ': <strong>Free</strong>';
 	}
 	return $label;
+}
+
+// === Create User Account for Guest ordering customers
+// Trigger this function to the thank you page
+add_action( 'woocommerce_thankyou', 'moomx_register_guests', 10, 1 );
+function moomx_register_guests( $order_id ) {
+  // get all the order data and extract billing email
+  $order = new WC_Order($order_id);
+  $order_email = $order->billing_email;
+  // check if the user already exixts
+  $email = email_exists( $order_email );  
+  // $user = username_exists( $order_email ); // not necessary as email is unique anyway
+  // if the Order Email doesn't exist in User table then it's a guest checkout
+  if( $email == false ){
+    // get a random password 
+    $random_password = wp_generate_password();
+    // create new user with email as username & newly created pw
+    $user_id = wp_create_user( $order_email, $random_password, $order_email );
+    // WC guest customer identification
+    update_user_meta( $user_id, 'guest', 'yes' );
+    // Set user billing data
+    update_user_meta( $user_id, 'billing_address_1', $order->billing_address_1 );
+    update_user_meta( $user_id, 'billing_address_2', $order->billing_address_2 );
+    update_user_meta( $user_id, 'billing_city', $order->billing_city );
+    update_user_meta( $user_id, 'billing_company', $order->billing_company );
+    update_user_meta( $user_id, 'billing_country', $order->billing_country );
+    update_user_meta( $user_id, 'billing_email', $order->billing_email );
+    update_user_meta( $user_id, 'billing_first_name', $order->billing_first_name );
+    update_user_meta( $user_id, 'billing_last_name', $order->billing_last_name );
+    update_user_meta( $user_id, 'billing_phone', $order->billing_phone );
+    update_user_meta( $user_id, 'billing_postcode', $order->billing_postcode );
+    update_user_meta( $user_id, 'billing_state', $order->billing_state );
+    // Set user shipping data
+    update_user_meta( $user_id, 'shipping_address_1', $order->shipping_address_1 );
+    update_user_meta( $user_id, 'shipping_address_2', $order->shipping_address_2 );
+    update_user_meta( $user_id, 'shipping_city', $order->shipping_city );
+    update_user_meta( $user_id, 'shipping_company', $order->shipping_company );
+    update_user_meta( $user_id, 'shipping_country', $order->shipping_country );
+    update_user_meta( $user_id, 'shipping_first_name', $order->shipping_first_name );
+    update_user_meta( $user_id, 'shipping_last_name', $order->shipping_last_name );
+    update_user_meta( $user_id, 'shipping_method', $order->shipping_method );
+    update_user_meta( $user_id, 'shipping_postcode', $order->shipping_postcode );
+    update_user_meta( $user_id, 'shipping_state', $order->shipping_state );
+    // link past orders to this newly created customer
+    wc_update_new_customer_past_orders( $user_id );
+	// Also update newly created user with First Name and Last Name
+	wp_update_user([
+		'ID' => $user_id, 
+		'first_name' => $order->billing_first_name,
+		'last_name' => $order->billing_last_name,
+	]);
+  }
+}
+// If order is made as Guest but Billing email matches an existing user then assign current order to that existing user
+add_action( 'woocommerce_thankyou', 'moomx_assign_new_order', 11, 1 );
+function moomx_assign_new_order( $order_id ) {
+	$order = new WC_Order($order_id);
+	$user = $order->get_user();
+	if( !$user ){
+		$userdata = get_user_by( 'email', $order->get_billing_email() );
+		if(isset( $userdata->ID )){
+			update_post_meta($order_id, '_customer_user', $userdata->ID );
+		}
+	}
 }
 
 ?>
