@@ -26,7 +26,7 @@ $calculator_text          = '';
 ?>
 <tr id="omx-custom-onepage-cart-shipping" class="woocommerce-shipping-totals shipping omx-custom-onepage-cart-shipping">
 	<td colspan="2" class="shipping-options-row">
-		<div class="th ship"><?php echo wp_kses_post( $package_name ); ?></div>
+		<div class="th ship"><?php echo wp_kses_post( $package_name ); ?>:</div>
 		<div class="td ship" data-title="<?php echo esc_attr( $package_name ); ?>">
 
 			

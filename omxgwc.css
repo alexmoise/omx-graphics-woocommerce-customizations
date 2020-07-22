@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.21
+ * Version 1.2.22
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -743,6 +743,59 @@ body.woocommerce-checkout .error_paypal_link{
     border-color: #cccccc;
     color: #999999;
 }
+/* Order Total sizes */
+@media (max-width:768px) {
+    .cart-collaterals .cart_totals .order-total > th {
+        display: inline-block !important;
+        width: 142px !important;
+        border: none !important;
+        font-size: 24px;
+        padding: 8px !important;
+		white-space: nowrap;
+    }
+    .cart-collaterals .cart_totals .order-total > td {
+        display: inline-block !important;
+        width: calc(100% - 147px);
+        border: none !important;
+        font-size: 24px;
+        padding: 8px !important;
+		white-space: nowrap;
+    }
+    .cart-collaterals .cart_totals .order-total {
+        border-top: 1px solid #ebebeb;
+    }
+}
+@media (min-width:769px) {
+    .cart-collaterals .cart_totals .order-total > th {
+        display: table-cell;
+        width: 142px !important;
+        border: none !important;
+        font-size: 24px;
+        padding: 8px !important;
+        white-space: nowrap;
+    }
+    .cart-collaterals .cart_totals .order-total > td {
+        display: table-cell;
+        width: calc(100% - 147px);
+        border: none !important;
+        font-size: 24px;
+        padding: 8px !important;
+        white-space: nowrap;
+    }
+    .cart-collaterals .cart_totals .order-total {
+        border-top: 1px solid #ebebeb !important;
+    }
+    .cart-collaterals .cart_totals .shop_table {
+        border-collapse: collapse !important;
+    }
+}
+
+@media (min-width:801px) {
+	.cart-collaterals .shop_table td {
+		padding-left: 5px !important;
+		padding-right: 5px !important;
+	}
+}
 @media (max-width:800px) {
 	.woocommerce-cart-form .shop_table td, 
 	.cart-collaterals .shop_table td	{
@@ -797,6 +850,9 @@ body.woocommerce-checkout .error_paypal_link{
     border-radius: 4px;
     text-align: center;
 	font-size: 24px;
+}
+.cart-collaterals .wc-proceed-to-checkout {
+    padding: 6px 0;
 }
 /* === Style the Smart Payment Buttons in Cart page only =============================================================================================================== */
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye-proceed-to-checkout-button-separator, 
@@ -867,6 +923,10 @@ body.woocommerce-cart .cart-collaterals .cart-discount > td {
 .woocommerce-cart .order-total > td {
     text-align: right;
 }
+.woocommerce-cart .shop_table .cart-subtotal > th {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+}
 @media (max-width:768px) {
 	.woocommerce-cart .shop_table .cart-discount > th, 
 	.woocommerce-cart .shop_table .cart-subtotal > th {
@@ -886,18 +946,33 @@ body.woocommerce-cart .cart-collaterals .cart-discount > td {
 .omx-custom-onepage-cart-shipping .th.ship {
     font-weight: bold;
     margin-bottom: 10px;
+	text-align: left;
 }
 .omx-custom-onepage-cart-shipping .td.ship .shipping-calculator-button {
-    font-weight: bold;
-    padding: 7px 10px;
-    background-color: #e8bc1f;
-    color: black;
+    /* font-weight: bold; */
+    /* padding: 7px 10px; */
+    /* background-color: #e8bc1f; */
+    /* color: black; */
 }
 .omx-custom-onepage-cart-shipping .shipping-calculator-form {
     margin-top: 10px;
 }
 .omx-custom-onepage-cart-shipping .shipping-calculator-form p.form-row {
     padding: 3px 0;
+}
+#omx-custom-onepage-cart-shipping form.woocommerce-shipping-calculator {
+    text-align: right;
+}
+#omx-custom-onepage-cart-shipping .shipping-calculator-form #calc_shipping_state_field, 
+#omx-custom-onepage-cart-shipping .shipping-calculator-form #calc_shipping_country_field {
+    text-align: left;
+}
+#omx-custom-onepage-cart-shipping #shipping_method li {
+    text-align: left;
+}
+#omx-custom-onepage-cart-shipping .woocommerce-shipping-destination {
+    margin: 10px 0px;
+    text-align: left;
 }
 input#terms.input-checkbox {
     display: inline-block;

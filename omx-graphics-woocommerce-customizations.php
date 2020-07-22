@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.21
+ * Version: 1.2.22
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -243,6 +243,7 @@ function moomx_translate_woocommerce_strings( $translated, $text, $domain ) {
 $translated = str_ireplace( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'Lost your password? Or need to create a brand new one? Please enter your username or email address. You will receive a link to create a new password via email.', $translated );
 $translated = str_ireplace( 'Reset password', 'Get password setting link', $translated );
 $translated = str_ireplace( 'Cart totals', 'Shipping & Totals', $translated );
+$translated = str_ireplace( 'Change address', 'Deliver to different address', $translated );
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 $translated = str_ireplace( 'An error occurred, please try again or try an alternate form of payment.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="https://test.omxgraphics.com/cart/#omx-custom-onepage-cart-shipping">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
 $translated = str_ireplace( 'Proceed to PayPal', 'Place order', $translated );
