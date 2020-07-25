@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.22
+ * Version 1.2.23
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -183,13 +183,14 @@ header#masthead nav#site-navigation {
 .easy-notification-bar-message * {
     font-family: Kepler296;
     font-size: 13px;
+	vertical-align: bottom;
 }
-@media (min-width:426px) {
+@media (min-width:768px) {
 	.easy-notification-bar {
 		line-height: 14px;
 	}
 }
-@media (max-width:425px) {
+@media (max-width:767px) {
 	.easy-notification-bar {
 		line-height: 18px;
 		padding: 5px;
@@ -201,6 +202,11 @@ header#masthead nav#site-navigation {
 	.easy-notification-bar-message span.topbar_right {
 		float: none;
 		display: block;
+	}
+	/* Hide left and right spans when screen gets scrolled, to leave mo screen space available */
+	.omx-scrolled .topbar_left, 
+	.omx-scrolled .topbar_right {
+		display: none !important;
 	}
 }
 

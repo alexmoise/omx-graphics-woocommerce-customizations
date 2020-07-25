@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.18
+ * Version 1.2.23
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -28,7 +28,8 @@ jQuery(document).ready(function() {
 		scrollPosition = window.scrollY;
 		if (scrollPosition >= 50) {
 			logoContainer.classList.add('omx-scrolled');
-		} else {
+		} 
+		if (scrollPosition <= 10) {
 			logoContainer.classList.remove('omx-scrolled');
 		}
 	});
