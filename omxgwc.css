@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.23
+ * Version 1.2.24
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1125,35 +1125,35 @@ div#omx_add_to_cart .button.single_add_to_cart_button {
     display: table-cell;
     vertical-align: middle;
     float: unset;
-    height: 45px;
-    width: calc(100% - 80px);
-	max-width: 250px;
+    height: 50px;
+    width: calc(100% - 10px);
+    max-width: 400px;
     text-align: left;
     background-color: black;
     color: #e8bc1f;
-    border-radius: 3px;
-    font-weight: normal;
+    border-radius: 4px;
+    font-weight: bold;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 16px;
+    margin-top: 10px;
 }
 div#omx_add_to_cart .quantity {
     float: none !important;
-    display: inline-block;
-	vertical-align: middle;
-	margin-right: 12px;
+    display: block;
+	height: 50px;
 }
 div#omx_add_to_cart button.single_add_to_cart_button:after {
     content: " ";
     border-right: 1px solid #e8bc1f;
     position: absolute;
     color: transparent;
-    bottom: 8px;
-    top: 8px;
+    bottom: 15px;
+    top: 15px;
     right: 44%;
 }
 div#omx_add_to_cart span.woocommerce-Price-amount {
     color: #e8bc1f;
-    font-weight: normal;
+    font-weight: bold;
 }
 /* The Quantity box */
 div.quantity .minus, div.quantity .plus{
