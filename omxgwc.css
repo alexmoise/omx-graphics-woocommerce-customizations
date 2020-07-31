@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.24
+ * Version 1.2.25
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -750,6 +750,9 @@ body.woocommerce-checkout .error_paypal_link{
     color: #999999;
 }
 /* Order Total sizes */
+.cart-collaterals .cart_totals {
+    max-width: 794px;
+}
 @media (max-width:768px) {
     .cart-collaterals .cart_totals .order-total > th {
         display: inline-block !important;
@@ -880,11 +883,11 @@ body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payme
     padding: 0 !important;
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .paypal-button.paypal-button-context-iframe {
-    background-color: #009cde;
+    /* background-color: #009cde; */
     border-radius: 4px;
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .paypal-button.paypal-button-context-iframe:hover {
-    background-color: #29b1ea;
+    /* background-color: #29b1ea; */
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
     border-radius: 4px !important;
