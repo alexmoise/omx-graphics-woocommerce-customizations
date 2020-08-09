@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.23
+ * Version 1.2.27
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -18,6 +18,36 @@ jQuery(document).ready(function() {
 	if(jQuery("body").hasClass("single-product") || jQuery("body").hasClass("woocommerce-cart")) {
 		quantity_plus_minus();
 	}
+	// Update the price situated under the product title in Single Product pages - at any form.cart "change" event
+	jQuery("form.cart").change(function(e) { 
+		// Doing it ony if it's an "originalEvent" - that means user triggered (because it refreshes at loading as well and we don't want that)
+		if (e.originalEvent) {
+			jQuery(".wccf_field_container").stop(false,true); // Stop fading fields in and out (and whatever else is doing, just do it quick and preserve the queue - thus "false,true")
+				// Try to update the price every 500 miliseconds for 3 seconds
+			var startPriceUpdateTimer = (new Date()).getTime();
+			var timer_id = setInterval(function(){
+				var currentPriceUpdateTimer = (new Date()).getTime();
+				if((currentPriceUpdateTimer - startPriceUpdateTimer)/1000 > 3) clearInterval(timer_id);
+				// console.log('Updating ... ');
+				// Change the class of "ins" container if a Sale Price is involved
+				if(jQuery("ins.sale_price")) 		{ jQuery("ins.sale_price").attr('class', 'reg_price'); };
+				// Remove Sale Price elements if they exists
+				if(jQuery("span.price_separator")) 	{ jQuery("span.price_separator").remove(); };
+				if(jQuery("del.reg_price")) 		{ jQuery("del.reg_price").remove(); };
+				if(jQuery("span.percent_off")) 		{ jQuery("span.percent_off").remove(); };
+				if(jQuery("span.saved_percent")) 	{ jQuery("span.saved_percent").remove(); };
+				// Check if the Add to Cart is not disabled
+				if ( jQuery("#omx_add_to_cart button.single_add_to_cart_button").is(":not(.disabled)") ) {
+					// Update the price finally
+					jQuery(".omx_price .reg_price").html(jQuery(".rightpress_product_price_live_update .price").html());
+				} else {
+					// If Add to Cart button is disabled then display something else (instead of updating the price)
+					jQuery(".omx_price .reg_price .woocommerce-Price-amount.amount").html("<span class='choose_an_option'>Please choose an option.</span>");
+					clearInterval(timer_id);
+				};
+			}, 500);
+		}
+	});
 	// Add the span elements needed to add the styled name and number
 	jQuery('#wccf_product_field_name_style_container li > label').after('<span class="styled ridername" style="margin-left:10px"></span>');
 	jQuery('#wccf_product_field_number_style_container li > label').after('<span class="styled ridernumber" style="margin-left:10px"></span>');

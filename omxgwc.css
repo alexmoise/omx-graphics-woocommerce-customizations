@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.26
+ * Version 1.2.27
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1250,6 +1250,12 @@ div#omx_add_to_cart .quantity:after {
 }
 .omx_price del.reg_price {
     color: #999 !important;
+}
+.omx_price .reg_price * {
+    color: black;
+}
+.omx_price .choose_an_option {
+    font-size: small;
 }
 
 /* Style the Rider Name and Number fields in Single Product  */
