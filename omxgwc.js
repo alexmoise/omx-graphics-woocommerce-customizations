@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.27
+ * Version 1.2.28
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -167,6 +167,17 @@ jQuery('#wccf_product_field_number_plate_color_container input').change(function
 jQuery('#wccf_product_field_number_color_container input').change(function(e) {
 	var chosenbkgcolor = jQuery(this).val();
 	jQuery('#wccf_product_field_rider_number').css('color', chosenbkgcolor );
+});
+
+// Dynamically change the background color of Rider Name & Number field (for Karts)
+jQuery('#wccf_product_field_number_plate_color_container input').change(function(e) {
+	var chosennumcolor = jQuery(this).val();
+	jQuery('#wccf_product_field_rider_name_and_number').css('background-color', chosennumcolor );
+});
+// Dynamically change the color of Rider Name & Number field (for Karts)
+jQuery('#wccf_product_field_number_color_container input').change(function(e) {
+	var chosenbkgcolor = jQuery(this).val();
+	jQuery('#wccf_product_field_rider_name_and_number').css('color', chosenbkgcolor );
 });
 
 // Dynamically scroll the checkout so the Place Order/Proceed to Paypal button gets in the view at gateway change

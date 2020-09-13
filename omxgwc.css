@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.27
+ * Version 1.2.28
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1283,7 +1283,8 @@ span.styled {
     display: none !important;
 }
 input#wccf_product_field_rider_number, 
-input#wccf_product_field_rider_name {
+input#wccf_product_field_rider_name, 
+input#wccf_product_field_rider_name_and_number {
 	padding: 2px 10px 5px 10px;
 	-webkit-font-smoothing: antialiased;
 }
