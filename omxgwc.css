@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.28
+ * Version 1.2.29
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -106,8 +106,8 @@ header#masthead nav#site-navigation {
 		margin-left: 60px;
 	}
 	#primary-menu > li.menu-item > a {
-		font-size: small;
-		padding: 0 10px;
+		font-size: 16px;
+		padding: 0 9px;
 		letter-spacing: -0.4px;
 	}
 }
