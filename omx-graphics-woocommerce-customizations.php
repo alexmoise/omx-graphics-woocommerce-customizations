@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.31
+ * Version: 1.2.32
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -235,11 +235,13 @@ add_filter('wc_stripe_hide_payment_request_on_product_page', 'moomx_return_true'
 // add_filter('wc_stripe_show_payment_request_on_checkout', 'moomx_return_true');
 
 // Change Proceed to Checkout button text
-function woocommerce_button_proceed_to_checkout() {
-	$checkout_url = WC()->cart->get_checkout_url();
-	?>
-	<a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Regular checkout' ); ?></a>
-	<?php
+if ( ! function_exists( 'woocommerce_button_proceed_to_checkout' ) ) {
+	function woocommerce_button_proceed_to_checkout() {
+		$checkout_url = WC()->cart->get_checkout_url();
+		?>
+		<a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Regular checkout' ); ?></a>
+		<?php
+	}
 }
 
 // Translate/change some strings as needed

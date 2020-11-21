@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.28
+ * Version 1.2.32
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -104,7 +104,7 @@ jQuery(document).ready(function() {
 					jQuery("#pa_color_combination").val(this.attributes.attribute_pa_color_combination).change();
 				}
 			});
-		}, 25);
+		}, 10);
 	});
 });
 // === END adding some stuff to do when document.ready
