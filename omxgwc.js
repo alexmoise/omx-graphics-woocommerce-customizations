@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.32
+ * Version 1.2.35
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -105,6 +105,16 @@ jQuery(document).ready(function() {
 				}
 			});
 		}, 10);
+	});
+	// Change focus to next form field instead of submitting the form
+	jQuery('form.variations_form input').keydown(function(e){
+		if(e.keyCode==13){       
+			if(jQuery(':input:eq(' + (jQuery(':input').index(this) + 1) + ')').attr('type')=='submit'){// check for submit button and submit form on enter press
+				return true;
+			}
+				jQuery(':input:eq(' + (jQuery(':input').index(this) + 1) + ')').focus();
+				return false;
+		}
 	});
 });
 // === END adding some stuff to do when document.ready
