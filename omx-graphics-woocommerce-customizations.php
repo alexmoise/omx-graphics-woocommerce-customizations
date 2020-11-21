@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.33
+ * Version: 1.2.34
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -276,13 +276,11 @@ function moomx_replace_woocommerce_templates( $template, $template_name, $templa
 }
 
 // === Sale/New/Featured flash banners adjustments below
-// Empty the Sale Flash HTML
+// Empty the Sale Flash HTML, 2 ways, normally unused
 // add_filter('woocommerce_sale_flash', 'moomx_empty_sale_html', 10, 3);
 // function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
 // add_filter('woocommerce_sale_flash', 'moomx_custom_hide_sales_flash');
 // function moomx_custom_hide_sales_flash() { return false; }
-// Another way of emptying the "Featured" label
-add_filter( 'wcfp_featured_label_tags_html', '__return_false' );
 
 // Add the New flash banner to products in Archive pages
 add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );

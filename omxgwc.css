@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.33
+ * Version 1.2.34
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1441,10 +1441,6 @@ small.omx_read_more.omx_expanded:after {
 		margin: 10px 0 0 -17px;
 		font-size: 14px;
 	}
-}
-/* never display the Featured badge from WC Featured Products plugin */
-li.product.featured .onsale:nth-of-type(2) {
-    display: none !important;
 }
 
 /* === Style the checkboxes and radio buttons */
