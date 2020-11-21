@@ -192,9 +192,6 @@ if ( ! function_exists( 'woocommerce_widget_shopping_cart_proceed_to_checkout' )
 	function woocommerce_widget_shopping_cart_proceed_to_checkout() { echo ''; }
 }
 
-// Empty the Sale Flash HTML
-add_filter('woocommerce_sale_flash', 'moomx_empty_sale_html', 10, 3);
-function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
 // Empty the Clear reset variations link
 add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
@@ -277,6 +274,15 @@ function moomx_replace_woocommerce_templates( $template, $template_name, $templa
 	if ( ! $template ) { $template = $_template; }
 	return $template;
 }
+
+// === Sale/New/Featured flash banners adjustments below
+// Empty the Sale Flash HTML
+// add_filter('woocommerce_sale_flash', 'moomx_empty_sale_html', 10, 3);
+// function moomx_empty_sale_html() { $sale_html = ''; return $sale_html; }
+// add_filter('woocommerce_sale_flash', 'moomx_custom_hide_sales_flash');
+// function moomx_custom_hide_sales_flash() { return false; }
+// Another way of emptying the "Featured" label
+add_filter( 'wcfp_featured_label_tags_html', '__return_false' );
 
 // Add the New flash banner to products in Archive pages
 add_action( 'woocommerce_before_shop_loop_item_title','moomx_new_product_flash', 1 );
