@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.34
+ * Version 1.2.36
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -463,7 +463,7 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
     margin: 5px 0;
 }
 .home_shop_mx_button > a {
-    background-color: #396388c9 !important;
+    /* background-color: #396388c9 !important; */
 }
 .home_shop_mx_cover {
     /* min-height: calc(100vh - 360px); */
