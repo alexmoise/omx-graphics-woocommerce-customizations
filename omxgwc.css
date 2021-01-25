@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.37
+ * Version 1.2.38
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -24,7 +24,7 @@ h1.entry-title {
     color: black;
 }
 h1.blog-title {
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 /* === Header styling:  */
