@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.36
+ * Version: 1.2.37
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -28,6 +28,13 @@ add_action( 'wp_enqueue_scripts', 'moomx_adding_styles', 9999999 );
 function moomx_adding_styles() {
 	wp_register_style('omxgwc-styles', plugins_url('omxgwc.css', __FILE__));
 	wp_enqueue_style('omxgwc-styles');
+}
+// Add title to Blog archive page 
+add_action( astra_primary_content_top, moomx_add_blog_title );
+function moomx_add_blog_title() {
+	if ( is_home() ) {
+		echo '<H1 class="blog-title">'.single_post_title( '', false ).'</H1>';
+	}
 }
 // Add a small JS function to automatically replace spaces and dashes with underscores in Options - so the fields edits faster
 add_action('in_admin_footer', 'moomx_only_dashes_in_custom_fields_options');
