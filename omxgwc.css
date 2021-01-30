@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.38
+ * Version 1.2.39
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1502,4 +1502,9 @@ input[type='checkbox']:checked {
 div.wccf_field_container li > input[type="radio"] {
     vertical-align: middle;
 	cursor: pointer;
+}
+
+/* FAQ page */
+.ui-accordion .ui-accordion-content {
+    padding: 0;
 }
