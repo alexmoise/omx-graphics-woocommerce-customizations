@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.41
+ * Version 1.2.42
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1512,4 +1512,9 @@ div.wccf_field_container li > input[type="radio"] {
     /* border-bottom: 1px solid #eee; */
 	/* border-right: 1px solid #eee; */
 	/* border-left: 1px solid #eee; */
+}
+.ui-accordion .ui-accordion-content {
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
 }
