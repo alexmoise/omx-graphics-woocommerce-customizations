@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.44
+ * Version: 1.2.45
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -326,7 +326,7 @@ function moomx_new_product_flash() {
 		$display_new_badge = get_field( 'display_new_badge' );
 		if ($display_new_badge == '1') {
 			// we only want to display the New badge in the first 14 days since the last Update, so let's calculate that first
-			$date_modified = new DateTime($product->get_date_modified()->date('Y-m-d'));
+			$date_modified = new DateTime($product->get_date_created()->date('Y-m-d'));
 			$date_current = new DateTime(date('Y-m-d'));
 			$days_since_modified  = $date_current->diff($date_modified)->format('%a');
 			// now, only if no more than 14 days has passed since last update ...
