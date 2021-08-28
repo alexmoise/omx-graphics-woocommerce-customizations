@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.43
+ * Version 1.2.46
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -116,12 +116,7 @@ jQuery(document).ready(function() {
 				return false;
 		}
 	});
-	// Dynamically scroll the checkout so the Place Order/Proceed to Paypal button gets in the view at gateway change
-	jQuery( 'form.checkout' ).on('click', '.wc_payment_methods input[type=radio]', function() {	
-		setTimeout(function() {
-			jQuery(".form-row.place-order")[0].scrollIntoView({ behavior: "smooth", block: "end" });
-		}, 350);
-	});
+	
 });
 // === END adding some stuff to do when document.ready
 
