@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.46
+ * Version: 1.2.47
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -246,6 +246,80 @@ if ( ! function_exists( 'woocommerce_button_proceed_to_checkout' ) ) {
 		<a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Regular checkout' ); ?></a>
 		<?php
 	}
+}
+
+// Add Agree to Terms in Cart
+add_action( 'woocommerce_proceed_to_checkout', 'moomx_cart_privacy_policy_checkbox', 1 );
+function moomx_cart_privacy_policy_checkbox() {
+    woocommerce_form_field( 'privacy_policy', array(
+        'type'          => 'checkbox',
+        'class'         => array('form-row privacy'),
+        'label_class'   => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
+        'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
+        'required'      => true,
+        'label'         => sprintf( __( "I've read and accept the %s", "woocommerce" ),
+                           '<a href="/privacy-policy" target="_blank">'.__( "Privacy Policy", "woocommerce" ).'</a>' ),
+    ));
+    ?>
+    <script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(".angelleye_smart_button_bottom").css({"opacity":"0"});
+		waitForElement('#wc-stripe-payment-request-button').then(setTimeout(function() {disableStripeButtons()}, 0));
+		waitForElement('.component-frame.visible').then(setTimeout(function() {disablePaypalButtons()}, 1500));
+		waitForElement('#privacy_policy').then(ppolicyToggle());
+
+		// The alert text below
+		var ppolicyAlert = 'Please accept Terms and Conditions before purchasing.';
+		// Some function that enables and disables the payment buttons
+		function disableStripeButtons() {
+			jQuery("#wc-stripe-payment-request-button").css({"pointer-events":"none"});
+			jQuery("#wc-stripe-payment-request-wrapper").css({"opacity":"0.5"}).on('click',function(e){ e.preventDefault(); alert(ppolicyAlert); });
+		}
+		function disablePaypalButtons() {
+			jQuery(".component-frame.visible").css({"pointer-events":"none"});
+			jQuery(".angelleye_smart_button_bottom").css({"opacity":"0.5"}).on('click',function(e){ e.preventDefault(); alert(ppolicyAlert); });
+		}
+		function enableStripeButtons() {
+			jQuery("#wc-stripe-payment-request-button").css({"pointer-events":"initial"});
+			jQuery("#wc-stripe-payment-request-wrapper").css({"opacity":"1"}).unbind("click");
+		}
+		function enablePaypalButtons() {
+			jQuery(".component-frame.visible").css({"pointer-events":"initial"});
+			jQuery(".angelleye_smart_button_bottom").css({"opacity":"1"}).unbind("click");
+		}
+		// The function that manages the buttons based on the confirmation checkbox
+		function ppolicyToggle() {
+			jQuery("#privacy_policy").change(function() {
+				if (this.checked) {
+					enableStripeButtons();
+					enablePaypalButtons();
+				} else {
+					disableStripeButtons();
+					disablePaypalButtons();
+				}
+			});
+		}
+		// A function that observes the existence of a given element (because smart buttons are loaded later)
+		function waitForElement(selector) {
+			return new Promise(resolve => {
+				if (document.querySelector(selector)) {
+					return resolve(document.querySelector(selector));
+				}
+				const observer = new MutationObserver(mutations => {
+					if (document.querySelector(selector)) {
+						resolve(document.querySelector(selector));
+						observer.disconnect();
+					}
+				});
+				observer.observe(document.body, {
+					childList: true,
+					subtree: true
+				});
+			});
+		}
+	});
+    </script>
+    <?php
 }
 
 // Translate/change some strings as needed
