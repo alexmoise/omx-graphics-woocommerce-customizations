@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.42
+ * Version 1.2.48
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -628,6 +628,9 @@ form.woocommerce-checkout .variation * {
     color: black;
 	width: 100%;
 	text-align: center;
+}
+.woocommerce-cart .wc-proceed-to-checkout #privacy_policy {
+    margin-top: 4px;
 }
 .woocommerce-checkout button#place_order {
     padding: 24px 10px;

@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.47
+ * Version: 1.2.48
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -191,7 +191,7 @@ function moomx_rearrange_woocomemrce_features() {
 	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 	// Change position of Proceed to Checkout button (lower, so Angelleye Paypal button - on prio 22 - gets on top of it)
 	remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
-	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 40 );
+	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 90 );
 }
 
 // Remove Checkout button in Mini Cart Widget (by emptying its HTML) 
@@ -258,24 +258,37 @@ function moomx_cart_privacy_policy_checkbox() {
         'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
         'required'      => true,
         'label'         => sprintf( __( "I've read and accept the %s", "woocommerce" ),
-                           '<a href="/privacy-policy" target="_blank">'.__( "Privacy Policy", "woocommerce" ).'</a>' ),
+                           '<a href="/terms-conditions/" target="_blank">'.__( "Terms and Conditions", "woocommerce" ).'</a>' ),
     ));
     ?>
     <script type="text/javascript">
 	jQuery(document).ready(function() {
+		// Define the alert text below
+		var ppolicyAlert = 'Please accept Terms and Conditions before purchasing.';
+		// Initialize the buttons disabling
 		jQuery(".angelleye_smart_button_bottom").css({"opacity":"0"});
 		waitForElement('#wc-stripe-payment-request-button').then(setTimeout(function() {disableStripeButtons()}, 0));
 		waitForElement('.component-frame.visible').then(setTimeout(function() {disablePaypalButtons()}, 1500));
 		waitForElement('#privacy_policy').then(ppolicyToggle());
-
-		// The alert text below
-		var ppolicyAlert = 'Please accept Terms and Conditions before purchasing.';
+		// Also re-disable the buttons and re-enable checkbox toggle if cart gets updated for any reason
+		jQuery( document.body ).on( 'updated_cart_totals', function(){
+			jQuery(".angelleye_smart_button_bottom").css({"opacity":"0"});
+			setTimeout(function() {disableStripeButtons()}, 0);
+			setTimeout(function() {disablePaypalButtons()}, 1500);
+			ppolicyToggle();
+		});
+		// We need to move the Regular Checkout button back to its position because PayPal gets generated later and so, afterwards
+		jQuery("#shipping_method input").on("change", function() {
+			waitForElement('.component-frame.visible').then(setTimeout(function() {jQuery(".checkout-button").insertAfter(".angelleye_smart_button_bottom")}, 1500));
+		});
 		// Some function that enables and disables the payment buttons
 		function disableStripeButtons() {
+			jQuery("#wc-stripe-payment-request-wrapper").unbind("click");
 			jQuery("#wc-stripe-payment-request-button").css({"pointer-events":"none"});
 			jQuery("#wc-stripe-payment-request-wrapper").css({"opacity":"0.5"}).on('click',function(e){ e.preventDefault(); alert(ppolicyAlert); });
 		}
 		function disablePaypalButtons() {
+			jQuery(".angelleye_smart_button_bottom").unbind("click");
 			jQuery(".component-frame.visible").css({"pointer-events":"none"});
 			jQuery(".angelleye_smart_button_bottom").css({"opacity":"0.5"}).on('click',function(e){ e.preventDefault(); alert(ppolicyAlert); });
 		}
