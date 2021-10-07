@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.48
+ * Version: 1.2.49
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -257,7 +257,7 @@ function moomx_cart_privacy_policy_checkbox() {
         'label_class'   => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
         'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
         'required'      => true,
-        'label'         => sprintf( __( "I've read and accept the %s", "woocommerce" ),
+        'label'         => sprintf( __( "<strong>I have read and agree to the website %s</strong>", "woocommerce" ),
                            '<a href="/terms-conditions/" target="_blank">'.__( "Terms and Conditions", "woocommerce" ).'</a>' ),
     ));
     ?>
