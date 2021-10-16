@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.48
+ * Version 1.2.52
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -9,6 +9,8 @@
 div#content {min-height: 100vh;}
 
 /* === General usage rules */
+.sharp-image { image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor;}
+
 .omx_orange {
 	color: #e8bc1f;
 }
@@ -631,6 +633,12 @@ form.woocommerce-checkout .variation * {
 }
 .woocommerce-cart .wc-proceed-to-checkout #privacy_policy {
     margin-top: 4px;
+}
+.woocommerce-cart .security-icons-container {
+    margin: 15px auto;
+}
+.woocommerce-cart .cart-terms-agreement {
+    margin: 15px auto;
 }
 .woocommerce-checkout button#place_order {
     padding: 24px 10px;
