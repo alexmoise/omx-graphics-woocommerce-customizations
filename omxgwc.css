@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.52
+ * Version 1.2.54
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -663,6 +663,14 @@ form.woocommerce-checkout .variation * {
 .woocommerce-checkout table.cart td.actions .button {
     /* margin: 0px !important; */
     padding: 11px 8px !important;
+}
+.woocommerce-page.woocommerce-checkout #payment .place-order {
+    padding-bottom: 5px !important;
+}
+@media (min-width:769px) {
+	.woocommerce-checkout .security-icons-container > img {
+		padding-top: 12px;
+	}
 }
 /* ===================================================================================================================================================================== */
 body.woocommerce-checkout .woocommerce-shipping-totals.shipping .ship {

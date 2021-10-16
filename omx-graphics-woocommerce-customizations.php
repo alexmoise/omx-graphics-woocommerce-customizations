@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.53
+ * Version: 1.2.54
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -248,8 +248,9 @@ if ( ! function_exists( 'woocommerce_button_proceed_to_checkout' ) ) {
 	}
 }
 
-// Adding the security icons in the Cart page under the payment/checkout/save cart buttons
+// Adding the security icons in the Cart and Checkout pages
 add_action( 'woocommerce_proceed_to_checkout', 'moomx_security_icons', 1);
+add_action( 'woocommerce_review_order_after_submit', 'moomx_security_icons', 1);
 function moomx_security_icons() {
 	echo '<div class="security-icons-container"><img class="sharp-image" src="' . plugin_dir_url( __FILE__ ).'images/SecureIconsCheckout02.png . "></div>';
 }
