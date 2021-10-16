@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.54
+ * Version: 1.2.55
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -217,7 +217,7 @@ function moomx_change_empty_cart_button_url() {
 // Change "Product has been added to your cart" message since we go directly to Cart anyway
 add_filter( 'wc_add_to_cart_message_html', 'moomx_change_addtocart_notice' );
 function moomx_change_addtocart_notice($products) {
-	$addtocart_notice = 'Congrats! You have a great taste. <br>Just one more step to get your order on its way.';
+	$addtocart_notice = 'Well done! <br>Just one more step to get your order on its way.';
 	return $addtocart_notice;
 }
 
@@ -258,7 +258,7 @@ function moomx_security_icons() {
 // Add Agree to Terms in Cart
 add_action( 'woocommerce_proceed_to_checkout', 'moomx_cart_privacy_policy_checkbox', 110 );
 function moomx_cart_privacy_policy_checkbox() {
-	echo '<div class="cart-terms-agreement">By clicking payment buttons I agree to the <a href="/terms-conditions/" target="_blank">Terms and Conditions</a></div>';
+	echo '<div class="cart-terms-agreement">By placing the order you agree to our <a href="/terms-conditions/" target="_blank">Terms and Conditions</a>, <a href="/privacy-policy/" target="_blank">Privacy</a> and <a href="/returns-exchanges/" target="_blank">Return</a> policies</div>';
 }
 
 // Translate/change some strings as needed

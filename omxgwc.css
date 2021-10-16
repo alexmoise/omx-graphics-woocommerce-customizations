@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.54
+ * Version 1.2.55
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -730,10 +730,17 @@ body.woocommerce-checkout .error_paypal_link{
 .woocommerce-cart-form .woocommerce-Price-amount.amount {
     display: block;
     text-align: right;
+	font-weight: normal !important;
+}
+.cart-subtotal .woocommerce-Price-amount.amount {
+	font-weight: normal !important;
 }
 .woocommerce-cart-form .product-quantity .quantity {
     display: block;
     text-align: right;
+}
+.woocommerce-checkout .cart_item .woocommerce-Price-amount.amount {
+    font-weight: normal !important;
 }
 .woocommerce-cart-form .shop_table thead th.product-price, 
 .woocommerce-cart-form .shop_table thead th.product-quantity, 
