@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.52
+ * Version: 1.2.53
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -257,7 +257,7 @@ function moomx_security_icons() {
 // Add Agree to Terms in Cart
 add_action( 'woocommerce_proceed_to_checkout', 'moomx_cart_privacy_policy_checkbox', 110 );
 function moomx_cart_privacy_policy_checkbox() {
-	echo '<div class="cart-terms-agreement">By clicking payment button I agree to the <a href="/terms-conditions/" target="_blank">Terms and Conditions</a></div>';
+	echo '<div class="cart-terms-agreement">By clicking payment buttons I agree to the <a href="/terms-conditions/" target="_blank">Terms and Conditions</a></div>';
 }
 
 // Translate/change some strings as needed
