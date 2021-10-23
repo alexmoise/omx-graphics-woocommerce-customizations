@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.55
+ * Version: 1.2.56
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -433,6 +433,24 @@ function moomx_add_0_to_shipping_label( $label, $method ) {
 		$label .= ': <strong>Free</strong>';
 	}
 	return $label;
+}
+
+// unset FedEx Standard when products with shipping class "Full Kits" are present in the cart
+add_filter( 'woocommerce_package_rates', 'moomx_hide_shipping_method_by_shipping_class_present', 10, 2 );
+function moomx_hide_shipping_method_by_shipping_class_present( $rates, $package )
+{
+    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) { return; }
+    $class_slug = 'fkits'; // shipping class SLUG
+    $method_key_id = 'flat_rate:11'; // shipping method to hide
+    // Now, for each item in cart 
+    foreach( WC()->cart->get_cart() as $cart_item ){
+        // If we find the shipping class
+        if( $cart_item['data']->get_shipping_class() == $class_slug ){
+            unset($rates[$method_key_id]); // Remove the targeted method
+            break; // Exit when done
+        }
+    }
+    return $rates;
 }
 
 // === Create User Account for Guest ordering customers
