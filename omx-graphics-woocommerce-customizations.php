@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.56
+ * Version: 1.2.57
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -158,7 +158,7 @@ function moomx_omx_price($price) {
 			// so if there's a sale price let's calculate the percentage of savings and display all 3 nicely ...
 			$saved_percent_raw = ($chosen_reg_price - $chosen_sale_price) / $chosen_reg_price * 100;
 			$saved_percent = round($saved_percent_raw, 0);
-			$omx_price = '<div class="omx_price"><del class="reg_price">'.wc_price($chosen_reg_price).'</del><span class="price_separator">|</span><span class="saved_percent">'.$saved_percent.'</span><span class="percent_off">% Off</span><ins class="sale_price">'.wc_price($chosen_sale_price).'</ins></div>';
+			$omx_price = '<div class="omx_price"><del class="reg_price">'.wc_price($chosen_reg_price).'</del><span class="price_separator">|</span><span class="percent_off">Now</span><ins class="sale_price">'.wc_price($chosen_sale_price).'</ins></div>';
 		} else {
 			// else let's just display the regular price
 			$omx_price = '<div class="omx_price"><ins class="reg_price">'.wc_price($chosen_reg_price).'</ins></div>';
