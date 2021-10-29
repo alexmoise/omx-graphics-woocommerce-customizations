@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.55
+ * Version 1.2.59
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1275,6 +1275,9 @@ div#omx_add_to_cart .quantity:after {
     vertical-align: middle;
 }
 .omx_price > .saved_percent, .omx_price > .percent_off {
+    font-weight: bold;
+}
+.omx_price .sale_price * {
     font-weight: bold;
 }
 .omx_price del.reg_price {
