@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.59
+ * Version 1.2.62
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -144,7 +144,7 @@ header#masthead nav#site-navigation {
 	}
 }
 /* Adding the logo at the left of menu when scrolling */
-@media (min-width: 1361px) {
+@media (min-width: 1529px) {
 	.main-header-bar .ast-main-header-bar-alignment {
 		position: relative;
 	}
@@ -158,7 +158,7 @@ header#masthead nav#site-navigation {
 		top: 10px;
 	}
 }
-@media (max-width: 1360px) {
+@media (max-width: 1528px) {
 	.omx-scrolled .main-header-bar .ast-masthead-custom-menu-items.woocommerce-custom-menu-item:before {
 		content: url(/wp-content/uploads/2020/01/omx_logo_sq32_b.png);
 		position: absolute;
@@ -463,6 +463,7 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 /* === Home Page styling */
 .home h1.entry-title {
     text-align: center;
+	margin-top: 38px;
 }
 .home header.entry-header {
     margin: 5px 0;
