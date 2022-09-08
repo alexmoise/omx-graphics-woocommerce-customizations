@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.62
+ * Version 1.2.67
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -255,13 +255,13 @@ div#primary {
 @media (min-width: 426px) and (max-width: 768px) {
 	div#primary {
 		padding-top: 0 !important;
-		margin-top: 168px !important;
+		margin-top: 190px !important;
 	}
 }
 @media (min-width: 371px) and (max-width: 425px) {
 	div#primary {
 		padding-top: 0 !important;
-		margin-top: 164px !important;
+		margin-top: 190px !important;
 	}
 }
 @media (max-width: 370px) {
