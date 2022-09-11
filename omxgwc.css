@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.67
+ * Version 1.2.68
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -79,11 +79,26 @@ header#masthead {
 }
 /* move up the shop icon a bit to compensate for the "bag handle" */
 div#ast-site-header-cart {
-	margin-bottom: 8px;
+	margin-bottom: 2px;
 } 
+/* also make it a bit smaller */
+.ast-cart-menu-wrap {
+    font-size: 1.2em !important;
+    margin-bottom: 5px;
+}
+/* Empty cart message adjustments */
+.widget_shopping_cart_content {
+    box-shadow: none !important;
+}
+p.woocommerce-mini-cart__empty-message {
+    text-align: center !important;
+}
 /* Styling the main menu */
 header#masthead nav#site-navigation {
     /* height: 65px; */
+}
+.main-header-bar-wrap {
+  padding: 4px 0;
 }
 .main-header-bar-wrap > .main-header-bar {
     padding-top: 5px;
@@ -166,7 +181,7 @@ header#masthead nav#site-navigation {
 		height: 32px;
 		display: inline-block;
 		left: -40px;
-		top: 10px;
+		top: 5px;
 	}
 }
 /* Notification bar styling */
@@ -255,19 +270,19 @@ div#primary {
 @media (min-width: 426px) and (max-width: 768px) {
 	div#primary {
 		padding-top: 0 !important;
-		margin-top: 190px !important;
+		margin-top: 200px !important;
 	}
 }
 @media (min-width: 371px) and (max-width: 425px) {
 	div#primary {
 		padding-top: 0 !important;
-		margin-top: 190px !important;
+		margin-top: 200px !important;
 	}
 }
 @media (max-width: 370px) {
 	div#primary {
 		padding-top: 0 !important;
-		margin-top: 160px !important;
+		margin-top: 180px !important;
 	}
 }
 @media (max-width: 370px) {
@@ -368,6 +383,9 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
     background-color: gray !important;
     background-image: none;
 }
+select[name="wcu_currency_switcher"] {
+    background-position: 90% 50%;
+}
 /* WooBeWoo currency switcher widget in main menu */
 @media(max-width:1360px) {
 	#primary-menu .wcuCurrencySwitcherWidget > select {
@@ -434,6 +452,9 @@ ul#primary-menu .wcuCurrencySwitcherWidget .chosen-container ul.chosen-results >
 }
 
 /* Social icons in main menu */
+.omx_social_menu_wrapper {
+    margin-bottom: 6px;
+}
 .omx_social_menu_wrapper a.omx_social_menu_item {
     padding: 0 10px 8px 10px;
 }

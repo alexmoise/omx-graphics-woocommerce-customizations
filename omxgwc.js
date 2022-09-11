@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.66
+ * Version 1.2.68
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -19,9 +19,7 @@ jQuery(document).ready(function() {
 		quantity_plus_minus();
 	}
 	// Get ready to go to cart when clicking the cart icon
-	jQuery( ".main-header-container .ast-cart-menu-wrap" ).click(function() {
-		window.location.href="/cart/";
-	});
+	document.querySelector('#ast-site-header-cart a.cart-container').setAttribute("href", "/cart/");
 	// Update the price situated under the product title in Single Product pages - at any form.cart "change" event
 	jQuery("form.cart").change(function(e) { 
 		// Doing it ony if it's an "originalEvent" - that means user triggered (because it refreshes at loading as well and we don't want that)

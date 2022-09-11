@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.67
+ * Version: 1.2.68
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -13,6 +13,36 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {	exit(0);}
+
+// Add a version tag by modified time to force cache refresh, especially for those sneaky apple/android speed proxies
+function put_modified_time_version($src, $baseUrl)
+{
+    // Only work with objects from baseUrl
+    if ($src && strpos($src, $baseUrl) === 0) {
+        // Remove any version
+        $newSrc = remove_query_arg('ver', $src);
+        // Get path after base_url
+        $path = substr($newSrc, strlen($baseUrl));
+        $path = wp_parse_url($path, PHP_URL_PATH);
+        // Apply modified time version if exists
+        if ($mtime = @filemtime(untrailingslashit(ABSPATH) . $path)) {
+            $src = add_query_arg('ver', $mtime, $newSrc);
+        }
+    }
+    return $src;
+}
+// Filters style sources to put file modified time as query string
+function modified_time_version_style($src) {
+    // base_url from WP_Versions is already in memory
+    return ($src) ? put_modified_time_version($src, wp_styles()->base_url) : $src;
+}
+//Filters script sources to put file modified time as query string
+function modified_time_version_script($src) {
+    // base_url from WP_Styles is already in memory
+    return ($src) ? put_modified_time_version($src, wp_scripts()->base_url) : $src;
+}
+add_filter('style_loader_src', 'modified_time_version_style', 15, 1);
+add_filter('script_loader_src', 'modified_time_version_script', 15, 1);
 
 // Increase image quality a bit, so all the straight lines appears smooth
 add_filter('jpeg_quality', function($arg){return 92;});
