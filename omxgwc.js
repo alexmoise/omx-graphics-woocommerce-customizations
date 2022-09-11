@@ -1,6 +1,6 @@
 /** 
  * JS functions for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.68
+ * Version 1.2.69
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -98,15 +98,13 @@ jQuery(document).ready(function() {
 	var variation_data = jQuery('.variations_form').data("product_variations");
 	jQuery( ".woocommerce-product-gallery img" ).on( "touchend mouseup", function() {
 		// a slight delay allowing for WooCommerce functions to assign '.flex-active-slide' class to the new thumb in the first place
-		setTimeout(function() {
-			var selected_thumb = jQuery('.flex-active-slide').children("a").prop('href');
-			jQuery.each(variation_data, function(i, v) {
-				if(this.image.full_src == selected_thumb) {
-					// console.log(this.attributes.attribute_pa_color_combination);
-					jQuery("#pa_color_combination").val(this.attributes.attribute_pa_color_combination).change();
-				}
-			});
-		}, 10);
+		var selected_thumb = jQuery('.flex-active-slide').children("a").prop('href');
+		jQuery.each(variation_data, function(i, v) {
+			if(this.image.full_src == selected_thumb) {
+				// console.log(this.attributes.attribute_pa_color_combination);
+				jQuery("#pa_color_combination").val(this.attributes.attribute_pa_color_combination).change();
+			}
+		});
 	});
 	// Change focus to next form field instead of submitting the form
 	jQuery('form.variations_form input').keydown(function(e){
@@ -156,19 +154,6 @@ jQuery('#wccf_product_field_name_style_container input').change(function(e) {
 jQuery('#wccf_product_field_number_style_container input').change(function(e) {
 	var chosenstyle = jQuery(this).val();
 	jQuery('#wccf_product_field_rider_number').css('font-family', chosenstyle );	
-});
-
-// Dynamically change the Rider Name in styles list
-jQuery("#wccf_product_field_rider_name").on('input', function(e) {
-	setTimeout(function() {
-		jQuery(".styled.ridername").empty().text( jQuery("#wccf_product_field_rider_name").val() );
-	}, 200);
-});
-// Dynamically change the Rider Number in styles list
-jQuery("#wccf_product_field_rider_number").on('input', function(e) {
-	setTimeout(function() {
-		jQuery(".styled.ridernumber").empty().text( jQuery("#wccf_product_field_rider_number").val() );
-	}, 200);
 });
 
 // Dynamically change the background color of rider number
