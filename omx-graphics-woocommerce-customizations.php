@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.70
+ * Version: 1.2.71
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -265,7 +265,7 @@ function moomx_change_empty_cart_button_url() {
 // Change "Product has been added to your cart" message since we go directly to Cart anyway
 add_filter( 'wc_add_to_cart_message_html', 'moomx_change_addtocart_notice' );
 function moomx_change_addtocart_notice($products) {
-	$addtocart_notice = 'Well done! <br>Just one more step to get your order on its way.';
+	$addtocart_notice = 'Well done! <br>Just one more step to get your order on its way.<br><a href="/shop/" class="continue-shopping_cart-button-top button alt wc-forward">Continue shopping</a>';
 	return $addtocart_notice;
 }
 
@@ -279,6 +279,12 @@ function moomx_save_share_cart_link() {
 // add_action( 'woocommerce_proceed_to_checkout', 'moomx_save_cart_button', 100);
 function moomx_save_cart_button() {
 	echo '<a href="/cart/#email-cart" class="save_share_cart-button button alt wc-forward">Save & Share Cart</a>';
+}
+
+// Add Continue shopping button right after Proceed to Checkout button in Cart
+// add_action( 'woocommerce_proceed_to_checkout', 'moomx_continue_shopping_button', 100);
+function moomx_continue_shopping_button() {
+	echo '<a href="/shop/" class="save_share_cart-button button alt wc-forward">Continue shopping</a>';
 }
 
 // Stripe filters for Payment Request buttons

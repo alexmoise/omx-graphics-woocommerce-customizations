@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.68
+ * Version 1.2.71
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1414,6 +1414,12 @@ input#wccf_product_field_number_color {
 small.omx_read_more.omx_expanded:after {
     background: transparent url(/wp-content/uploads/static/triangle_i14.png) no-repeat center;
     content: "";
+}
+/* Continue shopping buttons */
+.continue-shopping_cart-button-top {
+    float: left !important;
+    padding: 16px !important;
+    margin-top: 10px !important;
 }
 /* Save & Share Cart button */
 .wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
