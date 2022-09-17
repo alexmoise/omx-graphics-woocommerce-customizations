@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.71
+ * Version: 1.2.72
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -265,7 +265,7 @@ function moomx_change_empty_cart_button_url() {
 // Change "Product has been added to your cart" message since we go directly to Cart anyway
 add_filter( 'wc_add_to_cart_message_html', 'moomx_change_addtocart_notice' );
 function moomx_change_addtocart_notice($products) {
-	$addtocart_notice = 'Well done! <br>Just one more step to get your order on its way.<br><a href="/shop/" class="continue-shopping_cart-button-top button alt wc-forward">Continue shopping</a>';
+	$addtocart_notice = 'Well done! <br>Just one more step to get your order on its way.<br><a href="/shop/" class="continue-shopping_cart-button-top button alt wc-forward">Or continue shopping.</a>';
 	return $addtocart_notice;
 }
 

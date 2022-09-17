@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.71
+ * Version 1.2.72
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1418,8 +1418,9 @@ small.omx_read_more.omx_expanded:after {
 /* Continue shopping buttons */
 .continue-shopping_cart-button-top {
     float: left !important;
-    padding: 16px !important;
-    margin-top: 10px !important;
+    padding: 4px 0 !important;
+    margin-top: 4px !important;
+    background: transparent !important;
 }
 /* Save & Share Cart button */
 .wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
