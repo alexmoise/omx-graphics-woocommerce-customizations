@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.73
+ * Version 1.2.74
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -915,15 +915,17 @@ body.woocommerce-checkout .error_paypal_link{
     padding: 6px 0;
 }
 /* === Style the Smart Payment Buttons in Cart page only =============================================================================================================== */
+body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #omx-payment-request-button-separator {
+    margin: 0 !important;
+	text-align: center; 
+	display: block;
+}
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye-proceed-to-checkout-button-separator, 
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payment-request-button-separator {
     display: none !important;
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye_smart_button_bottom {
     max-width: 100%;
-}
-body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout  .angelleye_smart_button_bottom:after {
-    content: "— OR —";
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout #wc-stripe-payment-request-wrapper, 
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .angelleye_smart_button_bottom, 
@@ -960,7 +962,7 @@ body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button
 		height: 50px !important;
 	}
 	body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
-		padding: 8px 0 !important;
+		padding: 12px 0 !important;
 		font-size: 18px;
 	}
 }

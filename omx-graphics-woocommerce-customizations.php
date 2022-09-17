@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.73
+ * Version: 1.2.74
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -239,7 +239,7 @@ function moomx_rearrange_woocomemrce_features() {
 	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 	// Change position of Proceed to Checkout button (lower, so Angelleye Paypal button - on prio 22 - gets on top of it)
 	remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
-	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 90 );
+	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 0 );
 }
 
 // Add Select options buttons to all products
@@ -303,13 +303,14 @@ add_filter('wc_stripe_hide_payment_request_on_product_page', 'moomx_return_true'
 if ( ! function_exists( 'woocommerce_button_proceed_to_checkout' ) ) {
 	function woocommerce_button_proceed_to_checkout() {
 		?>
-		<a href="<?php echo wc_get_checkout_url() ?>" class="checkout-button button alt wc-forward"><?php _e( 'Regular checkout' ); ?></a>
+		<a href="<?php echo wc_get_checkout_url() ?>" class="checkout-button button alt wc-forward"><?php _e( 'Checkout' ); ?></a>
+		<p id="omx-payment-request-button-separator">— OR —</p>
 		<?php
 	}
 }
 
 // Adding the security icons in the Cart and Checkout pages
-add_action( 'woocommerce_proceed_to_checkout', 'moomx_security_icons', 1);
+add_action( 'woocommerce_proceed_to_checkout', 'moomx_security_icons', 100);
 add_action( 'woocommerce_review_order_after_submit', 'moomx_security_icons', 1);
 function moomx_security_icons() {
 	echo '<div class="security-icons-container"><img class="sharp-image" src="' . plugin_dir_url( __FILE__ ).'images/SecureIconsCheckout02.png"></div>';
