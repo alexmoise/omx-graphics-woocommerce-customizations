@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.72
+ * Version 1.2.73
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1502,6 +1502,12 @@ small.omx_read_more.omx_expanded:after {
 		margin: 10px 0 0 -17px;
 		font-size: 14px;
 	}
+}
+
+/* Custom select options button in product list pages */
+.omx_select_options_button {
+    width: 100%;
+    text-align: center;
 }
 
 /* === Style the checkboxes and radio buttons */

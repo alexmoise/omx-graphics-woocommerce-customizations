@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.72
+ * Version: 1.2.73
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -240,6 +240,13 @@ function moomx_rearrange_woocomemrce_features() {
 	// Change position of Proceed to Checkout button (lower, so Angelleye Paypal button - on prio 22 - gets on top of it)
 	remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
 	add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 90 );
+}
+
+// Add Select options buttons to all products
+add_action( 'astra_woo_shop_summary_wrap_bottom', 'moomx_select_options_button', 10 );
+function moomx_select_options_button() {
+	global $product;
+	echo'<a href="' . $product->get_permalink() . '" data-quantity="1" class="button product_type_variable add_to_cart_button omx_select_options_button" data-product_id="' . $product->get_id() . '" data-product_sku="' . $product->get_sku() . '" aria-label="Select options for “' . $product->post->post_title . '”" rel="nofollow">Select options</a>';
 }
 
 // Remove Checkout button in Mini Cart Widget (by emptying its HTML) 
