@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.74
+ * Version 1.2.75
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -947,6 +947,8 @@ body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .paypal-button.p
 }
 body.woocommerce-cart .cart-collaterals .wc-proceed-to-checkout .checkout-button.button {
     border-radius: 4px !important;
+	background-color: #34325e;
+    color: white;
 }
 /* Adjust buttons size to match Paypal's which is in an iFrame, unfortunately */
 @media (min-width: 625px) {
