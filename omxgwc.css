@@ -1,6 +1,6 @@
 /** 
  * CSS Styles for OMX Graphics Woocommerce customizations plugin
- * Version 1.2.75
+ * Version 1.2.76
  * (version above is equal with main plugin file version when this file was updated)
  */
 
@@ -1058,12 +1058,12 @@ header#masthead .woocommerce.widget_shopping_cart .cart_list li a.remove {
     top: calc(50% - 10px) !important;
 }
 header#masthead .woocommerce-mini-cart__buttons.buttons > a.button.wc-forward:hover {
-    color: #e8bc1f !important;
-    background-color: black !important;
+    color: white !important;
+    background-color: #34325e !important;
 }
 header#masthead .woocommerce-mini-cart__buttons.buttons > a.button.wc-forward {
-    color: black !important;
-    background-color: #e8bc1f !important;
+    color: white !important;
+    background-color: #34325e !important;
     padding: 16px 0;
     font-size: 20px;
 }
@@ -1157,7 +1157,7 @@ ul.products li.product:hover .price_loop_div {
 }
 /* The "omx_add_to_cart" div container (added with JS) */
 .rightpress_dots {
-    color: #e8bc1f;
+    color: white;
 }
 form.cart > dl.rightpress_product_price_live_update, 
 form.cart > div.quantity, 
@@ -1190,8 +1190,8 @@ div#omx_add_to_cart .button.single_add_to_cart_button {
     width: calc(100% - 10px);
     max-width: 400px;
     text-align: left;
-    background-color: black;
-    color: #e8bc1f;
+    background-color: #34325e;
+    color: white;
     border-radius: 4px;
     font-weight: bold;
     text-transform: uppercase;
@@ -1205,7 +1205,7 @@ div#omx_add_to_cart .quantity {
 }
 div#omx_add_to_cart button.single_add_to_cart_button:after {
     content: " ";
-    border-right: 1px solid #e8bc1f;
+    border-right: 1px solid white;
     position: absolute;
     color: transparent;
     bottom: 15px;
@@ -1213,7 +1213,7 @@ div#omx_add_to_cart button.single_add_to_cart_button:after {
     right: 44%;
 }
 div#omx_add_to_cart span.woocommerce-Price-amount {
-    color: #e8bc1f;
+    color: white;
     font-weight: bold;
 }
 /* The Quantity box */
@@ -1422,9 +1422,9 @@ small.omx_read_more.omx_expanded:after {
 /* Continue shopping buttons */
 .continue-shopping_cart-button-top {
     float: left !important;
-    padding: 4px 0 !important;
+    padding: 18px 20px !important;
     margin-top: 4px !important;
-    background: transparent !important;
+    /* background: transparent !important; */
 }
 /* Save & Share Cart button */
 .wc-proceed-to-checkout a.save_share_cart-button.button.alt.wc-forward {
