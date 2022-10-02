@@ -664,7 +664,7 @@ form.woocommerce-checkout .variation * {
 }
 .woocommerce-checkout button#place_order {
     padding: 24px 10px;
-    font-size: 18px;
+    font-size: 20px;
 	margin-top: 20px;
 }
 .woocommerce-checkout #payment ul.payment_methods li {

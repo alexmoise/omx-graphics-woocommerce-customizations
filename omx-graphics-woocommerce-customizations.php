@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * GitHub Plugin URI: https://github.com/alexmoise/omx-graphics-woocommerce-customizations
  * Description: A custom plugin to add required customizations to OMX Graphics Woocommerce shop and to style the front end as required. Works based on WooCommerce Custom Fields plugin by RightPress and requires Woocommerce and Astra theme. For details/troubleshooting please contact me at <a href="https://moise.pro/contact/">https://moise.pro/contact/</a>
- * Version: 1.2.77
+ * Version: 1.2.78
  * Author: Alex Moise
  * Author URI: https://moise.pro
  * WC requires at least: 3.0.0
@@ -332,7 +332,7 @@ $translated = str_ireplace( 'Change address', 'Deliver to different address', $t
 $translated = str_ireplace( 'Undo?', 'Tap here to undo!', $translated );
 $translated = str_ireplace( 'An error occurred, please try again or try an alternate form of payment.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="https://test.omxgraphics.com/cart/#omx-custom-onepage-cart-shipping">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
 $translated = str_ireplace( 'Proceed to PayPal', 'Place order', $translated );
-$translated = str_ireplace( 'Place order', 'Buy now', $translated );
+$translated = str_ireplace( 'Place order', 'BUY NOW', $translated );
 $translated = str_ireplace( 'An error occurred while processing the card.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="https://test.omxgraphics.com/cart/#omx-custom-onepage-cart-shipping">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
 $translated = str_ireplace( 'The card was declined.', 'We are sorry, but your current payment method could not be processed. Please use <a class="error_paypal_link" href="https://test.omxgraphics.com/cart/#omx-custom-onepage-cart-shipping">PayPal</a> to finish your transaction. No PayPal account is needed and all credit cards are accepted.', $translated );
 $translated = str_ireplace( 'Sorry, this coupon is not applicable to selected products.', 'This promo code can not be applied in conjunction with other promos and discounts.', $translated );
